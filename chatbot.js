@@ -146,9 +146,16 @@ const botKnowledge = {
 };
 
 // 2. HELPER: DETECT LANGUAGE
+// 2. HELPER: DETECT LANGUAGE (UPDATED)
 function getCurrentLang() {
-    // Check localStorage first, default to 'en' if missing
-    return localStorage.getItem('selectedLanguage') || 'en';
+    // Priority 1: Check the HTML tag (This updates instantly when you switch languages)
+    const htmlLang = document.documentElement.getAttribute('lang');
+    
+    // Priority 2: Check LocalStorage (Backup)
+    const storageLang = localStorage.getItem('selectedLanguage');
+    
+    // Priority 3: Default to English
+    return htmlLang || storageLang || 'en';
 }
 
 // 3. TOGGLE CHAT WINDOW
@@ -232,3 +239,4 @@ function handleKeyPress(event) {
         sendMessage();
     }
 }
+
