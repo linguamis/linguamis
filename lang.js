@@ -1003,7 +1003,7 @@ const translations = {
         footerContact: "Kontakt",
         footerDesc: "Posílení studentů angličtiny po celém světě.",
     }
-),
+);
 
 // --- MAIN FUNCTION 1: TRIGGERED BY USER DROPDOWN ---
 function changeLanguage(lang) {
