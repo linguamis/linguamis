@@ -1,7 +1,7 @@
 // --- chatbot.js (AI + Rule-Based Hybrid) ---
 
 // 1. CONFIGURATION
-const API_KEY = 'gen-lang-client-0254648049'; // <--- PASTE KEY HERE
+const API_KEY = 'AIzaSyCYo-V0vYy3bNNL-Kh6f5tz11vQLuJ6Mtg'; // <--- PASTE KEY HERE
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
 // 2. THE BACKUP BRAIN (Rule-Based Fallback)
@@ -138,3 +138,4 @@ function addMessage(sender, text) {
 function handleKeyPress(event) {
     if (event.key === 'Enter') sendMessage();
 }
+
