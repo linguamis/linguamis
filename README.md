@@ -52,6 +52,6 @@ I focus on building lightweight, fast, and accessible web solutions.
 
 ### 📫 Connect with Me
 
-* **Website:** [musabikbal206.github.io](https://musabikbal206.github.io)
-* **Project:** [Linguamis.com](https://linguamis.com)
+* **Website:** [linguamis.com](https://linguamis.com)
+* **Project:** [Linguamis.com](https://github.com/linguamis/linguamis)
 * **Focus:** EdTech, ESL Teaching, Web Development
