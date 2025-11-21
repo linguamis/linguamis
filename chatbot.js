@@ -1,185 +1,236 @@
-// --- chatbot.js ---
+// --- chatbot.js (Multilingual & Dynamic) ---
 
-// 1. CONFIGURATION
-// Note: In a real website, never expose your API key in frontend code. 
-// Restrict this key in Google Cloud Console to your specific domain.
-const API_KEY = "AIzaSyCYo-V0vYy3bNNL-Kh6f5tz11vQLuJ6Mtg"; 
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+// 1. THE MULTILINGUAL BRAIN (Knowledge Base)
+const botKnowledge = {
+    en: {
+        welcome: `
+            <strong>Hi there! I'm the Linguamis Assistant. 🤖</strong><br><br>
+            I can help you navigate the site. Try asking me about:<br>
+            🎙️ <strong>Speaking</strong><br>
+            🎧 <strong>Listening</strong><br>
+            📖 <strong>Grammar</strong><br>
+            ⚡ <strong>Verbs</strong><br>
+            <em>How can I help you today?</em>`,
+        responses: {
+            "speak": "Our <strong>Speaking Coach</strong> listens to you and gives real-time AI feedback. <a href='/speak/'>Start Speaking</a>.",
+            "listen": "The <strong>Listening Lab</strong> helps you train your ear with diverse accents. <a href='/listen/'>Start Listening</a>.",
+            "grammar": "The <strong>Grammar Guide</strong> explains English rules clearly with interactive examples. <a href='/grammar/'>Learn Grammar</a>.",
+            "write": "The <strong>Writing Studio</strong> helps you enhance skills for essays and emails. <a href='/write/'>Start Writing</a>.",
+            "verbs": "Conquer tricky verbs like 'go-went-gone' in our Irregular Verbs section. <a href='/Irregular/'>Practice Verbs</a>.",
+            "personas": "Chat with <strong>AI Personas</strong> to practice natural conversation. <a href='/Personas/'>Meet Personas</a>.",
+            "quiz": "Challenge yourself with today's <strong>Daily Quiz</strong>! <a href='/quiz/'>Take Quiz</a>.",
+            "price": "Linguamis is <strong>100% Free</strong>! We believe education should be accessible to everyone.",
+            "hello": "Hello! Ready to improve your English? Ask me where to start!",
+            "default": "I'm not sure I understand. Try asking about <strong>Speaking, Grammar, or Verbs</strong>."
+        }
+    },
+    tr: {
+        welcome: `
+            <strong>Merhaba! Ben Linguamis Asistanı. 🤖</strong><br><br>
+            Size yardımcı olabilirim. Bana şunları sorabilirsiniz:<br>
+            🎙️ <strong>Konuşma</strong><br>
+            🎧 <strong>Dinleme</strong><br>
+            📖 <strong>Dilbilgisi</strong><br>
+            ⚡ <strong>Fiiller</strong><br>
+            <em>Bugün ne çalışmak istersiniz?</em>`,
+        responses: {
+            "konuş": "<strong>Konuşma Koçu</strong> sizi dinler ve anlık telaffuz geri bildirimi verir. <a href='/speak/'>Konuşmaya Başla</a>.",
+            "dinle": "<strong>Dinleme Laboratuvarı</strong> farklı aksanlarla kulağınızı eğitir. <a href='/listen/'>Dinlemeye Başla</a>.",
+            "dilbilgisi": "<strong>Dilbilgisi Rehberi</strong> İngilizce kurallarını net örneklerle açıklar. <a href='/grammar/'>Öğrenmeye Başla</a>.",
+            "yaz": "<strong>Yazma Stüdyosu</strong> kompozisyon ve e-posta becerilerinizi geliştirir. <a href='/write/'>Yazmaya Başla</a>.",
+            "fiil": "Düzensiz fiilleri (go-went-gone) hedefli alıştırmalarla öğrenin. <a href='/Irregular/'>Fiil Çalış</a>.",
+            "persona": "Gerçekçi sohbetler için <strong>YZ Personaları</strong> ile konuşun. <a href='/Personas/'>Tanışın</a>.",
+            "test": "Bilginizi <strong>Günlük Test</strong> ile sınayın! <a href='/quiz/'>Testi Çöz</a>.",
+            "ücret": "Linguamis <strong>%100 Ücretsizdir</strong>!",
+            "merhaba": "Merhaba! İngilizcenizi geliştirmeye hazır mısınız?",
+            "default": "Tam anlayamadım. Lütfen <strong>Konuşma, Dilbilgisi veya Fiiller</strong> hakkında soru sorun."
+        }
+    },
+    fr: {
+        welcome: `
+            <strong>Bonjour ! Je suis l'assistant Linguamis. 🤖</strong><br><br>
+            Je peux vous aider. Essayez de demander sur :<br>
+            🎙️ <strong>Parler</strong><br>
+            🎧 <strong>Écoute</strong><br>
+            📖 <strong>Grammaire</strong><br>
+            ⚡ <strong>Verbes</strong>`,
+        responses: {
+            "parl": "Notre <strong>Coach Vocal</strong> écoute votre prononciation et vous corrige. <a href='/speak/'>Commencer</a>.",
+            "ecout": "Le <strong>Labo d'écoute</strong> entraîne votre oreille aux accents variés. <a href='/listen/'>Écouter</a>.",
+            "grammaire": "Le <strong>Guide de grammaire</strong> explique les règles clairement. <a href='/grammar/'>Apprendre</a>.",
+            "ecri": "Le <strong>Studio d'écriture</strong> améliore vos rédactions. <a href='/write/'>Écrire</a>.",
+            "verbe": "Maîtrisez les verbes irréguliers avec nos exercices. <a href='/Irregular/'>Pratiquer</a>.",
+            "prix": "Linguamis est <strong>100% Gratuit</strong> !",
+            "bonjour": "Bonjour ! Prêt à améliorer votre anglais ?",
+            "default": "Je ne comprends pas. Essayez de demander sur la <strong>Grammaire ou le Parler</strong>."
+        }
+    },
+    es: {
+        welcome: `
+            <strong>¡Hola! Soy el asistente de Linguamis. 🤖</strong><br><br>
+            Puedo ayudarte. Pregúntame sobre:<br>
+            🎙️ <strong>Hablar</strong><br>
+            🎧 <strong>Escuchar</strong><br>
+            📖 <strong>Gramática</strong><br>
+            ⚡ <strong>Verbos</strong>`,
+        responses: {
+            "habl": "Nuestro <strong>Entrenador de Habla</strong> mejora tu pronunciación. <a href='/speak/'>Empezar</a>.",
+            "escuch": "El <strong>Lab de Escucha</strong> entrena tu oído con varios acentos. <a href='/listen/'>Escuchar</a>.",
+            "gramatica": "La <strong>Guía Gramatical</strong> explica las reglas claramente. <a href='/grammar/'>Aprender</a>.",
+            "escrib": "Mejora tus ensayos en el <strong>Estudio de Escritura</strong>. <a href='/write/'>Escribir</a>.",
+            "verbo": "Domina los verbos irregulares aquí. <a href='/Irregular/'>Practicar</a>.",
+            "precio": "¡Linguamis es <strong>100% Gratis</strong>!",
+            "hola": "¡Hola! ¿Listo para aprender inglés?",
+            "default": "No entiendo. Pregunta sobre <strong>Gramática o Hablar</strong>."
+        }
+    },
+    de: {
+        welcome: `
+            <strong>Hallo! Ich bin der Linguamis-Assistent. 🤖</strong><br><br>
+            Ich kann helfen. Fragen Sie mich nach:<br>
+            🎙️ <strong>Sprechen</strong><br>
+            🎧 <strong>Hören</strong><br>
+            📖 <strong>Grammatik</strong><br>
+            ⚡ <strong>Verben</strong>`,
+        responses: {
+            "sprech": "Unser <strong>Sprechtrainer</strong> verbessert Ihre Aussprache. <a href='/speak/'>Starten</a>.",
+            "horen": "Das <strong>Hörlabor</strong> trainiert Ihr Gehör. <a href='/listen/'>Starten</a>.",
+            "grammatik": "Der <strong>Grammatikführer</strong> erklärt Regeln einfach. <a href='/grammar/'>Lernen</a>.",
+            "schreib": "Verbessern Sie Texte im <strong>Schreibstudio</strong>. <a href='/write/'>Schreiben</a>.",
+            "verb": "Meistern Sie unregelmäßige Verben hier. <a href='/Irregular/'>Üben</a>.",
+            "kosten": "Linguamis ist <strong>100% Kostenlos</strong>!",
+            "hallo": "Hallo! Bereit, Englisch zu lernen?",
+            "default": "Ich verstehe nicht. Fragen Sie nach <strong>Grammatik oder Sprechen</strong>."
+        }
+    },
+    ru: {
+        welcome: `
+            <strong>Привет! Я помощник Linguamis. 🤖</strong><br><br>
+            Я могу помочь. Спросите меня о:<br>
+            🎙️ <strong>Разговор</strong><br>
+            🎧 <strong>Слух</strong><br>
+            📖 <strong>Грамматика</strong><br>
+            ⚡ <strong>Глаголы</strong>`,
+        responses: {
+            "говор": "Наш <strong>Тренер по речи</strong> улучшает произношение. <a href='/speak/'>Начать</a>.",
+            "слуш": "<strong>Лаборатория слуха</strong> тренирует восприятие акцентов. <a href='/listen/'>Слушать</a>.",
+            "грамм": "<strong>Гид по грамматике</strong> объясняет правила. <a href='/grammar/'>Учить</a>.",
+            "пис": "Улучшайте навыки в <strong>Студии письма</strong>. <a href='/write/'>Писать</a>.",
+            "глагол": "Освойте неправильные глаголы здесь. <a href='/Irregular/'>Тренировать</a>.",
+            "цена": "Linguamis <strong>на 100% бесплатен</strong>!",
+            "привет": "Привет! Готовы учить английский?",
+            "default": "Я не понимаю. Спросите про <strong>Грамматику или Разговор</strong>."
+        }
+    },
+    ar: {
+        welcome: `
+            <strong>مرحباً! أنا مساعد Linguamis الذكي. 🤖</strong><br><br>
+            يمكنني مساعدتك. اسألني عن:<br>
+            🎙️ <strong>المحادثة</strong><br>
+            🎧 <strong>الاستماع</strong><br>
+            📖 <strong>القواعد</strong><br>
+            ⚡ <strong>الأفعال</strong>`,
+        responses: {
+            "تحدث": "<strong>مدرب المحادثة</strong> يساعدك على تحسين النطق. <a href='/speak/'>ابدأ الآن</a>.",
+            "استماع": "<strong>مختبر الاستماع</strong> يدرب أذنك على اللهجات. <a href='/listen/'>ابدأ الاستماع</a>.",
+            "قواعد": "<strong>دليل القواعد</strong> يشرح القواعد بوضوح. <a href='/grammar/'>تعلم القواعد</a>.",
+            "كتابة": "حسن مهاراتك في <strong>استوديو الكتابة</strong>. <a href='/write/'>ابدأ الكتابة</a>.",
+            "أفعال": "تغلب على الأفعال الشاذة هنا. <a href='/Irregular/'>تدرب الآن</a>.",
+            "سعر": "Linguamis <strong>مجاني بنسبة 100%</strong>!",
+            "مرحبا": "مرحباً! هل أنت مستعد لتعلم الإنجليزية؟",
+            "default": "لم أفهم جيداً. حاول السؤال عن <strong>القواعد أو المحادثة</strong>."
+        }
+    }
+};
 
-// 2. SITE KNOWLEDGE (The "Brain")
-// This tells the AI who it is and what the website does.
-const SITE_CONTEXT = `
-You are the friendly AI support assistant for "Linguamis", a language learning website.
-Here is the critical information about the site:
-- COST: 100% Free. There are no premium plans.
-- FEATURES:
-  * Grammar Guide: Learn rules and examples.
-  * Speaking Coach: Practice pronunciation.
-  * Listening Lab: Dictation and accent training.
-  * Reading Club: Stories for all levels.
-  * Daily Quiz: Test your skills.
-  * Personas: Chat with AI characters.
-  * Writing Studio: Practice essays.
-- ACCOUNT: Users must sign up/login at /login to save progress.
-- TONE: Enthusiastic, encouraging, and helpful.
-`;
+// 2. STATE MANAGEMENT
+// We track the language currently displayed in the chat window
+let currentChatLang = null; 
 
-// 3. TOGGLE CHAT UI
+function getCurrentLang() {
+    return localStorage.getItem('selectedLanguage') || 'en';
+}
+
+// 3. TOGGLE CHAT WINDOW & HANDLE LANGUAGE SWITCH
 function toggleChat() {
     const chatWindow = document.getElementById('chat-window');
     const messages = document.getElementById('chat-messages');
-    
+    const siteLang = getCurrentLang();
+
+    // Toggle visibility
     chatWindow.classList.toggle('hidden');
-    
-    // If opening for the first time and empty, send a greeting
-    if (!chatWindow.classList.contains('hidden') && messages.children.length === 0) {
-        const currentLang = getCurrentLanguageName();
-        // We cheat slightly here for speed: A generic hello, or we could ask AI to generate it.
-        // Let's use a simple multilingual hello based on detection.
-        addMessage('bot', getInitialGreeting());
+
+    // Logic: If chat is opening...
+    if (!chatWindow.classList.contains('hidden')) {
+        
+        // CHECK: Has the language changed since the last time we chatted?
+        // OR is the chat completely empty?
+        if (currentChatLang !== siteLang || messages.children.length === 0) {
+            
+            // 1. Update internal state
+            currentChatLang = siteLang;
+            
+            // 2. Clear previous messages (Reset conversation)
+            messages.innerHTML = '';
+
+            // 3. Send the Welcome Message in the NEW language
+            const welcomeMsg = botKnowledge[siteLang] ? botKnowledge[siteLang].welcome : botKnowledge['en'].welcome;
+            addMessage("bot", welcomeMsg);
+        }
     }
 }
 
+// Close button
 document.getElementById('close-chat').addEventListener('click', toggleChat);
 
-// 4. CORE MESSAGE LOGIC
-async function sendMessage() {
+// 4. SEND MESSAGE LOGIC
+function sendMessage() {
     const inputField = document.getElementById('user-input');
-    const sendBtn = document.getElementById('send-btn');
     const userText = inputField.value.trim();
 
-    if (!userText) return;
+    if (userText === "") return;
 
-    // A. Display User Message
+    // Add User Message
     addMessage("user", userText);
-    inputField.value = ""; // Clear input
-    
-    // B. Lock UI while processing
-    inputField.disabled = true;
-    sendBtn.disabled = true;
-    inputField.placeholder = "Linguamis is thinking...";
+    inputField.value = ""; 
 
-    // C. Add a temporary "..." loading bubble
-    const loadingId = addMessage("bot", '<span class="typing-dots">...</span>');
-
-    try {
-        // D. Prepare the prompt for Gemini
-        // We combine context + current language + user question
-        const targetLanguage = getCurrentLanguageName(); // e.g., "Turkish", "French"
-        
-        const prompt = `
-        ${SITE_CONTEXT}
-        
-        IMPORTANT INSTRUCTION:
-        The user is currently viewing the website in ${targetLanguage}.
-        You MUST reply in ${targetLanguage}.
-        Keep the response concise (under 3 sentences if possible).
-        Use HTML tags like <b> for bold or <a href='/page'>link</a> for links.
-        
-        User Question: "${userText}"
-        `;
-
-        // E. Call the API
-        const responseText = await callGemini(prompt);
-        
-        // F. Remove loading bubble and show real response
-        removeMessage(loadingId);
-        addMessage("bot", responseText);
-
-    } catch (error) {
-        console.error("Chatbot Error:", error);
-        removeMessage(loadingId);
-        addMessage("bot", "⚠️ I'm having trouble connecting. Please check your internet or try again later.");
-    } finally {
-        // G. Unlock UI
-        inputField.disabled = false;
-        sendBtn.disabled = false;
-        inputField.placeholder = "Type a question...";
-        inputField.focus();
-    }
+    // Simulate Thinking
+    setTimeout(() => {
+        const lang = getCurrentLang(); 
+        const botResponse = getBotResponse(userText.toLowerCase(), lang);
+        addMessage("bot", botResponse);
+    }, 600);
 }
 
-// 5. API CALL FUNCTION
-async function callGemini(promptText) {
-    const payload = {
-        contents: [{
-            parts: [{ text: promptText }]
-        }]
-    };
+// 5. DETERMINE RESPONSE
+function getBotResponse(input, lang) {
+    const langDB = botKnowledge[lang] || botKnowledge['en'];
+    const responses = langDB.responses;
 
-    const response = await fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-    });
-
-    if (!response.ok) {
-        throw new Error(`API Error: ${response.status} ${response.statusText}`);
+    for (let key in responses) {
+        if (input.includes(key)) {
+            return responses[key];
+        }
     }
-
-    const data = await response.json();
-    
-    // Extract text safely
-    const botText = data.candidates?.[0]?.content?.parts?.[0]?.text;
-    
-    return botText || "I didn't understand that.";
+    return langDB.default;
 }
 
-// 6. UTILITIES
-function addMessage(sender, htmlContent) {
+// 6. UI HELPER: ADD MESSAGE
+function addMessage(sender, text) {
     const messagesContainer = document.getElementById('chat-messages');
-    const div = document.createElement('div');
-    const id = "msg-" + Date.now();
+    const messageDiv = document.createElement('div');
     
-    div.id = id;
-    div.className = `message ${sender}`;
-    div.innerHTML = htmlContent;
+    messageDiv.classList.add('message');
+    messageDiv.classList.add(sender); 
+    messageDiv.innerHTML = text; 
     
-    messagesContainer.appendChild(div);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to bottom
-    return id;
+    messagesContainer.appendChild(messageDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
-function removeMessage(id) {
-    const el = document.getElementById(id);
-    if (el) el.remove();
-}
-
+// 7. ENTER KEY SUPPORT
 function handleKeyPress(event) {
-    if (event.key === 'Enter') sendMessage();
-}
-
-// Helper to get the readable name of the language for the AI
-function getCurrentLanguageName() {
-    const desktop = document.getElementById('languageSelect');
-    const mobile = document.getElementById('mobileLangSelect');
-    
-    // Get the value (e.g., 'tr', 'fr')
-    let code = 'en';
-    if (desktop && desktop.offsetParent !== null) code = desktop.value;
-    else if (mobile) code = mobile.value;
-
-    // Map code to full name for the AI Prompt
-    const langMap = {
-        'en': 'English',
-        'fr': 'French',
-        'es': 'Spanish',
-        'de': 'German',
-        'tr': 'Turkish',
-        'ar': 'Arabic',
-        'ru': 'Russian'
-    };
-    
-    return langMap[code] || 'English';
-}
-
-// Simple initial greetings based on code
-function getInitialGreeting() {
-    const lang = getCurrentLanguageName();
-    if (lang === 'Turkish') return "Merhaba! Ben Linguamis asistanıyım. Size nasıl yardım edebilirim?";
-    if (lang === 'French') return "Bonjour! Je suis l'assistant Linguamis. Comment puis-je vous aider?";
-    if (lang === 'Arabic') return "مرحباً! أنا مساعد Linguamis. كيف يمكنني مساعدتك؟";
-    if (lang === 'Spanish') return "¡Hola! Soy el asistente de Linguamis. ¿Cómo puedo ayudarte?";
-    if (lang === 'German') return "Hallo! Ich bin der Linguamis-Assistent. Wie kann ich helfen?";
-    return "Hello! I am the Linguamis assistant. How can I help you?";
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
 }
