@@ -46,6 +46,11 @@ const translations = {
         footerSheets: "Worksheets",
         footerContact: "Contact Us",
         footerDesc: "Empowering English learners worldwide with adaptive technology and proven methods."
+        csPageTitle: "Linguamis - Coming Soon",
+        csTitle: "Coming Soon!",
+        csDesc: "We are building this feature. Check back soon!",
+        csBtn: "Back to Home",
+        csHomeBtn: "Home"
     },
     fr: {
         pageTitle: "Linguamis - Les langues, plus facile que jamais !",
@@ -94,6 +99,11 @@ const translations = {
         footerSheets: "Fiches d'exercices",
         footerContact: "Contactez-nous",
         footerDesc: "Autonomiser les apprenants d'anglais dans le monde entier."
+        csPageTitle: "Linguamis - Bientôt disponible",
+        csTitle: "Bientôt disponible !",
+        csDesc: "Nous construisons cette fonctionnalité. Revenez bientôt !",
+        csBtn: "Retour à l'accueil",
+        csHomeBtn: "Accueil"
     },
     es: {
         pageTitle: "Linguamis - ¡Idiomas, más fácil que nunca!",
@@ -142,6 +152,11 @@ const translations = {
         footerSheets: "Hojas de trabajo",
         footerContact: "Contáctanos",
         footerDesc: "Empoderando a estudiantes de inglés en todo el mundo."
+        csPageTitle: "Linguamis - Próximamente",
+        csTitle: "¡Próximamente!",
+        csDesc: "Estamos construyendo esta función. ¡Vuelve pronto!",
+        csBtn: "Volver al inicio",
+        csHomeBtn: "Inicio"
     },
     de: {
         pageTitle: "Linguamis - Sprachen; Einfacher als je zuvor!",
@@ -190,6 +205,11 @@ const translations = {
         footerSheets: "Arbeitsblätter",
         footerContact: "Kontakt",
         footerDesc: "Englischlerne weltweit mit adaptiver Technologie stärken."
+        csPageTitle: "Linguamis - Demnächst",
+        csTitle: "Demnächst!",
+        csDesc: "Wir arbeiten an dieser Funktion. Bis bald!",
+        csBtn: "Zurück zur Startseite",
+        csHomeBtn: "Startseite"
     },
     tr: {
         pageTitle: "Linguamis - Diller; Hiç Olmadığı Kadar Kolay!",
@@ -238,6 +258,11 @@ const translations = {
         footerSheets: "Çalışma Kağıtları",
         footerContact: "İletişim",
         footerDesc: "Dünya çapındaki İngilizce öğrencilerini adaptif teknoloji ile güçlendiriyoruz."
+        csPageTitle: "Linguamis - Çok Yakında",
+        csTitle: "Çok Yakında!",
+        csDesc: "Bu özellik üzerinde çalışıyoruz. Yakında tekrar kontrol edin!",
+        csBtn: "Ana Sayfaya Dön",
+        csHomeBtn: "Ana Sayfa"
     },
     ru: {
         pageTitle: "Linguamis - Языки; Проще, чем когда-либо!",
@@ -286,6 +311,11 @@ const translations = {
         footerSheets: "Рабочие листы",
         footerContact: "Контакты",
         footerDesc: "Расширение возможностей изучающих английский язык по всему миру."
+        csPageTitle: "Linguamis - Скоро",
+        csTitle: "Скоро!",
+        csDesc: "Мы работаем над этой функцией. Заходите позже!",
+        csBtn: "На главную",
+        csHomeBtn: "Главная"
     },
     ar: {
         pageTitle: "Linguamis - اللغات؛ أسهل من أي وقت مضى!",
@@ -334,6 +364,11 @@ const translations = {
         footerSheets: "أوراق عمل",
         footerContact: "اتصل بنا",
         footerDesc: "تمكين متعلمي اللغة الإنجليزية حول العالم بتقنيات تكيفية."
+        csPageTitle: "Linguamis - قريباً",
+        csTitle: "قريباً!",
+        csDesc: "نحن نعمل على هذه الميزة. تحقق مرة أخرى قريباً!",
+        csBtn: "العودة للرئيسية",
+        csHomeBtn: "الرئيسية"
     }
 };
 
