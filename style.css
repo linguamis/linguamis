@@ -92,6 +92,26 @@ nav {
 
 .nav-btn:hover { background-color: var(--brand-blue); }
 
+/* --- NEW: Language Selector Styles --- */
+#languageSelect, #mobileLangSelect {
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    background-color: #f8f9fa;
+    color: var(--brand-navy);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease;
+}
+
+#languageSelect:hover {
+    border-color: var(--brand-blue);
+}
+/* ------------------------------------- */
+
 /* Mobile Menu Button */
 .mobile-menu-toggle {
     display: none;
@@ -348,7 +368,42 @@ footer {
     border-top: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Responsive Logic */
+/* 7. RTL & Internationalization Support */
+/* These rules activate when Arabic (or any RTL language) is selected */
+
+html[dir="rtl"] body {
+    font-family: 'Tahoma', 'Segoe UI', sans-serif; /* Standard Arabic font fallback */
+    text-align: right;
+}
+
+/* Reverse the Navigation Bar layout */
+html[dir="rtl"] .nav-links {
+    flex-direction: row-reverse; 
+}
+
+/* Flip the little arrows on text links */
+html[dir="rtl"] .text-link::after {
+    content: '←'; 
+    margin-left: 0;
+    margin-right: 5px;
+}
+
+html[dir="rtl"] .text-link:hover::after {
+    margin-right: 8px;
+}
+
+/* Adjust Logo margins */
+html[dir="rtl"] .logo-link {
+    margin-left: 20px; 
+    margin-right: 0;
+}
+
+/* Ensure card content aligns right */
+html[dir="rtl"] .card {
+    align-items: flex-start; /* Keeps items starting from the right in RTL flex context */
+}
+
+/* 8. Responsive Logic */
 @media (max-width: 768px) {
     .nav-links { display: none; }
     .mobile-menu-toggle { display: flex; }
