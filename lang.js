@@ -45,10 +45,11 @@ const translations = {
         footerVocab: "Vocabulary Lists",
         footerSheets: "Worksheets",
         footerContact: "Contact Us",
-        footerDesc: "Empowering English learners worldwide with adaptive technology and proven methods."
+        footerDesc: "Empowering English learners worldwide with adaptive technology and proven methods.",
+        // --- COMING SOON NEW KEYS ---
         csPageTitle: "Linguamis - Coming Soon",
         csTitle: "Coming Soon!",
-        csDesc: "We are building this feature. Check back soon!",
+        csDesc: "We are working hard to build this feature. Check back soon for new ways to learn!",
         csBtn: "Back to Home",
         csHomeBtn: "Home"
     },
@@ -98,7 +99,8 @@ const translations = {
         footerVocab: "Listes de vocabulaire",
         footerSheets: "Fiches d'exercices",
         footerContact: "Contactez-nous",
-        footerDesc: "Autonomiser les apprenants d'anglais dans le monde entier."
+        footerDesc: "Autonomiser les apprenants d'anglais dans le monde entier.",
+        // --- COMING SOON NEW KEYS ---
         csPageTitle: "Linguamis - Bientôt disponible",
         csTitle: "Bientôt disponible !",
         csDesc: "Nous construisons cette fonctionnalité. Revenez bientôt !",
@@ -151,7 +153,8 @@ const translations = {
         footerVocab: "Listas de vocabulario",
         footerSheets: "Hojas de trabajo",
         footerContact: "Contáctanos",
-        footerDesc: "Empoderando a estudiantes de inglés en todo el mundo."
+        footerDesc: "Empoderando a estudiantes de inglés en todo el mundo.",
+        // --- COMING SOON NEW KEYS ---
         csPageTitle: "Linguamis - Próximamente",
         csTitle: "¡Próximamente!",
         csDesc: "Estamos construyendo esta función. ¡Vuelve pronto!",
@@ -204,7 +207,8 @@ const translations = {
         footerVocab: "Vokabellisten",
         footerSheets: "Arbeitsblätter",
         footerContact: "Kontakt",
-        footerDesc: "Englischlerne weltweit mit adaptiver Technologie stärken."
+        footerDesc: "Englischlerne weltweit mit adaptiver Technologie stärken.",
+        // --- COMING SOON NEW KEYS ---
         csPageTitle: "Linguamis - Demnächst",
         csTitle: "Demnächst!",
         csDesc: "Wir arbeiten an dieser Funktion. Bis bald!",
@@ -257,7 +261,8 @@ const translations = {
         footerVocab: "Kelime Listeleri",
         footerSheets: "Çalışma Kağıtları",
         footerContact: "İletişim",
-        footerDesc: "Dünya çapındaki İngilizce öğrencilerini adaptif teknoloji ile güçlendiriyoruz."
+        footerDesc: "Dünya çapındaki İngilizce öğrencilerini adaptif teknoloji ile güçlendiriyoruz.",
+        // --- COMING SOON NEW KEYS ---
         csPageTitle: "Linguamis - Çok Yakında",
         csTitle: "Çok Yakında!",
         csDesc: "Bu özellik üzerinde çalışıyoruz. Yakında tekrar kontrol edin!",
@@ -310,7 +315,8 @@ const translations = {
         footerVocab: "Списки слов",
         footerSheets: "Рабочие листы",
         footerContact: "Контакты",
-        footerDesc: "Расширение возможностей изучающих английский язык по всему миру."
+        footerDesc: "Расширение возможностей изучающих английский язык по всему миру.",
+        // --- COMING SOON NEW KEYS ---
         csPageTitle: "Linguamis - Скоро",
         csTitle: "Скоро!",
         csDesc: "Мы работаем над этой функцией. Заходите позже!",
@@ -363,7 +369,8 @@ const translations = {
         footerVocab: "قوائم المفردات",
         footerSheets: "أوراق عمل",
         footerContact: "اتصل بنا",
-        footerDesc: "تمكين متعلمي اللغة الإنجليزية حول العالم بتقنيات تكيفية."
+        footerDesc: "تمكين متعلمي اللغة الإنجليزية حول العالم بتقنيات تكيفية.",
+        // --- COMING SOON NEW KEYS ---
         csPageTitle: "Linguamis - قريباً",
         csTitle: "قريباً!",
         csDesc: "نحن نعمل على هذه الميزة. تحقق مرة أخرى قريباً!",
@@ -393,9 +400,11 @@ function changeLanguage(lang) {
     });
 
     // 3. Sync both dropdowns (Mobile and Desktop)
-    document.getElementById('languageSelect').value = lang;
+    const mainSelect = document.getElementById('languageSelect');
+    if (mainSelect) mainSelect.value = lang;
+    
     const mobileSelect = document.getElementById('mobileLangSelect');
-    if(mobileSelect) mobileSelect.value = lang;
+    if (mobileSelect) mobileSelect.value = lang;
     
     // 4. Save preference to LocalStorage
     localStorage.setItem('selectedLanguage', lang);
