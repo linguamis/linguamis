@@ -1,135 +1,138 @@
-// --- chatbot.js (Bulletproof Version) ---
+// --- chatbot.js (AI + Rule-Based Hybrid) ---
 
-// 1. THE BRAIN (Knowledge Base)
-const botKnowledge = {
+// 1. CONFIGURATION
+const API_KEY = 'gen-lang-client-0254648049'; // <--- PASTE KEY HERE
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+
+// 2. THE BACKUP BRAIN (Rule-Based Fallback)
+// We keep this in case the AI is slow or the daily limit is reached.
+const backupKnowledge = {
     en: {
-        welcome: `
-            <strong>Hi there! I'm the Linguamis Assistant. 🤖</strong><br><br>
-            I can help you navigate. Try asking about:<br>
-            🎙️ <strong>Speaking</strong><br>
-            📖 <strong>Grammar</strong><br>
-            ⚡ <strong>Verbs</strong>`,
-        responses: {
-            "speak": "Our <strong>Speaking Coach</strong> listens to you and gives real-time AI feedback. <a href='/speak/'>Start Speaking</a>.",
-            "listen": "The <strong>Listening Lab</strong> helps you train your ear. <a href='/listen/'>Start Listening</a>.",
-            "grammar": "The <strong>Grammar Guide</strong> explains English rules clearly. <a href='/grammar/'>Learn Grammar</a>.",
-            "write": "The <strong>Writing Studio</strong> helps you enhance skills. <a href='/write/'>Start Writing</a>.",
-            "verbs": "Conquer tricky verbs like 'go-went-gone'. <a href='/Irregular/'>Practice Verbs</a>.",
-            "personas": "Chat with <strong>AI Personas</strong> today. <a href='/Personas/'>Meet Personas</a>.",
-            "quiz": "Challenge yourself with the <strong>Daily Quiz</strong>! <a href='/quiz/'>Take Quiz</a>.",
-            "free": "Yes! Linguamis is 100% free.",
-            "hello": "Hello! Ready to improve your English?",
-            "default": "I'm not sure I understand. Try asking about <strong>Speaking, Grammar, or Verbs</strong>."
-        }
+        welcome: "Hi! I'm the AI Assistant. Ask me anything about learning English!",
+        fallback: "I'm having trouble connecting to my AI brain. Try asking about 'Grammar' or 'Speaking'."
     },
     tr: {
-        welcome: `
-            <strong>Merhaba! Ben Linguamis Asistanı. 🤖</strong><br><br>
-            Size yardımcı olabilirim. Şunları sorun:<br>
-            🎙️ <strong>Konuşma</strong><br>
-            📖 <strong>Dilbilgisi</strong><br>
-            ⚡ <strong>Fiiller</strong>`,
-        responses: {
-            "konuş": "<strong>Konuşma Koçu</strong> sizi dinler ve geri bildirim verir. <a href='/speak/'>Başla</a>.",
-            "dinle": "<strong>Dinleme Laboratuvarı</strong> kulağınızı eğitir. <a href='/listen/'>Başla</a>.",
-            "dilbilgisi": "<strong>Dilbilgisi Rehberi</strong> kuralları açıklar. <a href='/grammar/'>Öğren</a>.",
-            "yaz": "<strong>Yazma Stüdyosu</strong> yazınızı geliştirir. <a href='/write/'>Başla</a>.",
-            "fiil": "Düzensiz fiilleri öğrenin. <a href='/Irregular/'>Çalış</a>.",
-            "persona": "<strong>YZ Personaları</strong> ile konuşun. <a href='/Personas/'>Tanış</a>.",
-            "test": "<strong>Günlük Test</strong> ile kendinizi sınayın. <a href='/quiz/'>Test Çöz</a>.",
-            "ücret": "Linguamis tamamen ücretsizdir.",
-            "merhaba": "Merhaba! İngilizcenizi geliştirmeye hazır mısınız?",
-            "default": "Tam anlayamadım. Lütfen <strong>Konuşma, Dilbilgisi veya Fiiller</strong> hakkında soru sorun."
-        }
-    },
-    // (I kept the other languages short to save space, English/Turkish are fully active)
-    fr: { welcome: "Bonjour! Je suis l'assistant.", responses: { "default": "Je ne comprends pas." } },
-    es: { welcome: "¡Hola! Soy el asistente.", responses: { "default": "No entiendo." } },
-    de: { welcome: "Hallo! Ich bin der Assistent.", responses: { "default": "Ich verstehe nicht." } },
-    ru: { welcome: "Привет! Я помощник.", responses: { "default": "Я не понимаю." } },
-    ar: { welcome: "مرحباً! أنا المساعد.", responses: { "default": "لم أفهم." } }
+        welcome: "Merhaba! Ben YZ Asistanıyım. İngilizce öğrenmekle ilgili her şeyi sor!",
+        fallback: "YZ beynime bağlanamıyorum. Lütfen 'Dilbilgisi' veya 'Konuşma' hakkında sorun."
+    }
+    // You can add other languages here as needed
 };
 
-// 2. HELPER: DETECT LANGUAGE (Priority: HTML Tag > LocalStorage > Default 'en')
+// 3. HELPER: DETECT LANGUAGE
 function getCurrentLang() {
-    const htmlLang = document.documentElement.getAttribute('lang');
-    const storageLang = localStorage.getItem('selectedLanguage');
-    return htmlLang || storageLang || 'en';
+    return document.documentElement.getAttribute('lang') || localStorage.getItem('selectedLanguage') || 'en';
 }
 
-// 3. TOGGLE CHAT WINDOW
+// 4. TOGGLE CHAT
 function toggleChat() {
     const chatWindow = document.getElementById('chat-window');
     const messages = document.getElementById('chat-messages');
     chatWindow.classList.toggle('hidden');
     
-    // If opening for the first time and empty, send welcome
     if (!chatWindow.classList.contains('hidden') && messages.children.length === 0) {
-        let lang = getCurrentLang();
-        // Safety check: If language doesn't exist in our list, use English
-        if (!botKnowledge[lang]) lang = 'en';
-        
-        addMessage("bot", botKnowledge[lang].welcome);
+        const lang = getCurrentLang();
+        // Use backup welcome message to start fast
+        const welcomeMsg = backupKnowledge[lang] ? backupKnowledge[lang].welcome : backupKnowledge['en'].welcome;
+        addMessage("bot", welcomeMsg);
     }
 }
-
 document.getElementById('close-chat').addEventListener('click', toggleChat);
 
-// 4. SEND MESSAGE LOGIC
-function sendMessage() {
+// 5. SEND MESSAGE LOGIC
+async function sendMessage() {
     const inputField = document.getElementById('user-input');
     const userText = inputField.value.trim();
     if (userText === "") return;
 
+    // 1. Show User Message immediately
     addMessage("user", userText);
     inputField.value = ""; 
 
-    // Simulate Thinking
-    setTimeout(() => {
-        const lang = getCurrentLang();
-        const response = getBotResponse(userText.toLowerCase(), lang);
-        addMessage("bot", response);
-    }, 600);
-}
+    // 2. Show "Typing..." indicator
+    const typingId = addMessage("bot", "typing..."); // We will remove this later
+    const typingElement = document.getElementById(typingId);
+    if(typingElement) typingElement.innerText = "⚪⚪⚪"; // Simple typing animation
 
-// 5. DETERMINE RESPONSE (The Fix)
-function getBotResponse(input, lang) {
-    // Step A: Find the correct Language Dictionary
-    let langDB = botKnowledge[lang];
-    
-    // SAFETY NET 1: If language is missing, switch to English
-    if (!langDB) {
-        console.warn(`Language '${lang}' not found. Switching to English.`);
-        langDB = botKnowledge['en'];
-    }
-
-    // Step B: Get the responses list
-    const responses = langDB.responses;
-    
-    // SAFETY NET 2: If responses are missing (code error), return a hardcoded error
-    if (!responses) return "System Error: Dictionary missing.";
-
-    // Step C: Check for keywords
-    for (let key in responses) {
-        // Skip the 'default' key during the search
-        if (key !== 'default' && input.includes(key)) {
-            return responses[key];
+    try {
+        // 3. CALL GEMINI AI
+        const aiResponse = await callGeminiAI(userText);
+        
+        // 4. Update the "Typing..." message with real text
+        if(typingElement) {
+            typingElement.innerHTML = aiResponse; // Allow HTML for links
         }
-    }
 
-    // Step D: Return Default (Fallback)
-    // SAFETY NET 3: If 'default' is missing, return a hardcoded string
-    return responses["default"] || "I am not sure I understand. Try asking about 'Speaking' or 'Grammar'.";
+    } catch (error) {
+        // 5. FALLBACK (If AI fails)
+        console.error("AI Error:", error);
+        const lang = getCurrentLang();
+        const fallbackMsg = backupKnowledge[lang] ? backupKnowledge[lang].fallback : backupKnowledge['en'].fallback;
+        if(typingElement) typingElement.innerHTML = fallbackMsg;
+    }
 }
 
-// 6. UI HELPER
+// 6. THE AI FUNCTION (Communicates with Google)
+async function callGeminiAI(userMessage) {
+    const lang = getCurrentLang();
+    
+    // System Instruction: Tells the AI who it is
+    const systemPrompt = `
+    You are Linguamis, a helpful and friendly language tutor assistant.
+    The user is currently viewing the site in this language: ${lang}.
+    
+    Your goal is to help them navigate the website 'Linguamis' or teach them English concepts.
+    
+    Here is the site structure to help you answer questions:
+    - Speaking Coach: /speak/ (Improves pronunciation)
+    - Listening Lab: /listen/ (Accents and dictation)
+    - Grammar Guide: /grammar/ (Rules)
+    - Irregular Verbs: /Irregular/ (Practice verbs)
+    - Daily Quiz: /quiz/
+    - AI Personas: /Personas/
+    
+    RULES:
+    1. Answer in the language: ${lang}.
+    2. Keep answers short (max 2-3 sentences).
+    3. If they ask for a specific feature, provide the HTML link (e.g. <a href='/speak/'>Click here</a>).
+    4. Be encouraging.
+    `;
+
+    const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            contents: [{
+                parts: [{ text: systemPrompt + "\n\nUser: " + userMessage }]
+            }]
+        })
+    });
+
+    const data = await response.json();
+    
+    // Extract the text from Gemini's complex response structure
+    if (data.candidates && data.candidates[0].content) {
+        let text = data.candidates[0].content.parts[0].text;
+        // Convert simple markdown links [Text](url) to HTML <a href="url">Text</a>
+        text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+        return text;
+    } else {
+        throw new Error("Invalid API Response");
+    }
+}
+
+// 7. UI HELPER (Now returns ID to handle updates)
 function addMessage(sender, text) {
     const messagesContainer = document.getElementById('chat-messages');
     const messageDiv = document.createElement('div');
+    const msgId = "msg-" + Date.now(); // Unique ID
+    
+    messageDiv.id = msgId;
     messageDiv.classList.add('message', sender);
     messageDiv.innerHTML = text; 
+    
     messagesContainer.appendChild(messageDiv);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    return msgId;
 }
 
 function handleKeyPress(event) {
