@@ -148,25 +148,9 @@ const botKnowledge = {
 // 2. HELPER: DETECT LANGUAGE
 // 2. HELPER: DETECT LANGUAGE (UPDATED)
 // 5. DETERMINE RESPONSE (FIXED)
-function getBotResponse(input, lang) {
-    // 1. Get the knowledge object for the current language
-    // If lang doesn't exist in our DB, default to English
-    const langDB = botKnowledge[lang] || botKnowledge['en'];
-    
-    // 2. Get the specific responses dictionary
-    const responses = langDB.responses;
-
-    // 3. Check for keywords
-    for (let key in responses) {
-        // Skip the 'default' key during the search loop
-        if (key !== 'default' && input.includes(key)) {
-            return responses[key];
-        }
-    }
-
-    // 4. Return default fallback
-    // FIX: We look inside 'responses["default"]', not 'langDB.default'
-    return responses["default"] || "I am not sure I understand. Try asking about Speaking or Grammar.";
+function getCurrentLang() {
+    // Check localStorage first, default to 'en' if missing
+    return localStorage.getItem('selectedLanguage') || 'en';
 }
 
 // 3. TOGGLE CHAT WINDOW
@@ -250,5 +234,6 @@ function handleKeyPress(event) {
         sendMessage();
     }
 }
+
 
 
