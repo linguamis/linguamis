@@ -44,10 +44,9 @@ I focus on building lightweight, fast, and accessible web solutions.
 ### 📈 GitHub Stats
 
 <p align="left">
-  <img src="https://github-readme-stats.vercel.app/api?username=musabikbal&show_icons=true&theme=radical" alt="Musab's GitHub stats" />
+  <img src="https://github-readme-stats.vercel.app/api?username=musabikbal206&show_icons=true&theme=radical" alt="Musab's GitHub stats" />
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=musabikbal206&layout=compact&theme=radical" alt="Top Languages" />
 </p>
-
 ---
 
 ### 📫 Connect with Me
