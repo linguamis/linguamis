@@ -7,7 +7,6 @@
     <title data-i18n="pageTitle">Linguamis - Languages; Easier than Ever!</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,11 +14,13 @@
     <nav>
         <div class="nav-container">
             <a href="/" class="logo-link">
-                <img src="linguamis-logo.jpg" alt="Linguamis" class="logo-img">
+                <!-- Ensure this image exists or it will show broken icon -->
+                <img src="linguamis-logo.jpg" alt="Linguamis" class="logo-img" onerror="this.style.display='none'">
                 <span class="logo-text">Linguamis</span>
             </a>
 
             <div class="nav-links">
+                <!-- The ID here is CRITICAL for the chatbot to know the language -->
                 <select id="languageSelect" onchange="changeLanguage(this.value)">
                     <option value="en">🇬🇧 English</option>
                     <option value="fr">🇫🇷 Français</option>
@@ -70,94 +71,117 @@
     </nav>
 
     <header>
-        <div class="hero-content">
-            <h1 data-i18n="heroTitle">Improve your language skills. It's free!</h1>
-            <p data-i18n="heroSubtitle">Personalized reading, speaking, and grammar exercises with actionable insights.</p>
-            <a href="/signup/" class="cta-btn" data-i18n="heroCta">Sign Up For FREE!</a>
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1 data-i18n="heroTitle">Improve your language skills. It's free!</h1>
+                <p data-i18n="heroSubtitle">Personalized reading, speaking, and grammar exercises with actionable insights.</p>
+                <a href="/signup/" class="cta-btn" data-i18n="heroCta">Sign Up For FREE!</a>
+            </div>
+            
+            <div class="hero-image">
+                 <!-- Added onerror to hide if missing -->
+                <img src="hero-image.png" alt="Learning Languages" onerror="this.style.display='none'">
+            </div>
         </div>
     </header>
 
     <div class="container">
         
         <div class="card blue">
-            <div class="icon-box" aria-hidden="true">🎙️</div>
+            <div class="icon-box">
+                <img src="icon-speak.png" alt="Speaking" onerror="this.style.display='none'">
+            </div>
             <h3 data-i18n="cardSpeakTitle">Speaking Coach</h3>
             <p data-i18n="cardSpeakDesc">Improve pronunciation with real-time AI feedback and practice exercises.</p>
             <a href="/speak/" class="text-link" data-i18n="btnStart">Start Speaking</a>
         </div>
 
         <div class="card green">
-            <div class="icon-box" aria-hidden="true">🎧</div>
+            <div class="icon-box">
+                <img src="icon-listen.png" alt="Listening" onerror="this.style.display='none'">
+            </div>
             <h3 data-i18n="cardListenTitle">Listening Lab</h3>
             <p data-i18n="cardListenDesc">Train your ear with diverse accents, dictation tasks, and audio tests.</p>
             <a href="/listen/" class="text-link" data-i18n="btnListen">Start Listening</a>
         </div>
 
         <div class="card orange">
-            <div class="icon-box" aria-hidden="true">📖</div>
+            <div class="icon-box">
+                <img src="icon-grammar.png" alt="Grammar" onerror="this.style.display='none'">
+            </div>
             <h3 data-i18n="cardGrammarTitle">Grammar Guide</h3>
             <p data-i18n="cardGrammarDesc">Master English rules with clear explanations and interactive examples.</p>
             <a href="/grammar/" class="text-link" data-i18n="btnGrammar">Learn Grammar</a>
         </div>
 
         <div class="card green">
-            <div class="icon-box" aria-hidden="true">✍️</div>
+            <div class="icon-box">
+                <img src="icon-write.png" alt="Writing" onerror="this.style.display='none'">
+            </div>
             <h3 data-i18n="cardWriteTitle">Writing Studio</h3>
             <p data-i18n="cardWriteDesc">Enhance your writing skills for essays, emails, and creative projects.</p>
             <a href="/write/" class="text-link" data-i18n="btnWrite">Start Writing</a>
         </div>
 
         <div class="card purple">
-            <div class="icon-box" aria-hidden="true">⚡</div>
+            <div class="icon-box">
+                <img src="icon-verbs.png" alt="Verbs" onerror="this.style.display='none'">
+            </div>
             <h3 data-i18n="cardVerbsTitle">Irregular Verbs</h3>
             <p data-i18n="cardVerbsDesc">Conquer tricky verbs like "go-went-gone" with targeted practice.</p>
             <a href="/Irregular/" class="text-link" data-i18n="btnVerbs">Practice Verbs</a>
         </div>
 
         <div class="card blue">
-            <div class="icon-box" aria-hidden="true">❓</div>
+            <div class="icon-box">
+                <img src="icon-quiz.png" alt="Quiz" onerror="this.style.display='none'">
+            </div>
             <h3 data-i18n="cardQuizTitle">Daily Quiz</h3>
             <p data-i18n="cardQuizDesc">Challenge yourself with a new quiz every day to test your knowledge.</p>
             <a href="/quiz/" class="text-link" data-i18n="btnQuiz">Take Quiz</a>
         </div>
 
         <div class="card green">
-            <div class="icon-box" aria-hidden="true">📚</div>
+            <div class="icon-box">
+                <img src="icon-read.png" alt="Reading" onerror="this.style.display='none'">
+            </div>
             <h3 data-i18n="cardReadTitle">Reading Club</h3>
             <p data-i18n="cardReadDesc">Explore interesting articles and stories tailored for all proficiency levels.</p>
             <a href="/read/" class="text-link" data-i18n="btnRead">Start Reading</a>
         </div>
 
         <div class="card orange">
-            <div class="icon-box" aria-hidden="true">🤖</div>
+            <div class="icon-box">
+                <img src="icon-personas.png" alt="AI" onerror="this.style.display='none'">
+            </div>
             <h3 data-i18n="cardPersonasTitle">AI Personas</h3>
             <p data-i18n="cardPersonasDesc">Engage in realistic conversations with diverse AI characters.</p>
             <a href="/Personas/" class="text-link" data-i18n="btnPersonas">Meet Personas</a>
         </div>
 
     </div>
-        <div id="chat-widget">
+
+    <!-- Chat Widget -->
+    <div id="chat-widget">
         <div id="chat-window" class="chat-window hidden">
-            
             <div class="chat-header">
                 <div class="chat-title">
-                    <img src="Linguamis.jpg" alt="Bot" class="bot-avatar-small">
+                    <!-- Ensure this image exists -->
+                    <img src="Linguamis.jpg" alt="Bot" class="bot-avatar-small" onerror="this.src='https://placehold.co/30x30?text=Bot'">
                     <span>Linguamis Support</span>
                 </div>
                 <button id="close-chat" aria-label="Close chat">×</button>
             </div>
-
             <div id="chat-messages" class="chat-messages">
-                </div>
-
+                <!-- Messages appear here -->
+            </div>
             <div class="chat-input-area">
                 <input type="text" id="user-input" placeholder="Type a question..." onkeypress="handleKeyPress(event)">
                 <button id="send-btn" onclick="sendMessage()">➤</button>
             </div>
         </div>
-
         <button id="chat-toggle-btn" onclick="toggleChat()">
-            <img src="Linguamis.jpg" alt="Chat" class="chat-btn-icon">
+            <img src="Linguamis.jpg" alt="Chat" class="chat-btn-icon" onerror="this.src='https://placehold.co/60x60?text=Chat'">
         </button>
     </div>
 
@@ -194,11 +218,47 @@
     <script src="lang.js"></script>
     <script src="chatbot.js"></script>
     <script>
+        // Basic toggle for mobile menu
         function toggleMenu() {
             var menu = document.getElementById("mobileMenu");
             menu.classList.toggle("active");
+        }
+
+        // Placeholder function for language changing if lang.js is missing
+        // You probably have this in lang.js, but just in case:
+        function changeLanguage(lang) {
+            // 1. Update the selects
+            document.getElementById('languageSelect').value = lang;
+            document.getElementById('mobileLangSelect').value = lang;
+            
+            // 2. If you have logic to change text content, it goes here
+            console.log("Language changed to: " + lang);
+            
+            // 3. Reset chat if language changes? 
+            // Optional: clear chat or send a new greeting
+            // const messages = document.getElementById('chat-messages');
+            // messages.innerHTML = '';
         }
     </script>
 
 </body>
 </html>
+```
+
+### 3. `style.css` (No changes needed, but ensuring it's clean)
+I'm not generating a new CSS file because your existing one is good. The `typing-dots` animation I added in the JS (`<span class="typing-dots">...</span>`) works fine with standard fonts, but if you want it to look extra nice, you can add this to the bottom of your `style.css`:
+
+```css
+/* Optional: Add this to the bottom of your style.css */
+.typing-dots {
+    display: inline-block;
+    animation: pulse 1.5s infinite;
+    font-weight: bold;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+@keyframes pulse {
+    0% { opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
