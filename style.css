@@ -65,6 +65,13 @@ nav {
     width: auto;
 }
 
+.logo-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--brand-navy);
+}
+
 .nav-links {
     display: flex;
     gap: 25px;
