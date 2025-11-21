@@ -136,6 +136,30 @@
         </div>
 
     </div>
+        <div id="chat-widget">
+        <div id="chat-window" class="chat-window hidden">
+            
+            <div class="chat-header">
+                <div class="chat-title">
+                    <img src="Linguamis.jpg" alt="Bot" class="bot-avatar-small">
+                    <span>Linguamis Support</span>
+                </div>
+                <button id="close-chat" aria-label="Close chat">×</button>
+            </div>
+
+            <div id="chat-messages" class="chat-messages">
+                </div>
+
+            <div class="chat-input-area">
+                <input type="text" id="user-input" placeholder="Type a question..." onkeypress="handleKeyPress(event)">
+                <button id="send-btn" onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+
+        <button id="chat-toggle-btn" onclick="toggleChat()">
+            <img src="Linguamis.jpg" alt="Chat" class="chat-btn-icon">
+        </button>
+    </div>
 
     <footer>
         <div class="footer-container">
@@ -168,6 +192,7 @@
     </footer>
 
     <script src="lang.js"></script>
+    <script src="chatbot.js"></script>
     <script>
         function toggleMenu() {
             var menu = document.getElementById("mobileMenu");
