@@ -650,3 +650,55 @@ html[dir="rtl"] .card {
         bottom: 100px;
     }
 }
+/* --- RTL CHAT SUPPORT (Add to bottom of style.css) --- */
+
+/* When the HTML tag has dir="rtl" (e.g. Arabic) */
+html[dir="rtl"] .chat-window {
+    text-align: right;
+    font-family: 'Tahoma', 'Segoe UI', sans-serif;
+}
+
+/* Flip the header layout */
+html[dir="rtl"] .chat-header {
+    flex-direction: row-reverse;
+}
+
+/* Flip the close button side */
+html[dir="rtl"] #close-chat {
+    margin-right: auto;
+    margin-left: 0;
+}
+
+/* Flip the Title/Avatar side */
+html[dir="rtl"] .chat-title {
+    flex-direction: row-reverse;
+}
+
+/* Fix Input area direction */
+html[dir="rtl"] .chat-input-area {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] #user-input {
+    text-align: right;
+}
+
+/* Rotate the send arrow */
+html[dir="rtl"] #send-btn {
+    transform: rotate(180deg); 
+}
+
+/* OPTIONAL: In RTL, you might want to flip message sides too.
+   Standard: User (Orange) on Left, Bot (White) on Right for RTL. */
+html[dir="rtl"] .message.user {
+    align-self: flex-start; /* Moves user to left */
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 2px;
+}
+
+html[dir="rtl"] .message.bot {
+    align-self: flex-end; /* Moves bot to right */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 2px;
+}
+
