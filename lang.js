@@ -1,3 +1,5 @@
+/* --- lang.js (With Auto-Reload) --- */
+
 const translations = {
     en: {
         pageTitle: "Linguamis - Languages; Easier than Ever!",
@@ -379,8 +381,19 @@ const translations = {
     }
 };
 
+// --- MAIN FUNCTION 1: TRIGGERED BY USER DROPDOWN ---
 function changeLanguage(lang) {
-    // 1. Set correct text direction (RTL for Arabic)
+    // 1. Save the selection to browser memory
+    localStorage.setItem('selectedLanguage', lang);
+    
+    // 2. RESTART (Reload) the page immediately
+    // This ensures all scripts, including the chatbot, restart with the new language.
+    location.reload(); 
+}
+
+// --- MAIN FUNCTION 2: RUNS AUTOMATICALLY ON PAGE LOAD ---
+function applyLanguage(lang) {
+    // 1. Set correct text direction
     if (lang === 'ar') {
         document.documentElement.setAttribute('dir', 'rtl');
         document.documentElement.setAttribute('lang', 'ar');
@@ -389,9 +402,8 @@ function changeLanguage(lang) {
         document.documentElement.setAttribute('lang', lang);
     }
 
-    // 2. Find all elements with 'data-i18n' and update text
+    // 2. Update all text elements
     const elements = document.querySelectorAll('[data-i18n]');
-    
     elements.forEach(element => {
         const key = element.getAttribute('data-i18n');
         if (translations[lang] && translations[lang][key]) {
@@ -399,19 +411,19 @@ function changeLanguage(lang) {
         }
     });
 
-    // 3. Sync both dropdowns (Mobile and Desktop)
+    // 3. Set Dropdown Values (So they show the correct flag/name)
     const mainSelect = document.getElementById('languageSelect');
     if (mainSelect) mainSelect.value = lang;
     
     const mobileSelect = document.getElementById('mobileLangSelect');
     if (mobileSelect) mobileSelect.value = lang;
-    
-    // 4. Save preference to LocalStorage
-    localStorage.setItem('selectedLanguage', lang);
 }
 
-// Load saved language on page start
+// --- BOOT UP SEQUENCE ---
 document.addEventListener('DOMContentLoaded', () => {
+    // Retrieve saved language or default to English
     const savedLang = localStorage.getItem('selectedLanguage') || 'en';
-    changeLanguage(savedLang);
+    
+    // Apply it immediately
+    applyLanguage(savedLang);
 });
