@@ -1,141 +1,91 @@
-// --- chatbot.js (AI + Rule-Based Hybrid) ---
+// --- chatbot.js ---
 
-// 1. CONFIGURATION
-const API_KEY = 'AIzaSyCYo-V0vYy3bNNL-Kh6f5tz11vQLuJ6Mtg'; // <--- PASTE KEY HERE
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
-
-// 2. THE BACKUP BRAIN (Rule-Based Fallback)
-// We keep this in case the AI is slow or the daily limit is reached.
-const backupKnowledge = {
-    en: {
-        welcome: "Hi! I'm the AI Assistant. Ask me anything about learning English!",
-        fallback: "I'm having trouble connecting to my AI brain. Try asking about 'Grammar' or 'Speaking'."
-    },
-    tr: {
-        welcome: "Merhaba! Ben YZ Asistanıyım. İngilizce öğrenmekle ilgili her şeyi sor!",
-        fallback: "YZ beynime bağlanamıyorum. Lütfen 'Dilbilgisi' veya 'Konuşma' hakkında sorun."
-    }
-    // You can add other languages here as needed
+// 1. THE KNOWLEDGE BASE (The Brain)
+// This checks if the user's message contains specific words.
+const botKnowledge = {
+    "pricing": "Linguamis is 100% free! We believe language learning should be accessible to everyone.",
+    "cost": "Linguamis is 100% free! We believe language learning should be accessible to everyone.",
+    "free": "Yes! All our exercises, including Speaking and Grammar, are completely free.",
+    
+    "grammar": "You can master English rules in our <a href='/grammar'>Grammar Guide</a>.",
+    "speak": "Want to improve your pronunciation? Try our <a href='/speak'>Speaking Coach</a>.",
+    "listen": "Train your ear with accents in our <a href='/listen'>Listening Lab</a>.",
+    "read": "Check out the <a href='/read'>Reading Club</a> for interesting stories.",
+    "quiz": "Test your knowledge with today's <a href='/quiz'>Daily Quiz</a>.",
+    "personas": "You can chat with AI characters in our <a href='/Personas'>Personas section</a>.",
+    
+    "login": "You can log in or sign up <a href='/login'>here</a>.",
+    "signup": "You can log in or sign up <a href='/login'>here</a>.",
+    
+    "hello": "Hello! How can I help you improve your English today?",
+    "hi": "Hi there! Looking for grammar, speaking, or reading practice?",
+    "help": "I can help you find exercises. Try asking about 'Grammar', 'Speaking', or 'Pricing'.",
+    
+    "default": "I'm not sure I understand. Try asking about 'Grammar', 'Speaking', or 'Pricing'."
 };
 
-// 3. HELPER: DETECT LANGUAGE
-function getCurrentLang() {
-    return document.documentElement.getAttribute('lang') || localStorage.getItem('selectedLanguage') || 'en';
-}
-
-// 4. TOGGLE CHAT
+// 2. TOGGLE CHAT WINDOW
 function toggleChat() {
     const chatWindow = document.getElementById('chat-window');
-    const messages = document.getElementById('chat-messages');
     chatWindow.classList.toggle('hidden');
     
+    // If opening for the first time, check if empty and say hello
+    const messages = document.getElementById('chat-messages');
     if (!chatWindow.classList.contains('hidden') && messages.children.length === 0) {
-        const lang = getCurrentLang();
-        // Use backup welcome message to start fast
-        const welcomeMsg = backupKnowledge[lang] ? backupKnowledge[lang].welcome : backupKnowledge['en'].welcome;
-        addMessage("bot", welcomeMsg);
+        addMessage("bot", "Welcome to Linguamis! 🤖 I am here to help. Ask me anything about the site!");
     }
 }
+
+// Close button specific logic
 document.getElementById('close-chat').addEventListener('click', toggleChat);
 
-// 5. SEND MESSAGE LOGIC
-async function sendMessage() {
+// 3. SEND MESSAGE LOGIC
+function sendMessage() {
     const inputField = document.getElementById('user-input');
     const userText = inputField.value.trim();
+
     if (userText === "") return;
 
-    // 1. Show User Message immediately
+    // Add User Message
     addMessage("user", userText);
-    inputField.value = ""; 
+    inputField.value = ""; // Clear input
 
-    // 2. Show "Typing..." indicator
-    const typingId = addMessage("bot", "typing..."); // We will remove this later
-    const typingElement = document.getElementById(typingId);
-    if(typingElement) typingElement.innerText = "⚪⚪⚪"; // Simple typing animation
+    // Simulate "Thinking" delay
+    setTimeout(() => {
+        const botResponse = getBotResponse(userText.toLowerCase());
+        addMessage("bot", botResponse);
+    }, 600);
+}
 
-    try {
-        // 3. CALL GEMINI AI
-        const aiResponse = await callGeminiAI(userText);
-        
-        // 4. Update the "Typing..." message with real text
-        if(typingElement) {
-            typingElement.innerHTML = aiResponse; // Allow HTML for links
+// 4. DETERMINE RESPONSE
+function getBotResponse(input) {
+    // Loop through our knowledge base keys
+    for (let key in botKnowledge) {
+        if (input.includes(key)) {
+            return botKnowledge[key];
         }
-
-    } catch (error) {
-        // 5. FALLBACK (If AI fails)
-        console.error("AI Error:", error);
-        const lang = getCurrentLang();
-        const fallbackMsg = backupKnowledge[lang] ? backupKnowledge[lang].fallback : backupKnowledge['en'].fallback;
-        if(typingElement) typingElement.innerHTML = fallbackMsg;
     }
+    return botKnowledge["default"];
 }
 
-// 6. THE AI FUNCTION (Communicates with Google)
-async function callGeminiAI(userMessage) {
-    const lang = getCurrentLang();
-    
-    // System Instruction: Tells the AI who it is
-    const systemPrompt = `
-    You are Linguamis, a helpful and friendly language tutor assistant.
-    The user is currently viewing the site in this language: ${lang}.
-    
-    Your goal is to help them navigate the website 'Linguamis' or teach them English concepts.
-    
-    Here is the site structure to help you answer questions:
-    - Speaking Coach: /speak/ (Improves pronunciation)
-    - Listening Lab: /listen/ (Accents and dictation)
-    - Grammar Guide: /grammar/ (Rules)
-    - Irregular Verbs: /Irregular/ (Practice verbs)
-    - Daily Quiz: /quiz/
-    - AI Personas: /Personas/
-    
-    RULES:
-    1. Answer in the language: ${lang}.
-    2. Keep answers short (max 2-3 sentences).
-    3. If they ask for a specific feature, provide the HTML link (e.g. <a href='/speak/'>Click here</a>).
-    4. Be encouraging.
-    `;
-
-    const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            contents: [{
-                parts: [{ text: systemPrompt + "\n\nUser: " + userMessage }]
-            }]
-        })
-    });
-
-    const data = await response.json();
-    
-    // Extract the text from Gemini's complex response structure
-    if (data.candidates && data.candidates[0].content) {
-        let text = data.candidates[0].content.parts[0].text;
-        // Convert simple markdown links [Text](url) to HTML <a href="url">Text</a>
-        text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
-        return text;
-    } else {
-        throw new Error("Invalid API Response");
-    }
-}
-
-// 7. UI HELPER (Now returns ID to handle updates)
+// 5. UI HELPER: ADD MESSAGE TO HTML
 function addMessage(sender, text) {
     const messagesContainer = document.getElementById('chat-messages');
     const messageDiv = document.createElement('div');
-    const msgId = "msg-" + Date.now(); // Unique ID
     
-    messageDiv.id = msgId;
-    messageDiv.classList.add('message', sender);
-    messageDiv.innerHTML = text; 
+    messageDiv.classList.add('message');
+    messageDiv.classList.add(sender); // adds class 'bot' or 'user'
+    messageDiv.innerHTML = text; // innerHTML allows clickable links
     
     messagesContainer.appendChild(messageDiv);
+    
+    // Auto-scroll to bottom
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    return msgId;
 }
 
+// 6. HANDLE ENTER KEY
 function handleKeyPress(event) {
-    if (event.key === 'Enter') sendMessage();
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
 }
-
