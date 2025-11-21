@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Linguamis - Free English learning platform for students and teachers. Practice grammar, speaking, and reading.">
-    <title>Linguamis - Languages; Easier than Ever!</title>
+    <meta name="description" content="Linguamis - Free English learning platform for students and teachers.">
+    <title data-i18n="pageTitle">Linguamis - Languages; Easier than Ever!</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     
@@ -20,15 +20,25 @@
             </a>
 
             <div class="nav-links">
-                <a href="/grammar/">Grammar</a>
-                <a href="/speak/">Speaking</a>
-                <a href="/read/">Reading</a>
-                <a href="/quiz/">Quiz</a>
-                <a href="/login/" class="nav-btn">Log in</a>
+                <select id="languageSelect" onchange="changeLanguage(this.value)">
+                    <option value="en">🇬🇧 English</option>
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="de">🇩🇪 Deutsch</option>
+                    <option value="tr">🇹🇷 Türkçe</option>
+                    <option value="ar">🇸🇦 العربية</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                </select>
+
+                <a href="/grammar/" data-i18n="navGrammar">Grammar</a>
+                <a href="/speak/" data-i18n="navSpeaking">Speaking</a>
+                <a href="/read/" data-i18n="navReading">Reading</a>
+                <a href="/quiz/" data-i18n="navQuiz">Quiz</a>
+                <a href="/login/" class="nav-btn" data-i18n="navLogin">Log in</a>
             </div>
 
             <button class="mobile-menu-toggle" onclick="toggleMenu()" aria-label="Open Menu">
-                <span>Menu</span>
+                <span data-i18n="menuBtn">Menu</span>
                 <div class="hamburger-icon" aria-hidden="true">
                     <span></span>
                     <span></span>
@@ -38,21 +48,32 @@
         </div>
 
         <div class="mobile-menu-dropdown" id="mobileMenu">
-            <a href="/grammar/">Grammar</a>
-            <a href="/speak/">Speaking</a>
-            <a href="/read/">Reading</a>
-            <a href="/quiz/">Quiz</a>
-            <a href="/write/">Writing</a>
-            <a href="/Personas/">Personas</a>
-            <a href="/login/">Log in</a>
+            <div style="padding: 15px 0; border-bottom: 1px solid #f0f0f0;">
+                <select id="mobileLangSelect" onchange="changeLanguage(this.value)" style="width: 100%; padding: 8px;">
+                    <option value="en">🇬🇧 English</option>
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="de">🇩🇪 Deutsch</option>
+                    <option value="tr">🇹🇷 Türkçe</option>
+                    <option value="ar">🇸🇦 العربية</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                </select>
+            </div>
+            <a href="/grammar/" data-i18n="navGrammar">Grammar</a>
+            <a href="/speak/" data-i18n="navSpeaking">Speaking</a>
+            <a href="/read/" data-i18n="navReading">Reading</a>
+            <a href="/quiz/" data-i18n="navQuiz">Quiz</a>
+            <a href="/write/" data-i18n="navWriting">Writing</a>
+            <a href="/Personas/" data-i18n="navPersonas">Personas</a>
+            <a href="/login/" data-i18n="navLogin">Log in</a>
         </div>
     </nav>
 
     <header>
         <div class="hero-content">
-            <h1>Improve your language skills. It's free!</h1>
-            <p>Personalized reading, speaking, and grammar exercises with actionable insights.</p>
-            <a href="/signup/" class="cta-btn">Sign Up For FREE!</a>
+            <h1 data-i18n="heroTitle">Improve your language skills. It's free!</h1>
+            <p data-i18n="heroSubtitle">Personalized reading, speaking, and grammar exercises with actionable insights.</p>
+            <a href="/signup/" class="cta-btn" data-i18n="heroCta">Sign Up For FREE!</a>
         </div>
     </header>
 
@@ -60,58 +81,58 @@
         
         <div class="card blue">
             <div class="icon-box" aria-hidden="true">🎙️</div>
-            <h3>Speaking Coach</h3>
-            <p>Improve pronunciation with real-time AI feedback and practice exercises.</p>
-            <a href="/speak/" class="text-link">Start Speaking</a>
+            <h3 data-i18n="cardSpeakTitle">Speaking Coach</h3>
+            <p data-i18n="cardSpeakDesc">Improve pronunciation with real-time AI feedback and practice exercises.</p>
+            <a href="/speak/" class="text-link" data-i18n="btnStart">Start Speaking</a>
         </div>
 
         <div class="card green">
             <div class="icon-box" aria-hidden="true">🎧</div>
-            <h3>Listening Lab</h3>
-            <p>Train your ear with diverse accents, dictation tasks, and audio tests.</p>
-            <a href="/listen/" class="text-link">Start Listening</a>
+            <h3 data-i18n="cardListenTitle">Listening Lab</h3>
+            <p data-i18n="cardListenDesc">Train your ear with diverse accents, dictation tasks, and audio tests.</p>
+            <a href="/listen/" class="text-link" data-i18n="btnListen">Start Listening</a>
         </div>
 
         <div class="card orange">
             <div class="icon-box" aria-hidden="true">📖</div>
-            <h3>Grammar Guide</h3>
-            <p>Master English rules with clear explanations and interactive examples.</p>
-            <a href="/grammar/" class="text-link">Learn Grammar</a>
+            <h3 data-i18n="cardGrammarTitle">Grammar Guide</h3>
+            <p data-i18n="cardGrammarDesc">Master English rules with clear explanations and interactive examples.</p>
+            <a href="/grammar/" class="text-link" data-i18n="btnGrammar">Learn Grammar</a>
         </div>
 
         <div class="card green">
             <div class="icon-box" aria-hidden="true">✍️</div>
-            <h3>Writing Studio</h3>
-            <p>Enhance your writing skills for essays, emails, and creative projects.</p>
-            <a href="/write/" class="text-link">Start Writing</a>
+            <h3 data-i18n="cardWriteTitle">Writing Studio</h3>
+            <p data-i18n="cardWriteDesc">Enhance your writing skills for essays, emails, and creative projects.</p>
+            <a href="/write/" class="text-link" data-i18n="btnWrite">Start Writing</a>
         </div>
 
         <div class="card purple">
             <div class="icon-box" aria-hidden="true">⚡</div>
-            <h3>Irregular Verbs</h3>
-            <p>Conquer tricky verbs like "go-went-gone" with targeted practice.</p>
-            <a href="/Irregular/" class="text-link">Practice Verbs</a>
+            <h3 data-i18n="cardVerbsTitle">Irregular Verbs</h3>
+            <p data-i18n="cardVerbsDesc">Conquer tricky verbs like "go-went-gone" with targeted practice.</p>
+            <a href="/Irregular/" class="text-link" data-i18n="btnVerbs">Practice Verbs</a>
         </div>
 
         <div class="card blue">
             <div class="icon-box" aria-hidden="true">❓</div>
-            <h3>Daily Quiz</h3>
-            <p>Challenge yourself with a new quiz every day to test your knowledge.</p>
-            <a href="/quiz/" class="text-link">Take Quiz</a>
+            <h3 data-i18n="cardQuizTitle">Daily Quiz</h3>
+            <p data-i18n="cardQuizDesc">Challenge yourself with a new quiz every day to test your knowledge.</p>
+            <a href="/quiz/" class="text-link" data-i18n="btnQuiz">Take Quiz</a>
         </div>
 
         <div class="card green">
             <div class="icon-box" aria-hidden="true">📚</div>
-            <h3>Reading Club</h3>
-            <p>Explore interesting articles and stories tailored for all proficiency levels.</p>
-            <a href="/read/" class="text-link">Start Reading</a>
+            <h3 data-i18n="cardReadTitle">Reading Club</h3>
+            <p data-i18n="cardReadDesc">Explore interesting articles and stories tailored for all proficiency levels.</p>
+            <a href="/read/" class="text-link" data-i18n="btnRead">Start Reading</a>
         </div>
 
         <div class="card orange">
             <div class="icon-box" aria-hidden="true">🤖</div>
-            <h3>AI Personas</h3>
-            <p>Engage in realistic conversations with diverse AI characters.</p>
-            <a href="/Personas/" class="text-link">Meet Personas</a>
+            <h3 data-i18n="cardPersonasTitle">AI Personas</h3>
+            <p data-i18n="cardPersonasDesc">Engage in realistic conversations with diverse AI characters.</p>
+            <a href="/Personas/" class="text-link" data-i18n="btnPersonas">Meet Personas</a>
         </div>
 
     </div>
@@ -119,26 +140,26 @@
     <footer>
         <div class="footer-container">
             <div class="footer-col">
-                <h4>Get Started</h4>
+                <h4 data-i18n="footerStart">Get Started</h4>
                 <ul class="footer-links">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">How it works</a></li>
-                    <li><a href="#">For Students</a></li>
-                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#" data-i18n="footerAbout">About Us</a></li>
+                    <li><a href="#" data-i18n="footerHow">How it works</a></li>
+                    <li><a href="#" data-i18n="footerStudents">For Students</a></li>
+                    <li><a href="#" data-i18n="footerPricing">Pricing</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Resources</h4>
+                <h4 data-i18n="footerRes">Resources</h4>
                 <ul class="footer-links">
-                    <li><a href="#">Grammar Guide</a></li>
-                    <li><a href="#">Vocabulary Lists</a></li>
-                    <li><a href="#">Worksheets</a></li>
-                    <li><a href="#">Contact Us - Report Bugs</a></li>
+                    <li><a href="#" data-i18n="navGrammar">Grammar Guide</a></li>
+                    <li><a href="#" data-i18n="footerVocab">Vocabulary Lists</a></li>
+                    <li><a href="#" data-i18n="footerSheets">Worksheets</a></li>
+                    <li><a href="#" data-i18n="footerContact">Contact Us</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Linguamis</h4>
-                <p>Empowering English learners worldwide with adaptive technology and proven methods.</p>
+                <p data-i18n="footerDesc">Empowering English learners worldwide with adaptive technology and proven methods.</p>
             </div>
         </div>
         <div class="copyright">
@@ -146,6 +167,7 @@
         </div>
     </footer>
 
+    <script src="lang.js"></script>
     <script>
         function toggleMenu() {
             var menu = document.getElementById("mobileMenu");
@@ -155,5 +177,3 @@
 
 </body>
 </html>
-
-
