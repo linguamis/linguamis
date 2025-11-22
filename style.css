@@ -152,11 +152,9 @@ nav {
 
 /* Mobile Dropdown with Animation */
 .mobile-menu-dropdown {
-    /* Initially hidden but renderable for animation */
     opacity: 0;
     visibility: hidden;
     transform: translateY(-20px);
-    
     position: absolute;
     top: 100%;
     left: 0;
@@ -167,8 +165,6 @@ nav {
     display: flex;
     flex-direction: column;
     padding: 20px;
-    
-    /* Smooth Transition */
     transition: all 0.3s ease-in-out;
     z-index: 99;
 }
@@ -195,11 +191,9 @@ header {
     text-align: center;
     position: relative;
     overflow: hidden;
-    /* Improved Background: Subtle gradient overlay */
     background: linear-gradient(135deg, var(--brand-navy) 0%, var(--brand-blue) 100%);
 }
 
-/* Decorative circle */
 header::after {
     content: '';
     position: absolute;
@@ -281,7 +275,9 @@ header p {
 }
 
 /* Card Accents */
-.card.blue { border-top-color: #00E5FF; }
+/* UPDATED: Blue is now Electric Cyan so it shows on dark backgrounds */
+.card.blue { border-top-color: #00E5FF; } 
+
 .card.green { border-top-color: var(--accent-green); }
 .card.orange { border-top-color: var(--action-orange); }
 .card.purple { border-top-color: var(--accent-purple); }
@@ -376,19 +372,15 @@ footer {
 }
 
 /* 7. RTL & Internationalization Support */
-/* These rules activate when Arabic (or any RTL language) is selected */
-
 html[dir="rtl"] body {
-    font-family: 'Tahoma', 'Segoe UI', sans-serif; /* Standard Arabic font fallback */
+    font-family: 'Tahoma', 'Segoe UI', sans-serif;
     text-align: right;
 }
 
-/* Reverse the Navigation Bar layout */
 html[dir="rtl"] .nav-links {
     flex-direction: row-reverse; 
 }
 
-/* Flip the little arrows on text links */
 html[dir="rtl"] .text-link::after {
     content: '←'; 
     margin-left: 0;
@@ -399,15 +391,13 @@ html[dir="rtl"] .text-link:hover::after {
     margin-right: 8px;
 }
 
-/* Adjust Logo margins */
 html[dir="rtl"] .logo-link {
     margin-left: 20px; 
     margin-right: 0;
 }
 
-/* Ensure card content aligns right */
 html[dir="rtl"] .card {
-    align-items: flex-start; /* Keeps items starting from the right in RTL flex context */
+    align-items: flex-start; 
 }
 
 /* 8. Responsive Logic */
@@ -420,10 +410,10 @@ html[dir="rtl"] .card {
     
     .container { margin-top: -40px; }
 }
-/* --- COMING SOON PAGE STYLES --- */
 
+/* --- COMING SOON PAGE STYLES --- */
 .coming-soon-wrapper {
-    min-height: 70vh; /* Takes up most of the screen */
+    min-height: 70vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -460,7 +450,6 @@ html[dir="rtl"] .card {
     font-size: 1.1rem;
 }
 
-/* Decorative Progress Bar */
 .progress-container {
     width: 100%;
     height: 8px;
@@ -472,14 +461,13 @@ html[dir="rtl"] .card {
 
 .progress-bar {
     height: 100%;
-    width: 40%; /* Static width or animate it */
+    width: 40%;
     background-color: var(--action-orange);
     border-radius: 4px;
     animation: loading 2s infinite linear;
     transform-origin: 0% 50%;
 }
 
-/* Animations */
 @keyframes float {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
@@ -490,9 +478,8 @@ html[dir="rtl"] .card {
     0% { transform: translateX(-100%); }
     100% { transform: translateX(300%); }
 }
-/* --- CHATBOT STYLES --- */
 
-/* 1. Floating Button */
+/* --- CHATBOT STYLES --- */
 #chat-toggle-btn {
     position: fixed;
     bottom: 30px;
@@ -523,10 +510,9 @@ html[dir="rtl"] .card {
     object-fit: cover;
 }
 
-/* 2. Chat Window Container */
 .chat-window {
     position: fixed;
-    bottom: 100px; /* Above the button */
+    bottom: 100px;
     right: 30px;
     width: 350px;
     height: 450px;
@@ -541,14 +527,12 @@ html[dir="rtl"] .card {
     font-family: 'Inter', sans-serif;
 }
 
-/* Hide/Show logic */
 .chat-window.hidden {
     opacity: 0;
     transform: translateY(20px);
     pointer-events: none;
 }
 
-/* 3. Header */
 .chat-header {
     background: linear-gradient(135deg, var(--brand-navy) 0%, var(--brand-blue) 100%);
     color: var(--white);
@@ -581,7 +565,6 @@ html[dir="rtl"] .card {
     line-height: 1;
 }
 
-/* 4. Messages Area */
 .chat-messages {
     flex: 1;
     padding: 15px;
@@ -600,7 +583,6 @@ html[dir="rtl"] .card {
     line-height: 1.4;
 }
 
-/* Bot Message Style */
 .message.bot {
     align-self: flex-start;
     background-color: var(--white);
@@ -609,7 +591,6 @@ html[dir="rtl"] .card {
     border: 1px solid #e0e0e0;
 }
 
-/* User Message Style */
 .message.user {
     align-self: flex-end;
     background-color: var(--action-orange);
@@ -617,7 +598,6 @@ html[dir="rtl"] .card {
     border-bottom-right-radius: 2px;
 }
 
-/* 5. Input Area */
 .chat-input-area {
     padding: 15px;
     border-top: 1px solid #eee;
@@ -649,7 +629,6 @@ html[dir="rtl"] .card {
 
 #send-btn:hover { background: var(--brand-blue); }
 
-/* Responsive for Mobile */
 @media (max-width: 480px) {
     .chat-window {
         width: 90%;
@@ -657,31 +636,26 @@ html[dir="rtl"] .card {
         bottom: 100px;
     }
 }
-/* --- RTL CHAT SUPPORT (Add to bottom of style.css) --- */
 
-/* When the HTML tag has dir="rtl" (e.g. Arabic) */
+/* --- RTL CHAT SUPPORT --- */
 html[dir="rtl"] .chat-window {
     text-align: right;
     font-family: 'Tahoma', 'Segoe UI', sans-serif;
 }
 
-/* Flip the header layout */
 html[dir="rtl"] .chat-header {
     flex-direction: row-reverse;
 }
 
-/* Flip the close button side */
 html[dir="rtl"] #close-chat {
     margin-right: auto;
     margin-left: 0;
 }
 
-/* Flip the Title/Avatar side */
 html[dir="rtl"] .chat-title {
     flex-direction: row-reverse;
 }
 
-/* Fix Input area direction */
 html[dir="rtl"] .chat-input-area {
     flex-direction: row-reverse;
 }
@@ -690,22 +664,18 @@ html[dir="rtl"] #user-input {
     text-align: right;
 }
 
-/* Rotate the send arrow */
 html[dir="rtl"] #send-btn {
     transform: rotate(180deg); 
 }
 
-/* OPTIONAL: In RTL, you might want to flip message sides too.
-   Standard: User (Orange) on Left, Bot (White) on Right for RTL. */
 html[dir="rtl"] .message.user {
-    align-self: flex-start; /* Moves user to left */
+    align-self: flex-start;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 2px;
 }
 
 html[dir="rtl"] .message.bot {
-    align-self: flex-end; /* Moves bot to right */
+    align-self: flex-end;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 2px;
 }
-
