@@ -22,18 +22,51 @@
             color: var(--text-color);
         }
 
-        /* Header */
+        /* --- GÜNCELLENEN HEADER KISMI --- */
         header {
             background: linear-gradient(135deg, var(--tdv-red), var(--tdv-blue));
             color: white;
-            padding: 20px;
-            text-align: center;
+            padding: 15px 30px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            
+            /* Logoları ve yazıyı yan yana dizmek için */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        header h1 { margin: 0; font-size: 2rem; }
-        header h2 { margin: 5px 0 0; font-size: 1.2rem; font-weight: 300; }
-        header .sub-info { font-size: 0.9rem; opacity: 0.9; margin-top: 5px; }
+        /* Logo Stilleri */
+        .header-logo {
+            height: 80px; /* Logo yüksekliği */
+            width: auto;
+            background: white; /* Logoların arkasına beyaz fon (daha net görünsün diye) */
+            padding: 5px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header-content {
+            text-align: center;
+            flex-grow: 1; /* Ortadaki yazının kalan boşluğu doldurması için */
+            padding: 0 20px;
+        }
+
+        header h1 { margin: 0; font-size: 1.8rem; line-height: 1.2; }
+        header h2 { margin: 5px 0 0; font-size: 1.1rem; font-weight: 300; }
+        header .sub-info { font-size: 0.85rem; opacity: 0.9; margin-top: 5px; }
+
+        /* Mobil Ekran Ayarı: Telefondan girilince logolar alt alta geçsin */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+            .header-logo {
+                height: 60px; /* Mobilde logolar biraz daha küçük olsun */
+            }
+        }
+        /* -------------------------------- */
 
         /* Container */
         .container {
@@ -100,7 +133,6 @@
             flex-wrap: wrap;
         }
         .profile-text p { margin: 5px 0; }
-        .emoji-icon { font-size: 1.5rem; margin-right: 5px; }
 
         /* Section 4: Roulette */
         .roulette-container {
@@ -190,9 +222,15 @@
 <body>
 
 <header>
-    <h1>About Yourself & Family</h1>
-    <h2>Teacher: Musab İkbal SUBAŞI</h2>
-    <div class="sub-info">TDV English Speaking Class | Beginner Level</div>
+    <img src="linguamis-logo.jpg" alt="Teacher Logo" class="header-logo">
+    
+    <div class="header-content">
+        <h1>About Yourself & Family</h1>
+        <h2>Teacher: Musab İkbal SUBAŞI</h2>
+        <div class="sub-info">TDV English Speaking Class | Beginner Level</div>
+    </div>
+
+    <img src="diyanet-logo.png" alt="TDV Logo" class="header-logo">
 </header>
 
 <div class="container">
@@ -256,7 +294,7 @@
 </div>
 
 <footer>
-    <p>Linguamis.com - TÜRKİYE DİYANET VAKFI</p>
+    <p>LINGUAMIS.COM - TÜRKİYE DİYANET VAKFI</p>
     <p>Thank you for coming to class! ☺</p>
 </footer>
 
@@ -353,4 +391,3 @@
 
 </body>
 </html>
-
