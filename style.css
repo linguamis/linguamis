@@ -488,7 +488,7 @@ html[dir="rtl"] .card {
     height: 60px;
     border-radius: 50%;
     background-color: var(--white);
-    border: 2px solid var(--brand-navy);
+    border: none
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     cursor: pointer;
     z-index: 1000;
