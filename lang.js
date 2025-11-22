@@ -38,6 +38,11 @@ const translations = {
         cardPersonasTitle: "AI Personas",
         cardPersonasDesc: "Engage in realistic conversations with diverse AI characters.",
         btnPersonas: "Meet Personas",
+        // NEW GAMES SECTION
+        cardGamesTitle: "Interactive Games",
+        cardGamesDesc: "Boost your skills with fun puzzles, word matching, and challenges.",
+        btnGames: "Play Games",
+        // END NEW GAMES SECTION
         footerStart: "Get Started",
         footerAbout: "About Us",
         footerHow: "How it works",
@@ -48,7 +53,6 @@ const translations = {
         footerSheets: "Worksheets",
         footerContact: "Contact Us",
         footerDesc: "Empowering English learners worldwide with adaptive technology and proven methods.",
-        // --- COMING SOON NEW KEYS ---
         csPageTitle: "Linguamis - Coming Soon",
         csTitle: "Coming Soon!",
         csDesc: "We are working hard to build this feature. Check back soon for new ways to learn!",
@@ -92,6 +96,11 @@ const translations = {
         cardPersonasTitle: "Personnas IA",
         cardPersonasDesc: "Engagez des conversations réalistes avec des personnages IA.",
         btnPersonas: "Rencontrer les Personnas",
+        // NEW GAMES SECTION
+        cardGamesTitle: "Jeux Interactifs",
+        cardGamesDesc: "Améliorez vos compétences avec des puzzles et des défis amusants.",
+        btnGames: "Jouer",
+        // END NEW GAMES SECTION
         footerStart: "Commencer",
         footerAbout: "À propos",
         footerHow: "Comment ça marche",
@@ -102,7 +111,6 @@ const translations = {
         footerSheets: "Fiches d'exercices",
         footerContact: "Contactez-nous",
         footerDesc: "Autonomiser les apprenants d'anglais dans le monde entier.",
-        // --- COMING SOON NEW KEYS ---
         csPageTitle: "Linguamis - Bientôt disponible",
         csTitle: "Bientôt disponible !",
         csDesc: "Nous construisons cette fonctionnalité. Revenez bientôt !",
@@ -146,6 +154,11 @@ const translations = {
         cardPersonasTitle: "Personas IA",
         cardPersonasDesc: "Participa en conversaciones realistas con personajes de IA.",
         btnPersonas: "Conocer Personas",
+        // NEW GAMES SECTION
+        cardGamesTitle: "Juegos Interactivos",
+        cardGamesDesc: "Mejora tus habilidades con rompecabezas y desafíos divertidos.",
+        btnGames: "Jugar",
+        // END NEW GAMES SECTION
         footerStart: "Empezar",
         footerAbout: "Sobre nosotros",
         footerHow: "Cómo funciona",
@@ -156,7 +169,6 @@ const translations = {
         footerSheets: "Hojas de trabajo",
         footerContact: "Contáctanos",
         footerDesc: "Empoderando a estudiantes de inglés en todo el mundo.",
-        // --- COMING SOON NEW KEYS ---
         csPageTitle: "Linguamis - Próximamente",
         csTitle: "¡Próximamente!",
         csDesc: "Estamos construyendo esta función. ¡Vuelve pronto!",
@@ -200,6 +212,11 @@ const translations = {
         cardPersonasTitle: "KI-Personas",
         cardPersonasDesc: "Führen Sie realistische Gespräche mit KI-Charakteren.",
         btnPersonas: "Personas treffen",
+        // NEW GAMES SECTION
+        cardGamesTitle: "Interaktive Spiele",
+        cardGamesDesc: "Verbessern Sie Ihre Fähigkeiten mit lustigen Rätseln.",
+        btnGames: "Spiele spielen",
+        // END NEW GAMES SECTION
         footerStart: "Loslegen",
         footerAbout: "Über uns",
         footerHow: "Wie es funktioniert",
@@ -210,7 +227,6 @@ const translations = {
         footerSheets: "Arbeitsblätter",
         footerContact: "Kontakt",
         footerDesc: "Englischlerne weltweit mit adaptiver Technologie stärken.",
-        // --- COMING SOON NEW KEYS ---
         csPageTitle: "Linguamis - Demnächst",
         csTitle: "Demnächst!",
         csDesc: "Wir arbeiten an dieser Funktion. Bis bald!",
@@ -254,6 +270,11 @@ const translations = {
         cardPersonasTitle: "YZ Personaları",
         cardPersonasDesc: "Farklı YZ karakterleriyle gerçekçi sohbetlere katılın.",
         btnPersonas: "Personalarla Tanış",
+        // NEW GAMES SECTION
+        cardGamesTitle: "İnteraktif Oyunlar",
+        cardGamesDesc: "Eğlenceli bulmacalar ve meydan okumalarla becerilerinizi geliştirin.",
+        btnGames: "Oyun Oyna",
+        // END NEW GAMES SECTION
         footerStart: "Başlayın",
         footerAbout: "Hakkımızda",
         footerHow: "Nasıl çalışır",
@@ -264,7 +285,6 @@ const translations = {
         footerSheets: "Çalışma Kağıtları",
         footerContact: "İletişim",
         footerDesc: "Dünya çapındaki İngilizce öğrencilerini adaptif teknoloji ile güçlendiriyoruz.",
-        // --- COMING SOON NEW KEYS ---
         csPageTitle: "Linguamis - Çok Yakında",
         csTitle: "Çok Yakında!",
         csDesc: "Bu özellik üzerinde çalışıyoruz. Yakında tekrar kontrol edin!",
@@ -308,6 +328,11 @@ const translations = {
         cardPersonasTitle: "ИИ Персоны",
         cardPersonasDesc: "Участвуйте в реалистичных беседах с ИИ персонажами.",
         btnPersonas: "Встретить Персон",
+        // NEW GAMES SECTION
+        cardGamesTitle: "Интерактивные игры",
+        cardGamesDesc: "Улучшайте навыки с помощью веселых головоломок и задач.",
+        btnGames: "Играть",
+        // END NEW GAMES SECTION
         footerStart: "Начать",
         footerAbout: "О нас",
         footerHow: "Как это работает",
@@ -318,7 +343,6 @@ const translations = {
         footerSheets: "Рабочие листы",
         footerContact: "Контакты",
         footerDesc: "Расширение возможностей изучающих английский язык по всему миру.",
-        // --- COMING SOON NEW KEYS ---
         csPageTitle: "Linguamis - Скоро",
         csTitle: "Скоро!",
         csDesc: "Мы работаем над этой функцией. Заходите позже!",
@@ -362,6 +386,11 @@ const translations = {
         cardPersonasTitle: "شخصيات الذكاء الاصطناعي",
         cardPersonasDesc: "شارك في محادثات واقعية مع شخصيات ذكية متنوعة.",
         btnPersonas: "قابل الشخصيات",
+        // NEW GAMES SECTION
+        cardGamesTitle: "ألعاب تفاعلية",
+        cardGamesDesc: "عزز مهاراتك بالألغاز والتحديات الممتعة.",
+        btnGames: "العب الآن",
+        // END NEW GAMES SECTION
         footerStart: "ابدأ",
         footerAbout: "من نحن",
         footerHow: "كيف يعمل",
@@ -372,13 +401,12 @@ const translations = {
         footerSheets: "أوراق عمل",
         footerContact: "اتصل بنا",
         footerDesc: "تمكين متعلمي اللغة الإنجليزية حول العالم بتقنيات تكيفية.",
-        // --- COMING SOON NEW KEYS ---
         csPageTitle: "Linguamis - قريباً",
         csTitle: "قريباً!",
         csDesc: "نحن نعمل على هذه الميزة. تحقق مرة أخرى قريباً!",
         csBtn: "العودة للرئيسية",
         csHomeBtn: "الرئيسية"
-    }, /* --- Add these inside the translations = { ... } object in lang.js --- */
+    },
     it: {
         pageTitle: "Linguamis - Lingue; Più facile che mai!",
         navGrammar: "Grammatica",
@@ -416,6 +444,11 @@ const translations = {
         cardPersonasTitle: "Persona IA",
         cardPersonasDesc: "Partecipa a conversazioni realistiche con personaggi IA.",
         btnPersonas: "Incontra Persona",
+        // NEW GAMES SECTION
+        cardGamesTitle: "Giochi Interattivi",
+        cardGamesDesc: "Migliora le tue abilità con puzzle e sfide divertenti.",
+        btnGames: "Gioca",
+        // END NEW GAMES SECTION
         footerStart: "Iniziare",
         footerAbout: "Chi Siamo",
         footerHow: "Come Funziona",
@@ -464,6 +497,11 @@ const translations = {
         cardPersonasTitle: "AI 角色",
         cardPersonasDesc: "与不同的 AI 角色进行现实对话。",
         btnPersonas: "遇见角色",
+        // NEW GAMES SECTION
+        cardGamesTitle: "互动游戏",
+        cardGamesDesc: "通过有趣的拼图和挑战提高你的技能。",
+        btnGames: "玩游戏",
+        // END NEW GAMES SECTION
         footerStart: "开始",
         footerAbout: "关于我们",
         footerHow: "工作原理",
@@ -512,6 +550,11 @@ const translations = {
         cardPersonasTitle: "AIペルソナ",
         cardPersonasDesc: "AIキャラクターとリアルな会話を楽しむ。",
         btnPersonas: "ペルソナに会う",
+        // NEW GAMES SECTION
+        cardGamesTitle: "インタラクティブゲーム",
+        cardGamesDesc: "楽しいパズルやチャレンジでスキルを向上させましょう。",
+        btnGames: "ゲームをする",
+        // END NEW GAMES SECTION
         footerStart: "始める",
         footerAbout: "私たちについて",
         footerHow: "仕組み",
@@ -560,6 +603,11 @@ const translations = {
         cardPersonasTitle: "AI 페르소나",
         cardPersonasDesc: "다양한 AI 캐릭터와 현실적인 대화를 나누세요.",
         btnPersonas: "페르소나 만나기",
+        // NEW GAMES SECTION
+        cardGamesTitle: "대화형 게임",
+        cardGamesDesc: "재미있는 퍼즐과 도전으로 실력을 키우세요.",
+        btnGames: "게임 하기",
+        // END NEW GAMES SECTION
         footerStart: "시작하기",
         footerAbout: "회사 소개",
         footerHow: "작동 원리",
@@ -608,6 +656,11 @@ const translations = {
         cardPersonasTitle: "AI पात्र",
         cardPersonasDesc: "AI पात्रों के साथ यथार्थवादी बातचीत करें।",
         btnPersonas: "पात्रों से मिलें",
+        // NEW GAMES SECTION
+        cardGamesTitle: "इंटरैक्टिव खेल",
+        cardGamesDesc: "मजेदार पहेलियों और चुनौतियों के साथ अपने कौशल को बढ़ाएं।",
+        btnGames: "खेल खेलें",
+        // END NEW GAMES SECTION
         footerStart: "शुरू करें",
         footerAbout: "हमारे बारे में",
         footerHow: "यह कैसे काम करता है",
@@ -656,6 +709,11 @@ const translations = {
         cardPersonasTitle: "Personas IA",
         cardPersonasDesc: "Participe de conversas realistas com personagens de IA.",
         btnPersonas: "Conhecer Personas",
+        // NEW GAMES SECTION
+        cardGamesTitle: "Jogos Interativos",
+        cardGamesDesc: "Melhore suas habilidades com quebra-cabeças e desafios divertidos.",
+        btnGames: "Jogar",
+        // END NEW GAMES SECTION
         footerStart: "Começar",
         footerAbout: "Sobre Nós",
         footerHow: "Como funciona",
@@ -704,6 +762,11 @@ const translations = {
         cardPersonasTitle: "Persony AI",
         cardPersonasDesc: "Angażuj się w realistyczne rozmowy z postaciami AI.",
         btnPersonas: "Poznaj Persony",
+        // NEW GAMES SECTION
+        cardGamesTitle: "Gry Interaktywne",
+        cardGamesDesc: "Popraw swoje umiejętności dzięki zabawnym łamigłówkom i wyzwaniom.",
+        btnGames: "Graj",
+        // END NEW GAMES SECTION
         footerStart: "Zacznij",
         footerAbout: "O nas",
         footerHow: "Jak to działa",
@@ -752,6 +815,11 @@ const translations = {
         cardPersonasTitle: "AI Persona's",
         cardPersonasDesc: "Voer realistische gesprekken met AI-personages.",
         btnPersonas: "Ontmoet Persona's",
+        // NEW GAMES SECTION
+        cardGamesTitle: "Interactieve Spellen",
+        cardGamesDesc: "Verbeter je vaardigheden met leuke puzzels en uitdagingen.",
+        btnGames: "Speel Spellen",
+        // END NEW GAMES SECTION
         footerStart: "Beginnen",
         footerAbout: "Over Ons",
         footerHow: "Hoe het werkt",
@@ -800,6 +868,11 @@ const translations = {
         cardPersonasTitle: "Persona AI",
         cardPersonasDesc: "Terlibat dalam percakapan realistis dengan karakter AI.",
         btnPersonas: "Temui Persona",
+        // NEW GAMES SECTION
+        cardGamesTitle: "Permainan Interaktif",
+        cardGamesDesc: "Tingkatkan keterampilan Anda dengan teka-teki dan tantangan seru.",
+        btnGames: "Main Game",
+        // END NEW GAMES SECTION
         footerStart: "Mulai",
         footerAbout: "Tentang Kami",
         footerHow: "Cara kerja",
@@ -848,6 +921,11 @@ const translations = {
         cardPersonasTitle: "Nhân vật AI",
         cardPersonasDesc: "Tham gia trò chuyện thực tế với các nhân vật AI.",
         btnPersonas: "Gặp gỡ Nhân vật",
+        // NEW GAMES SECTION
+        cardGamesTitle: "Trò chơi Tương tác",
+        cardGamesDesc: "Cải thiện kỹ năng với các câu đố và thử thách thú vị.",
+        btnGames: "Chơi Game",
+        // END NEW GAMES SECTION
         footerStart: "Bắt đầu",
         footerAbout: "Về chúng tôi",
         footerHow: "Cách hoạt động",
@@ -896,6 +974,11 @@ const translations = {
         cardPersonasTitle: "ตัวละคร AI",
         cardPersonasDesc: "มีส่วนร่วมในการสนทนาที่สมจริงกับตัวละคร AI",
         btnPersonas: "พบกับตัวละคร",
+        // NEW GAMES SECTION
+        cardGamesTitle: "เกมแบบโต้ตอบ",
+        cardGamesDesc: "เพิ่มทักษะของคุณด้วยปริศนาและความท้าทายที่สนุกสนาน",
+        btnGames: "เล่นเกม",
+        // END NEW GAMES SECTION
         footerStart: "เริ่มต้น",
         footerAbout: "เกี่ยวกับเรา",
         footerHow: "ทำงานอย่างไร",
@@ -944,6 +1027,11 @@ const translations = {
         cardPersonasTitle: "AI Πρόσωπα",
         cardPersonasDesc: "Συμμετάσχετε σε ρεαλιστικές συνομιλίες με χαρακτήρες AI.",
         btnPersonas: "Γνωρίστε Πρόσωπα",
+        // NEW GAMES SECTION
+        cardGamesTitle: "Διαδραστικά Παιχνίδια",
+        cardGamesDesc: "Βελτιώστε τις δεξιότητές σας με διασκεδαστικά παζλ και προκλήσεις.",
+        btnGames: "Παίξτε",
+        // END NEW GAMES SECTION
         footerStart: "Ξεκινήστε",
         footerAbout: "Σχετικά με εμάς",
         footerHow: "Πώς λειτουργεί",
@@ -956,68 +1044,68 @@ const translations = {
         footerDesc: "Ενδυνάμωση των μαθητών αγγλικής γλώσσας παγκοσμίως.",
     },
     cs: {
-            pageTitle: "Linguamis - Jazyky; Jednodušší než kdy dřív!",
-            navGrammar: "Gramatika",
-            navSpeaking: "Mluvení",
-            navReading: "Čtení",
-            navQuiz: "Kvíz",
-            navWriting: "Psaní",
-            navPersonas: "Persony",
-            navLogin: "Přihlásit",
-            menuBtn: "Menu",
-            heroTitle: "Zlepšete své jazykové dovednosti. Zdarma!",
-            heroSubtitle: "Personalizovaná cvičení čtení, mluvení a gramatiky.",
-            heroCta: "Zaregistrujte se ZDARMA!",
-            cardSpeakTitle: "Trenér Mluvení",
-            cardSpeakDesc: "Zlepšete výslovnost pomocí zpětné vazby AI v reálném čase.",
-            btnStart: "Začít Mluvit",
-            cardListenTitle: "Laboratoř Poslechu",
-            cardListenDesc: "Trénujte uši s různými přízvuky a diktáty.",
-            btnListen: "Začít Poslouchat",
-            cardGrammarTitle: "Průvodce Gramatikou",
-            cardGrammarDesc: "Ovládněte pravidla díky jasným vysvětlením.",
-            btnGrammar: "Učit se Gramatiku",
-            cardWriteTitle: "Studio Psaní",
-            cardWriteDesc: "Zlepšete své dovednosti psaní esejů a e-mailů.",
-            btnWrite: "Začít Psát",
-            cardVerbsTitle: "Nepravidelná Slovesa",
-            cardVerbsDesc: "Zvládněte obtížná slovesa cíleným procvičováním.",
-            btnVerbs: "Procvičit Slovesa",
-            cardQuizTitle: "Denní Kvíz",
-            cardQuizDesc: "Otestujte své znalosti každý den novým kvízem.",
-            btnQuiz: "Spustit Kvíz",
-            cardReadTitle: "Čtenářský Klub",
-            cardReadDesc: "Prozkoumejte zajímavé články a příběhy.",
-            btnRead: "Začít Číst",
-            cardPersonasTitle: "AI Persony",
-            cardPersonasDesc: "Zapojte se do realistických konverzací s AI postavami.",
-            btnPersonas: "Poznat Persony",
-            footerStart: "Začít",
-            footerAbout: "O nás",
-            footerHow: "Jak to funguje",
-            footerStudents: "Pro Studenty",
-            footerPricing: "Ceník",
-            footerRes: "Zdroje",
-            footerVocab: "Slovníčky",
-            footerSheets: "Pracovní listy",
-            footerContact: "Kontakt",
-            footerDesc: "Posílení studentů angličtiny po celém světě.",
-        }
-    }; // <--- MAKE SURE THIS IS };
+        pageTitle: "Linguamis - Jazyky; Jednodušší než kdy dřív!",
+        navGrammar: "Gramatika",
+        navSpeaking: "Mluvení",
+        navReading: "Čtení",
+        navQuiz: "Kvíz",
+        navWriting: "Psaní",
+        navPersonas: "Persony",
+        navLogin: "Přihlásit",
+        menuBtn: "Menu",
+        heroTitle: "Zlepšete své jazykové dovednosti. Zdarma!",
+        heroSubtitle: "Personalizovaná cvičení čtení, mluvení a gramatiky.",
+        heroCta: "Zaregistrujte se ZDARMA!",
+        cardSpeakTitle: "Trenér Mluvení",
+        cardSpeakDesc: "Zlepšete výslovnost pomocí zpětné vazby AI v reálném čase.",
+        btnStart: "Začít Mluvit",
+        cardListenTitle: "Laboratoř Poslechu",
+        cardListenDesc: "Trénujte uši s různými přízvuky a diktáty.",
+        btnListen: "Začít Poslouchat",
+        cardGrammarTitle: "Průvodce Gramatikou",
+        cardGrammarDesc: "Ovládněte pravidla díky jasným vysvětlením.",
+        btnGrammar: "Učit se Gramatiku",
+        cardWriteTitle: "Studio Psaní",
+        cardWriteDesc: "Zlepšete své dovednosti psaní esejů a e-mailů.",
+        btnWrite: "Začít Psát",
+        cardVerbsTitle: "Nepravidelná Slovesa",
+        cardVerbsDesc: "Zvládněte obtížná slovesa cíleným procvičováním.",
+        btnVerbs: "Procvičit Slovesa",
+        cardQuizTitle: "Denní Kvíz",
+        cardQuizDesc: "Otestujte své znalosti každý den novým kvízem.",
+        btnQuiz: "Spustit Kvíz",
+        cardReadTitle: "Čtenářský Klub",
+        cardReadDesc: "Prozkoumejte zajímavé články a příběhy.",
+        btnRead: "Začít Číst",
+        cardPersonasTitle: "AI Persony",
+        cardPersonasDesc: "Zapojte se do realistických konverzací s AI postavami.",
+        btnPersonas: "Poznat Persony",
+        // NEW GAMES SECTION
+        cardGamesTitle: "Interaktivní Hry",
+        cardGamesDesc: "Zlepšete své dovednosti pomocí zábavných hádanek a výzev.",
+        btnGames: "Hrát Hry",
+        // END NEW GAMES SECTION
+        footerStart: "Začít",
+        footerAbout: "O nás",
+        footerHow: "Jak to funguje",
+        footerStudents: "Pro Studenty",
+        footerPricing: "Ceník",
+        footerRes: "Zdroje",
+        footerVocab: "Slovníčky",
+        footerSheets: "Pracovní listy",
+        footerContact: "Kontakt",
+        footerDesc: "Posílení studentů angličtiny po celém světě.",
+    }
+};
 
 // --- MAIN FUNCTION 1: TRIGGERED BY USER DROPDOWN ---
 function changeLanguage(lang) {
-    // 1. Save the selection to browser memory
     localStorage.setItem('selectedLanguage', lang);
-    
-    // 2. RESTART (Reload) the page immediately
-    // This ensures all scripts, including the chatbot, restart with the new language.
     location.reload(); 
 }
 
 // --- MAIN FUNCTION 2: RUNS AUTOMATICALLY ON PAGE LOAD ---
 function applyLanguage(lang) {
-    // 1. Set correct text direction
     if (lang === 'ar') {
         document.documentElement.setAttribute('dir', 'rtl');
         document.documentElement.setAttribute('lang', 'ar');
@@ -1026,7 +1114,6 @@ function applyLanguage(lang) {
         document.documentElement.setAttribute('lang', lang);
     }
 
-    // 2. Update all text elements
     const elements = document.querySelectorAll('[data-i18n]');
     elements.forEach(element => {
         const key = element.getAttribute('data-i18n');
@@ -1035,7 +1122,6 @@ function applyLanguage(lang) {
         }
     });
 
-    // 3. Set Dropdown Values (So they show the correct flag/name)
     const mainSelect = document.getElementById('languageSelect');
     if (mainSelect) mainSelect.value = lang;
     
@@ -1045,9 +1131,6 @@ function applyLanguage(lang) {
 
 // --- BOOT UP SEQUENCE ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Retrieve saved language or default to English
     const savedLang = localStorage.getItem('selectedLanguage') || 'en';
-    
-    // Apply it immediately
     applyLanguage(savedLang);
 });
