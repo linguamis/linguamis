@@ -2,12 +2,13 @@
 
 body {
     font-family: 'Nunito', sans-serif;
-    background-color: #f9fafb; /* Very light gray background */
+    background-color: #111827; /* Global Dark Blue Theme */
+    color: #1f2937;
     overscroll-behavior: none;
 }
 
 /* --- Brand Colors --- */
-.bg-brand-dark { background-color: #111827; } /* Linguamis Navy */
+.bg-brand-dark { background-color: #111827; } 
 .text-brand-dark { color: #111827; }
 
 .text-brand-orange { color: #f97316; }
@@ -30,7 +31,7 @@ body {
 .linguamis-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    border-color: #f97316; /* Orange border on hover */
+    border-color: #f97316;
 }
 
 /* --- Animations --- */
@@ -68,7 +69,7 @@ body {
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
+::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 4px; }
 
 /* Active Tab Indicator (Mobile) */
 .nav-item.active {
