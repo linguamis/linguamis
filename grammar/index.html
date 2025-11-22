@@ -6,6 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Speaking Class: About Yourself & Family</title>
+    <link rel="icon" type="image/jpeg" href="../linguamis-logo.jpg">
     <style>
         :root {
             --tdv-red: #E30613;
@@ -17,18 +18,17 @@
             --accent-orange: #fd7e14;
         }
 
-        /* --- TEMEL AYARLAR & iOS RESET --- */
+        /* --- TEMEL AYARLAR --- */
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             margin: 0;
             padding: 0;
             color: var(--text-color);
-            /* iOS Alt güvenli alan (iPhone X ve sonrası için) */
             padding-bottom: calc(80px + env(safe-area-inset-bottom)); 
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
-            touch-action: manipulation; /* Çift tıklama zoom'unu engeller */
+            touch-action: manipulation;
         }
 
         /* --- HEADER --- */
@@ -36,15 +36,15 @@
             background: linear-gradient(135deg, var(--tdv-red), var(--tdv-blue));
             color: white;
             padding: 15px 20px;
-            /* iOS Üst çentik alanı için padding */
             padding-top: max(15px, env(safe-area-inset-top));
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            position: sticky; /* Mobilde üstte kalsın */
+            position: sticky;
             top: 0;
             z-index: 100;
+            transition: all 0.3s ease;
         }
 
         .header-logo {
@@ -54,12 +54,14 @@
             padding: 4px;
             border-radius: 8px;
             min-width: 60px;
+            /* Resim sığdırma ayarı */
+            object-fit: contain; 
         }
 
         .header-content {
             text-align: center;
             flex-grow: 1;
-            padding: 0 10px;
+            padding: 0 8px;
         }
 
         h1, h2, h3 { margin: 0; }
@@ -70,7 +72,6 @@
         /* --- FLOATING LANGUAGE BUTTON --- */
         .lang-toggle {
             position: fixed;
-            /* iOS alt bar'ın üstünde kalması için güvenli alan hesabı */
             bottom: calc(20px + env(safe-area-inset-bottom));
             right: 20px;
             background: var(--tdv-blue);
@@ -83,11 +84,9 @@
             font-weight: 700;
             z-index: 9999;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            transition: transform 0.2s, background 0.2s;
-            /* Mobilde yanlışlıkla seçilmeyi engelle */
+            transition: transform 0.2s;
             -webkit-user-select: none;
             user-select: none;
-            /* Dokunma alanı iyileştirmesi */
             min-width: 120px;
             text-align: center;
         }
@@ -105,7 +104,7 @@
 
         .card {
             background: var(--card-bg);
-            border-radius: 16px; /* Daha yuvarlak köşeler modern iOS hissi verir */
+            border-radius: 16px;
             padding: 20px;
             margin-bottom: 20px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.06);
@@ -127,7 +126,8 @@
             border-bottom: 1px dotted #ccc; 
             transition: background 0.1s;
             margin: 0 1px;
-            padding: 2px 0; /* Parmakla basmayı kolaylaştırır */
+            padding: 2px 0;
+            display: inline-block; /* Satır kaymalarını düzgün yapması için */
         }
         .click-word:active, .click-word:hover {
             background-color: #ffeeba;
@@ -138,7 +138,7 @@
         /* Tooltip */
         #tooltip {
             position: absolute;
-            background: rgba(30, 30, 30, 0.95); /* Hafif transparan modern görünüm */
+            background: rgba(30, 30, 30, 0.95);
             color: #fff;
             padding: 10px 16px;
             border-radius: 8px;
@@ -151,7 +151,7 @@
             transform: translate(-50%, -140%); 
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             font-weight: 500;
-            backdrop-filter: blur(4px); /* iOS tarzı blur */
+            backdrop-filter: blur(4px);
         }
         #tooltip::after {
             content: '';
@@ -167,7 +167,6 @@
         /* --- COMPONENTS --- */
         button { font-family: inherit; }
         
-        /* Mood Buttons */
         .mood-container {
             display: flex;
             justify-content: center;
@@ -184,7 +183,6 @@
         }
         .mood-btn:active { transform: scale(1.2); }
 
-        /* Roulette */
         .roulette-box {
             text-align: center;
             background: #fafafa;
@@ -208,18 +206,17 @@
             background: var(--tdv-red);
             color: white;
             border: none;
-            padding: 16px 32px; /* Daha büyük buton */
+            padding: 16px 32px;
             font-size: 1.1rem;
             border-radius: 50px;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(227, 6, 19, 0.3);
             font-weight: 600;
-            width: 100%; /* Mobilde tam genişlik */
+            width: 100%;
             max-width: 300px;
         }
         .btn-main:active { transform: scale(0.98); box-shadow: none; }
 
-        /* Timer */
         .timer-display {
             font-family: 'Courier New', Courier, monospace;
             font-size: 3.5rem;
@@ -254,7 +251,6 @@
         .bg-red { background-color: var(--tdv-red); }
         .bg-blue { background-color: var(--tdv-blue); }
 
-        /* Game */
         .scramble-text {
             font-size: 2.2rem;
             letter-spacing: 6px;
@@ -275,15 +271,14 @@
             border: 2px solid #e0e0e0;
             border-radius: 8px;
             flex: 1;
-            min-width: 200px; /* Mobilde çok küçülmesin */
-            -webkit-appearance: none; /* iOS input stilini temizle */
+            min-width: 200px;
+            -webkit-appearance: none;
         }
         .game-input:focus, #vocab-input:focus {
             border-color: var(--tdv-blue);
             outline: none;
         }
 
-        /* Vocab List */
         #vocab-list {
             list-style: none;
             padding: 0;
@@ -312,31 +307,40 @@
         /* --- MOBILE OPTIMIZATIONS (Responsive) --- */
         @media (max-width: 600px) {
             header {
-                padding: 10px 15px;
-                /* Mobilde header'ı sıkıştır */
+                padding: 10px 12px; /* Kenar boşluklarını daralt */
+                gap: 5px; /* Elemanlar arası boşluğu azalt */
             }
             .header-logo {
-                display: none; /* Mobilde logoları gizle, alan kazandır */
+                display: block; /* Logoları göster */
+                height: 40px;   /* Mobilde daha küçük */
+                min-width: 40px;
+                padding: 2px;
             }
-            header h1 { font-size: 1.3rem; }
+            header h1 { 
+                font-size: 1.1rem; /* Başlığı biraz küçült */
+                margin-bottom: 2px;
+            }
+            header h2 {
+                font-size: 0.8rem;
+                display: none; /* Mobilde alt başlığı gizleyebiliriz veya çok küçük yapabiliriz */
+            }
+            .sub-text {
+                font-size: 0.65rem;
+            }
             
             .card {
                 padding: 15px;
                 margin-bottom: 15px;
-                border-radius: 12px;
             }
             
             .timer-display {
-                font-size: 2.8rem;
-                padding: 10px 20px;
+                font-size: 2.5rem;
+                padding: 10px 15px;
             }
             
-            .timer-controls {
-                gap: 8px;
-            }
             .timer-btn {
-                padding: 12px;
-                font-size: 0.95rem;
+                padding: 10px;
+                font-size: 0.9rem;
             }
 
             .lang-toggle {
@@ -615,14 +619,12 @@
         tooltip.innerText = meaning;
         tooltip.style.opacity = "1";
         
-        // Konumlandırma - Mobilde taşmaması için kontrol
         const rect = e.target.getBoundingClientRect();
         const tooltipWidth = tooltip.offsetWidth;
         const screenWidth = window.innerWidth;
         
         let left = rect.left + (rect.width/2);
         
-        // Ekrandan taşarsa düzelt
         if (left < (tooltipWidth/2)) left = tooltipWidth/2 + 10;
         if (left > (screenWidth - tooltipWidth/2)) left = screenWidth - tooltipWidth/2 - 10;
 
