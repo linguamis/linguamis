@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="csPageTitle">Linguamis - Coming Soon</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../style.css"> 
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo-link">
+                <img src="../linguamis-logo.jpg" alt="Linguamis" class="logo-img"> 
+                <span class="logo-text">Linguamis</span>
+            </a>
+
+            <div class="nav-links">
+                <select id="languageSelect" onchange="changeLanguage(this.value)">
+                    <option value="en">🇬🇧 English</option>
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="de">🇩🇪 Deutsch</option>
+                    <option value="tr">🇹🇷 Türkçe</option>
+                    <option value="ar">🇸🇦 العربية</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                </select>
+                <a href="/" class="nav-btn" data-i18n="csHomeBtn">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="coming-soon-wrapper">
+        <div class="coming-soon-card">
+            <div class="cs-icon">🚀</div>
+            <h1 data-i18n="csTitle">Coming Soon!</h1>
+            <p data-i18n="csDesc">We are working hard to build this feature. Check back soon for new ways to learn!</p>
+            
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+
+            <a href="/" class="cta-btn" data-i18n="csBtn">Back to Home</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="copyright">
+            &copy; 2025 Linguamis. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="../lang.js"></script> 
+</body>
+</html>
