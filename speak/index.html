@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Linguamis - Speaking Coach</title>
     
-    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.ico"> 
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -16,7 +17,7 @@
     <header class="w-full bg-white border-b border-gray-200 py-3 px-4 md:px-8 flex items-center justify-between shrink-0 z-50 relative shadow-sm">
         
         <a href="index.html" class="flex items-center gap-3 group">
-            <img src="linguamis-logo.jpg" alt="Linguamis Logo" class="h-10 w-auto object-contain">
+            <img src="logo.png" alt="Linguamis Logo" class="h-10 w-auto object-contain">
             <span class="text-2xl font-extrabold text-brand-dark tracking-tight hidden md:block group-hover:text-brand-orange transition-colors">Linguamis</span>
         </a>
 
@@ -146,18 +147,25 @@
 
         </main>
 
-        <nav class="md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 flex justify-around items-center pb-safe pt-2 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
-            <button onclick="switchTab('challenge')" id="nav-mobile-challenge" class="nav-item active flex flex-col items-center justify-center p-3 w-1/2 text-gray-400 transition-all rounded-xl mx-2">
-                <i class="fas fa-trophy text-xl mb-1 transition-transform"></i>
-                <span class="text-xs font-bold">Practice</span>
-            </button>
-            <button onclick="switchTab('freeplay')" id="nav-mobile-freeplay" class="nav-item flex flex-col items-center justify-center p-3 w-1/2 text-gray-400 transition-all rounded-xl mx-2">
-                <i class="fas fa-keyboard text-xl mb-1 transition-transform"></i>
-                <span class="text-xs font-bold">Free Play</span>
-            </button>
-        </nav>
 
-    </div>
+    <footer class="w-full bg-brand-dark border-t border-gray-800 py-6 shrink-0 z-50">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400 text-sm font-medium">
+                &copy; 2025 Linguamis. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <nav class="md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 flex justify-around items-center pb-safe pt-2 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+        <button onclick="switchTab('challenge')" id="nav-mobile-challenge" class="nav-item active flex flex-col items-center justify-center p-3 w-1/2 text-gray-400 transition-all rounded-xl mx-2">
+            <i class="fas fa-trophy text-xl mb-1 transition-transform"></i>
+            <span class="text-xs font-bold">Practice</span>
+        </button>
+        <button onclick="switchTab('freeplay')" id="nav-mobile-freeplay" class="nav-item flex flex-col items-center justify-center p-3 w-1/2 text-gray-400 transition-all rounded-xl mx-2">
+            <i class="fas fa-keyboard text-xl mb-1 transition-transform"></i>
+            <span class="text-xs font-bold">Free Play</span>
+        </button>
+    </nav>
 
     <script src="script.js"></script>
 </body>
