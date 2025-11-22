@@ -281,7 +281,7 @@ header p {
 }
 
 /* Card Accents */
-.card.blue { border-top-color: #3da9fc; }
+.card.blue { border-top-color: #00E5FF; }
 .card.green { border-top-color: var(--accent-green); }
 .card.orange { border-top-color: var(--action-orange); }
 .card.purple { border-top-color: var(--accent-purple); }
