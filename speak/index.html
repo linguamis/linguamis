@@ -11,32 +11,32 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="h-[100dvh] w-full flex flex-col bg-gray-50 text-gray-800 overflow-hidden">
+<body class="h-[100dvh] w-full flex flex-col bg-brand-dark text-gray-800 overflow-hidden">
 
     <header class="w-full bg-white border-b border-gray-200 py-3 px-4 md:px-8 flex items-center justify-between shrink-0 z-50 relative shadow-sm">
         
-        <div class="flex items-center gap-3">
-            <img src="linguamis-logo.jpg" alt="Linguamis Logo" class="h-10 w-auto object-contain">
-            
-            <span class="text-2xl font-extrabold text-[#111827] tracking-tight hidden md:block">Linguamis</span>
-        </div>
+        <a href="index.html" class="flex items-center gap-3 group">
+            <img src="logo.png" alt="Linguamis Logo" class="h-10 w-auto object-contain">
+            <span class="text-2xl font-extrabold text-brand-dark tracking-tight hidden md:block group-hover:text-brand-orange transition-colors">Linguamis</span>
+        </a>
 
         <div class="flex items-center gap-6">
             
             <div class="hidden md:flex items-center bg-gray-50 border border-gray-200 rounded-full px-3 py-1.5 gap-2 cursor-pointer hover:border-gray-300 transition-colors">
-                <span class="text-sm font-bold text-[#111827] flex items-center gap-2">
+                <span class="text-sm font-bold text-brand-dark flex items-center gap-2">
                     <span class="font-bold text-xs bg-gray-200 px-1 rounded">GB</span> English
                 </span>
                 <i class="fas fa-chevron-down text-xs text-gray-500"></i>
             </div>
 
-            <nav class="hidden md:flex items-center gap-6 font-bold text-[#111827]">
-                <a href="#" class="hover:text-brand-orange transition-colors">Grammar</a>
-                <a href="#" class="text-brand-orange transition-colors">Speaking</a> <a href="#" class="hover:text-brand-orange transition-colors">Reading</a>
-                <a href="#" class="hover:text-brand-orange transition-colors">Quiz</a>
+            <nav class="hidden md:flex items-center gap-6 font-bold text-brand-dark">
+                <a href="grammar.html" class="hover:text-brand-orange transition-colors">Grammar</a>
+                <a href="index.html" class="text-brand-orange relative after:content-[''] after:absolute after:-bottom-4 after:left-0 after:w-full after:h-1 after:bg-brand-orange after:rounded-t-md">Speaking</a>
+                <a href="reading.html" class="hover:text-brand-orange transition-colors">Reading</a>
+                <a href="quiz.html" class="hover:text-brand-orange transition-colors">Quiz</a>
             </nav>
 
-            <a href="#" class="bg-[#111827] text-white font-bold px-6 py-2 rounded-full hover:bg-gray-800 transition-transform active:scale-95 shadow-md">
+            <a href="login.html" class="bg-brand-dark text-white font-bold px-6 py-2 rounded-full hover:bg-gray-800 transition-all active:scale-95 shadow-md hover:shadow-lg">
                 Log in
             </a>
         </div>
@@ -44,9 +44,9 @@
 
     <div class="flex-1 flex overflow-hidden relative max-w-7xl mx-auto w-full md:p-6 gap-6">
         
-        <aside class="hidden md:flex w-64 flex-col bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-            <div class="p-5 bg-[#111827] text-white">
-                <h2 class="text-lg font-bold"><i class="fas fa-microphone-alt mr-2"></i>Coach</h2>
+        <aside class="hidden md:flex w-64 flex-col bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden h-full">
+            <div class="p-5 bg-brand-dark text-white">
+                <h2 class="text-lg font-bold"><i class="fas fa-microphone-alt mr-2 text-brand-orange"></i>Coach</h2>
                 <p class="text-gray-400 text-xs">Select a mode</p>
             </div>
 
@@ -61,12 +61,12 @@
 
             <div class="p-4 mt-auto border-t border-gray-100">
                 <div class="bg-blue-50 rounded-lg p-3 text-xs text-blue-800 border border-blue-100">
-                    <p><strong>Tip:</strong> Use Chrome for best results.</p>
+                    <p><i class="fas fa-info-circle mr-1"></i> Use Chrome for best results.</p>
                 </div>
             </div>
         </aside>
 
-        <main class="flex-1 flex flex-col bg-white md:rounded-2xl md:shadow-sm md:border md:border-gray-200 relative overflow-hidden">
+        <main class="flex-1 flex flex-col bg-white md:rounded-2xl md:shadow-xl md:border md:border-gray-200 relative overflow-hidden h-full">
             
             <div id="browser-warning" class="hidden bg-red-500 text-white px-4 py-2 text-center text-sm font-bold z-30">
                 Browser not supported. Please use Google Chrome.
@@ -76,7 +76,7 @@
                 
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
                     <div>
-                        <h2 class="text-2xl font-extrabold text-[#111827]">Topic Selection</h2>
+                        <h2 class="text-2xl font-extrabold text-brand-dark">Topic Selection</h2>
                         <p class="text-gray-500 text-sm">Choose a card to start practicing.</p>
                     </div>
                     <select id="category-select" class="w-full md:w-56 bg-gray-50 text-gray-700 border border-gray-200 rounded-lg px-4 py-2.5 font-bold shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-orange cursor-pointer appearance-none">
@@ -91,17 +91,17 @@
                         <i class="fas fa-arrow-left mr-2"></i> Back
                     </button>
                     
-                    <div class="bg-white w-full max-w-xl p-6 md:p-8 rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] text-center relative flex flex-col items-center border border-gray-100">
+                    <div class="bg-white w-full max-w-xl p-6 md:p-8 rounded-3xl shadow-2xl text-center relative flex flex-col items-center border border-gray-100">
                         
                         <span class="inline-block text-brand-cyan bg-cyan-50 px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wide mb-6 border border-cyan-100" id="practice-tag">Tag</span>
                         
-                        <p id="target-text" class="text-3xl md:text-4xl font-extrabold text-[#111827] mb-8 leading-tight">Select a card...</p>
+                        <p id="target-text" class="text-3xl md:text-4xl font-extrabold text-brand-dark mb-8 leading-tight">Select a card...</p>
 
                         <div class="w-full max-w-xs mb-8 flex items-center gap-3 bg-gray-50 p-2 rounded-full border border-gray-200">
                             <span class="text-xs font-bold text-gray-400 ml-2">SLOW</span>
                             <input type="range" id="challenge-rate" min="0.5" max="2" value="0.9" step="0.1" oninput="updateChallengeRateLabel(this.value)" class="flex-1 h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-brand-orange">
                             <span class="text-xs font-bold text-gray-400">FAST</span>
-                            <span id="challenge-rate-value" class="text-xs font-bold text-[#111827] bg-white px-2 py-1 rounded border border-gray-200 min-w-[3rem]">0.9x</span>
+                            <span id="challenge-rate-value" class="text-xs font-bold text-brand-dark bg-white px-2 py-1 rounded border border-gray-200 min-w-[3rem]">0.9x</span>
                         </div>
 
                         <div class="flex items-center justify-center gap-6 mb-8">
@@ -124,20 +124,20 @@
             </div>
 
             <div id="view-freeplay" class="hidden flex-1 flex flex-col p-4 md:p-8 h-full pb-24 md:pb-8">
-                <h2 class="text-2xl font-extrabold text-[#111827] mb-2">Text-to-Speech</h2>
+                <h2 class="text-2xl font-extrabold text-brand-dark mb-2">Text-to-Speech</h2>
                 <p class="text-gray-500 text-sm mb-6">Type any sentence to hear the native pronunciation.</p>
                 
                 <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200 flex-1 flex flex-col relative focus-within:ring-2 focus-within:ring-brand-orange/20 transition-all">
-                    <textarea id="free-text" class="w-full flex-1 bg-transparent border-none focus:ring-0 text-xl md:text-2xl text-[#111827] resize-none placeholder-gray-300" placeholder="Type anything here..."></textarea>
+                    <textarea id="free-text" class="w-full flex-1 bg-transparent border-none focus:ring-0 text-xl md:text-2xl text-brand-dark resize-none placeholder-gray-300" placeholder="Type anything here..."></textarea>
                     
                     <div class="flex flex-col gap-4 mt-4 border-t border-gray-200 pt-4">
                         <div class="flex items-center gap-3">
                             <span class="text-xs font-bold text-gray-400 uppercase">Speed</span>
                             <input type="range" id="rate" min="0.5" max="2" value="1" step="0.1" oninput="updateRateLabel(this.value)" class="flex-1 h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-brand-orange">
-                            <span id="rate-value" class="text-xs font-bold text-[#111827] bg-white px-2 py-1 rounded border border-gray-200">1.0x</span>
+                            <span id="rate-value" class="text-xs font-bold text-brand-dark bg-white px-2 py-1 rounded border border-gray-200">1.0x</span>
                         </div>
                         
-                        <button onclick="speakFreeText()" class="w-full py-3 bg-[#111827] hover:bg-gray-900 text-white font-bold rounded-xl shadow-lg active:scale-[0.99] transition-all flex items-center justify-center text-lg">
+                        <button onclick="speakFreeText()" class="w-full py-3 bg-brand-dark hover:bg-gray-900 text-white font-bold rounded-xl shadow-lg active:scale-[0.99] transition-all flex items-center justify-center text-lg">
                             <i class="fas fa-play mr-2 text-brand-orange"></i> Speak It
                         </button>
                     </div>
@@ -162,5 +162,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-
