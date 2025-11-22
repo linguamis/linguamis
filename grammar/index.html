@@ -1,75 +1,354 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="csPageTitle">Linguamis - Coming Soon</title>
-    
-    <link rel="icon" type="image/jpeg" href="../linguamis-logo.jpg">
+    <title>Speaking Class: About Yourself & Family</title>
+    <style>
+        :root {
+            --tdv-red: #E30613;
+            --tdv-blue: #005796;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333;
+        }
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="../style.css"> 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--tdv-red), var(--tdv-blue));
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 { margin: 0; font-size: 2rem; }
+        header h2 { margin: 5px 0 0; font-size: 1.2rem; font-weight: 300; }
+        header .sub-info { font-size: 0.9rem; opacity: 0.9; margin-top: 5px; }
+
+        /* Container */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--tdv-red);
+        }
+
+        h3 { color: var(--tdv-blue); border-bottom: 1px solid #eee; padding-bottom: 10px; }
+
+        /* Section 1: Housekeeping (Accordion) */
+        .rules-toggle {
+            cursor: pointer;
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+        .rules-content {
+            display: none;
+            padding: 10px;
+            background: #fafafa;
+        }
+        .rules-content ul { padding-left: 20px; }
+        .rules-content li { margin-bottom: 5px; }
+
+        /* Section 2: Warm Up */
+        .mood-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .mood-btn {
+            font-size: 2rem;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .mood-btn:hover { transform: scale(1.1); }
+        .happy { background-color: #d4edda; color: #155724; }
+        .sad { background-color: #f8d7da; color: #721c24; }
+        #mood-response { text-align: center; margin-top: 10px; font-weight: bold; min-height: 20px; }
+
+        /* Section 3: Teacher Profile */
+        .profile-grid {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .profile-text p { margin: 5px 0; }
+        .emoji-icon { font-size: 1.5rem; margin-right: 5px; }
+
+        /* Section 4: Roulette */
+        .roulette-container {
+            text-align: center;
+            background: linear-gradient(to bottom right, #fff, #f0f0f0);
+            padding: 30px;
+            border: 2px dashed var(--tdv-blue);
+        }
+        #question-display {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--tdv-red);
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .spin-btn {
+            background-color: var(--tdv-red);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #b0050f;
+            transition: all 0.1s;
+        }
+        .spin-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #b0050f;
+        }
+
+        /* Section 5: Vocabulary */
+        .vocab-input-group {
+            display: flex;
+            gap: 10px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .add-btn {
+            background-color: var(--tdv-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #vocab-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        #vocab-list li {
+            background: #e7f1ff;
+            color: var(--tdv-blue);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        /* Animations */
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .animate-pop {
+            animation: popIn 0.3s ease-out forwards;
+        }
+    </style>
 </head>
 <body>
 
-    <nav>
-        <div class="nav-container">
-            <a href="/" class="logo-link">
-                <img src="../linguamis-logo.jpg" alt="Linguamis" class="logo-img"> 
-                <span class="logo-text">Linguamis</span>
-            </a>
+<header>
+    <h1>About Yourself & Family</h1>
+    <h2>Teacher: Musab İkbal SUBAŞI</h2>
+    <div class="sub-info">TDV English Speaking Class | Beginner Level</div>
+</header>
 
-            <div class="nav-links">
-                <select id="languageSelect" onchange="changeLanguage(this.value)">
-                    <option value="en">🇬🇧 English</option>
-                    <option value="fr">🇫🇷 Français</option>
-                    <option value="es">🇪🇸 Español</option>
-                    <option value="de">🇩🇪 Deutsch</option>
-                    <option value="tr">🇹🇷 Türkçe</option>
-                    <option value="ru">🇷🇺 Русский</option>
-                    <option value="ar">🇸🇦 العربية</option>
-                    
-                    <option value="it">🇮🇹 Italiano</option>
-                    <option value="zh">🇨🇳 中文 (Chinese)</option>
-                    <option value="ja">🇯🇵 日本語 (Japanese)</option>
-                    <option value="ko">🇰🇷 한국어 (Korean)</option>
-                    <option value="hi">🇮🇳 हिन्दी (Hindi)</option>
-                    
-                    <option value="pt">🇵🇹 Português</option>
-                    <option value="pl">🇵🇱 Polski</option>
-                    <option value="nl">🇳🇱 Nederlands</option>
-                    <option value="id">🇮🇩 Indonesia</option>
-                    <option value="vi">🇻🇳 Tiếng Việt</option>
-                    <option value="th">🇹🇭 ไทย (Thai)</option>
-                    <option value="el">🇬🇷 Ελληνικά (Greek)</option>
-                    <option value="cs">🇨🇿 Čeština (Czech)</option>
-                </select>
-                <a href="/" class="nav-btn" data-i18n="csHomeBtn">Home</a>
-            </div>
+<div class="container">
+
+    <div class="card">
+        <div class="rules-toggle" onclick="toggleRules()">
+            <span>📢 Class Rules & Tips (Click to Show)</span>
+            <span>▼</span>
         </div>
-    </nav>
-
-    <div class="coming-soon-wrapper">
-        <div class="coming-soon-card">
-            <div class="cs-icon">🚀</div>
-            <h1 data-i18n="csTitle">Coming Soon!</h1>
-            <p data-i18n="csDesc">We are working hard to build this feature. Check back soon for new ways to learn!</p>
-            
-            <div class="progress-container">
-                <div class="progress-bar"></div>
-            </div>
-
-            <a href="/" class="cta-btn" data-i18n="csBtn">Back to Home</a>
+        <div class="rules-content" id="rules">
+            <ul>
+                <li>⏰ <b>Timing:</b> No new students after the first 10 minutes.</li>
+                <li>✋ <b>Participate:</b> Please use "Raise Hand" to answer.</li>
+                <li>📖 <b>Tools:</b> Have a dictionary ready (Sözlük). Suggestion: Tureng.</li>
+                <li>💪 <b>Advice:</b> Be Confident! Don’t mind grammar too much, just speak!</li>
+            </ul>
         </div>
     </div>
 
-    <footer>
-        <div class="copyright">
-            &copy; 2025 Linguamis. All rights reserved.
+    <div class="card" style="text-align: center;">
+        <h3>🌤️ Warm-Up</h3>
+        <p>How are you feeling today?</p>
+        <div class="mood-buttons">
+            <button class="mood-btn happy" onclick="setMood('happy')">Happy ☺</button>
+            <button class="mood-btn sad" onclick="setMood('sad')">Sad ☹</button>
         </div>
-    </footer>
+        <div id="mood-response"></div>
+    </div>
 
-    <script src="../lang.js"></script> 
+    <div class="card">
+        <h3>👨‍🏫 Meet Your Teacher</h3>
+        <div class="profile-grid">
+            <div class="profile-text">
+                <p><strong>Name:</strong> İkbal</p>
+                <p><strong>Study:</strong> ELT Student (4th Grade) 🎓</p>
+                <p><strong>Experience:</strong> Camp Leader (Mind Games) ♟️</p>
+                <p><strong>Hobbies:</strong> I love playing Chess and Soccer ⚽</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card roulette-container">
+        <h3>🎙️ Speaking Roulette</h3>
+        <p>Click the button to get a random question!</p>
+        
+        <div id="question-display">Ready?</div>
+        
+        <button class="spin-btn" onclick="spinWheel()">🎰 SPIN FOR A QUESTION</button>
+    </div>
+
+    <div class="card">
+        <h3>📝 Vocabulary Bank (Words We Learnt)</h3>
+        <div class="vocab-input-group">
+            <input type="text" id="new-word" placeholder="Type a new word here..." onkeypress="handleEnter(event)">
+            <button class="add-btn" onclick="addWord()">Add Word</button>
+        </div>
+        <ul id="vocab-list">
+            </ul>
+    </div>
+
+</div>
+
+<footer>
+    <p>TÜRKİYE DİYANET VAKFI - English Education Program</p>
+    <p>Thank you for coming to class! ☺</p>
+</footer>
+
+<script>
+    // Toggle Rules
+    function toggleRules() {
+        const content = document.getElementById('rules');
+        if (content.style.display === "block") {
+            content.style.display = "none";
+        } else {
+            content.style.display = "block";
+        }
+    }
+
+    // Mood Tracker
+    function setMood(mood) {
+        const display = document.getElementById('mood-response');
+        if (mood === 'happy') {
+            display.innerHTML = "<span style='color:green'>That's awesome! Tell us what made you happy! 🌟</span>";
+        } else {
+            display.innerHTML = "<span style='color:red'>Oh no! We hope this lesson cheers you up. 🍫</span>";
+        }
+    }
+
+    // Questions derived from the PPTX
+    const questions = [
+        "What is your name and how old are you?",
+        "Where are you from?",
+        "What languages do you speak?",
+        "Why are you here today? What do you want to learn?",
+        "What do you do in the mornings?",
+        "What do you do in the evenings before bed?",
+        "What is your favorite weekend activity?",
+        "Where do you spend most of your time at home?",
+        "Tell me about your parents: What are their names & jobs?",
+        "What do you like most about your parents?",
+        "How many brothers or sisters do you have? What are their names?",
+        "What does your mother do that your father doesn’t do?",
+        "Tell us 3 things you like but your siblings do not.",
+        "What 3 things do all of your family like doing?",
+        "How old are your grandparents? Do you visit them often?",
+        "What do you do when you visit your grandparents?",
+        "How many aunts, uncles, and cousins do you have?",
+        "Who is your favorite person in your family? Why?"
+    ];
+
+    // Roulette Logic
+    function spinWheel() {
+        const display = document.getElementById('question-display');
+        const btn = document.querySelector('.spin-btn');
+        
+        // Animation effect (shuffling text)
+        let counter = 0;
+        btn.disabled = true;
+        btn.style.opacity = "0.7";
+        
+        const interval = setInterval(() => {
+            const randomPreview = questions[Math.floor(Math.random() * questions.length)];
+            display.innerText = "🎲 " + randomPreview;
+            display.classList.remove('animate-pop');
+            counter++;
+            
+            if (counter > 15) {
+                clearInterval(interval);
+                const finalQuestion = questions[Math.floor(Math.random() * questions.length)];
+                display.innerText = finalQuestion;
+                display.classList.add('animate-pop');
+                btn.disabled = false;
+                btn.style.opacity = "1";
+            }
+        }, 80); // Speed of shuffle
+    }
+
+    // Vocabulary Logic
+    function addWord() {
+        const input = document.getElementById('new-word');
+        const word = input.value.trim();
+        
+        if (word) {
+            const list = document.getElementById('vocab-list');
+            const li = document.createElement('li');
+            li.innerText = word;
+            list.appendChild(li);
+            input.value = ""; // Clear input
+        }
+    }
+
+    function handleEnter(e) {
+        if (e.key === 'Enter') {
+            addWord();
+        }
+    }
+</script>
+
 </body>
 </html>
