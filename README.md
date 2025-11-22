@@ -10,7 +10,7 @@ I am a final-year **English Language Teaching** student with a passion for bridg
 
 **"Languages; Easier than Ever!"**
 
-Linguamis is a comprehensive, free language learning platform designed to help students master English through adaptive technology. It is built with a focus on accessibility, supporting interfaces in **7 languages** (English, Turkish, French, Spanish, German, Russian, and Arabic).
+Linguamis is a comprehensive, free language learning platform designed to help students master English through adaptive technology. It is built with a focus on accessibility, supporting interfaces in **20 languages** (English, Turkish, French, Spanish, German, Russian, Arabic and more).
 
 #### ✨ Key Features:
 * **🎙️ AI Speaking Coach:** Real-time pronunciation feedback using speech recognition.
