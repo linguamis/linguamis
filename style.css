@@ -99,7 +99,7 @@ nav {
 
 .nav-btn:hover { background-color: var(--brand-blue); }
 
-/* --- NEW: Language Selector Styles --- */
+/* --- Language Selector Styles --- */
 #languageSelect, #mobileLangSelect {
     padding: 6px 12px;
     border-radius: 20px;
@@ -117,7 +117,6 @@ nav {
 #languageSelect:hover {
     border-color: var(--brand-blue);
 }
-/* ------------------------------------- */
 
 /* Mobile Menu Button */
 .mobile-menu-toggle {
@@ -275,9 +274,7 @@ header p {
 }
 
 /* Card Accents */
-/* UPDATED: Blue is now Electric Cyan so it shows on dark backgrounds */
-.card.blue { border-top-color: #00E5FF; } 
-
+.card.blue { border-top-color: #00E5FF; } /* Electric Cyan for visibility */
 .card.green { border-top-color: var(--accent-green); }
 .card.orange { border-top-color: var(--action-orange); }
 .card.purple { border-top-color: var(--accent-purple); }
@@ -480,6 +477,8 @@ html[dir="rtl"] .card {
 }
 
 /* --- CHATBOT STYLES --- */
+
+/* 1. Floating Button (Updated for Animation & No Border) */
 #chat-toggle-btn {
     position: fixed;
     bottom: 30px;
@@ -488,19 +487,26 @@ html[dir="rtl"] .card {
     height: 60px;
     border-radius: 50%;
     background-color: var(--white);
-    border: none
+    
+    /* REMOVED BORDER */
+    border: none; 
+    
+    /* ADDED ANIMATION */
+    animation: pulse-animation 2s infinite ease-in-out;
+
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     cursor: pointer;
     z-index: 1000;
     overflow: hidden;
-    transition: transform 0.3s ease;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/* Pause animation on hover so it's easier to click */
 #chat-toggle-btn:hover {
+    animation-play-state: paused;
     transform: scale(1.1);
 }
 
@@ -510,6 +516,7 @@ html[dir="rtl"] .card {
     object-fit: cover;
 }
 
+/* 2. Chat Window Container */
 .chat-window {
     position: fixed;
     bottom: 100px;
@@ -533,6 +540,7 @@ html[dir="rtl"] .card {
     pointer-events: none;
 }
 
+/* 3. Header */
 .chat-header {
     background: linear-gradient(135deg, var(--brand-navy) 0%, var(--brand-blue) 100%);
     color: var(--white);
@@ -565,6 +573,7 @@ html[dir="rtl"] .card {
     line-height: 1;
 }
 
+/* 4. Messages Area */
 .chat-messages {
     flex: 1;
     padding: 15px;
@@ -598,6 +607,7 @@ html[dir="rtl"] .card {
     border-bottom-right-radius: 2px;
 }
 
+/* 5. Input Area */
 .chat-input-area {
     padding: 15px;
     border-top: 1px solid #eee;
@@ -629,12 +639,21 @@ html[dir="rtl"] .card {
 
 #send-btn:hover { background: var(--brand-blue); }
 
+/* Mobile Chat Adjustments */
 @media (max-width: 480px) {
     .chat-window {
         width: 90%;
         right: 5%;
         bottom: 100px;
     }
+    /* Note: The pulsing animation button works fine on mobile by default */
+}
+
+/* --- PULSE ANIMATION KEYFRAMES --- */
+@keyframes pulse-animation {
+    0% { transform: scale(1); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+    50% { transform: scale(1.1); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+    100% { transform: scale(1); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
 }
 
 /* --- RTL CHAT SUPPORT --- */
