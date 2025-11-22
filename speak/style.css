@@ -2,26 +2,27 @@
 
 body {
     font-family: 'Nunito', sans-serif;
-    background-color: #f3f4f6;
-    color: #1f2937;
+    background-color: #f9fafb; /* Very light gray background */
     overscroll-behavior: none;
 }
 
 /* --- Brand Colors --- */
 .bg-brand-dark { background-color: #111827; } /* Linguamis Navy */
+.text-brand-dark { color: #111827; }
+
 .text-brand-orange { color: #f97316; }
 .bg-brand-orange { background-color: #f97316; }
 .border-brand-orange { border-color: #f97316; }
 
-.border-brand-cyan { border-color: #06b6d4; } /* Accent for Speaking */
+.border-brand-cyan { border-color: #06b6d4; }
 .text-brand-cyan { color: #06b6d4; }
 .bg-brand-cyan { background-color: #06b6d4; }
 
 /* --- Custom Card Styling --- */
 .linguamis-card {
     background: white;
-    border-radius: 1rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     border: 1px solid #e5e7eb;
     transition: all 0.2s ease;
 }
@@ -29,6 +30,7 @@ body {
 .linguamis-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-color: #f97316; /* Orange border on hover */
 }
 
 /* --- Animations --- */
@@ -66,9 +68,9 @@ body {
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
 
-/* Active Tab Indicator */
+/* Active Tab Indicator (Mobile) */
 .nav-item.active {
     color: #f97316; /* Orange */
     background-color: #fff7ed;
@@ -84,4 +86,19 @@ select {
     background-repeat: no-repeat;
     background-size: 1.5em 1.5em;
     padding-right: 2.5rem;
+}
+
+/* Range Slider Customization */
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #f97316;
+    cursor: pointer;
+    margin-top: -5px;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 3px;
 }
