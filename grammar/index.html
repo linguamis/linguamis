@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Speaking Class: About Yourself & Family</title>
     <style>
         :root {
@@ -15,13 +17,18 @@
             --accent-orange: #fd7e14;
         }
 
+        /* --- TEMEL AYARLAR & iOS RESET --- */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             margin: 0;
             padding: 0;
             color: var(--text-color);
-            padding-bottom: 80px; /* Buton için alt boşluk */
+            /* iOS Alt güvenli alan (iPhone X ve sonrası için) */
+            padding-bottom: calc(80px + env(safe-area-inset-bottom)); 
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            touch-action: manipulation; /* Çift tıklama zoom'unu engeller */
         }
 
         /* --- HEADER --- */
@@ -29,50 +36,63 @@
             background: linear-gradient(135deg, var(--tdv-red), var(--tdv-blue));
             color: white;
             padding: 15px 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            /* iOS Üst çentik alanı için padding */
+            padding-top: max(15px, env(safe-area-inset-top));
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: sticky; /* Mobilde üstte kalsın */
+            top: 0;
+            z-index: 100;
         }
 
         .header-logo {
-            height: 70px;
+            height: 60px;
             width: auto;
             background: white;
-            padding: 5px;
+            padding: 4px;
             border-radius: 8px;
-            min-width: 70px;
+            min-width: 60px;
         }
 
         .header-content {
             text-align: center;
             flex-grow: 1;
-            padding: 0 15px;
+            padding: 0 10px;
         }
 
         h1, h2, h3 { margin: 0; }
-        header h1 { font-size: 1.6rem; margin-bottom: 5px; }
-        header h2 { font-size: 1rem; font-weight: 300; opacity: 0.9; }
+        header h1 { font-size: 1.4rem; margin-bottom: 4px; line-height: 1.2; }
+        header h2 { font-size: 0.9rem; font-weight: 300; opacity: 0.95; }
+        .sub-text { font-size: 0.75rem; margin-top: 3px; opacity: 0.8; }
 
-        /* --- FLOATING LANGUAGE BUTTON (SAĞ ALT KÖŞE) --- */
+        /* --- FLOATING LANGUAGE BUTTON --- */
         .lang-toggle {
             position: fixed;
-            bottom: 20px;
+            /* iOS alt bar'ın üstünde kalması için güvenli alan hesabı */
+            bottom: calc(20px + env(safe-area-inset-bottom));
             right: 20px;
             background: var(--tdv-blue);
             color: white;
             border: 2px solid white;
-            padding: 12px 20px;
+            padding: 14px 20px;
             border-radius: 50px;
             cursor: pointer;
             font-size: 1rem;
-            font-weight: bold;
+            font-weight: 700;
             z-index: 9999;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: transform 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: transform 0.2s, background 0.2s;
+            /* Mobilde yanlışlıkla seçilmeyi engelle */
+            -webkit-user-select: none;
+            user-select: none;
+            /* Dokunma alanı iyileştirmesi */
+            min-width: 120px;
+            text-align: center;
         }
-        .lang-toggle:hover {
-            transform: scale(1.05);
+        .lang-toggle:active {
+            transform: scale(0.95);
             background: var(--tdv-red);
         }
 
@@ -85,106 +105,150 @@
 
         .card {
             background: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 16px; /* Daha yuvarlak köşeler modern iOS hissi verir */
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
             border-left: 5px solid var(--tdv-red);
         }
 
         .card h3 {
             color: var(--tdv-blue);
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 12px;
             margin-bottom: 15px;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
+            font-weight: 600;
         }
 
-        /* --- INTERACTIVE TEXT STYLES --- */
+        /* --- INTERACTIVE TEXT --- */
         .click-word {
             cursor: pointer;
             border-bottom: 1px dotted #ccc; 
-            transition: all 0.2s;
-            margin: 0 1px; /* Kelimeler arasına ekstra mikro boşluk */
+            transition: background 0.1s;
+            margin: 0 1px;
+            padding: 2px 0; /* Parmakla basmayı kolaylaştırır */
         }
-        .click-word:hover {
+        .click-word:active, .click-word:hover {
             background-color: #ffeeba;
             color: #000;
-            border-radius: 3px;
+            border-radius: 4px;
         }
         
-        /* Tooltip (Anlam Baloncuğu) */
+        /* Tooltip */
         #tooltip {
             position: absolute;
-            background: #222;
+            background: rgba(30, 30, 30, 0.95); /* Hafif transparan modern görünüm */
             color: #fff;
-            padding: 8px 15px;
-            border-radius: 6px;
-            font-size: 15px;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 16px;
             pointer-events: none;
             opacity: 0;
             transition: opacity 0.2s;
             z-index: 10000;
             white-space: nowrap;
-            transform: translate(-50%, -130%); 
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            font-weight: normal;
+            transform: translate(-50%, -140%); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            font-weight: 500;
+            backdrop-filter: blur(4px); /* iOS tarzı blur */
         }
         #tooltip::after {
             content: '';
             position: absolute;
             top: 100%;
             left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
+            margin-left: -6px;
+            border-width: 6px;
             border-style: solid;
-            border-color: #222 transparent transparent transparent;
+            border-color: rgba(30, 30, 30, 0.95) transparent transparent transparent;
         }
 
         /* --- COMPONENTS --- */
-        .profile-row { margin-bottom: 8px; font-size: 1.1rem; }
+        button { font-family: inherit; }
+        
+        /* Mood Buttons */
+        .mood-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .mood-btn {
+            font-size: 2.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s;
+            padding: 10px;
+        }
+        .mood-btn:active { transform: scale(1.2); }
 
         /* Roulette */
         .roulette-box {
             text-align: center;
             background: #fafafa;
-            border: 2px dashed #ddd;
-            padding: 20px;
-            border-radius: 10px;
+            border: 2px dashed #e0e0e0;
+            padding: 25px 15px;
+            border-radius: 12px;
         }
         #q-display {
-            font-size: 1.6rem;
-            font-weight: bold;
+            font-size: 1.5rem;
+            font-weight: 700;
             color: var(--tdv-red);
-            min-height: 80px;
+            min-height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 15px 0;
-            line-height: 1.5; /* Satır aralığını açtık */
+            margin: 20px 0;
+            line-height: 1.4;
             flex-wrap: wrap; 
         }
         .btn-main {
-            background: var(--tdv-red); color: white; border: none;
-            padding: 12px 30px; font-size: 1.1rem; border-radius: 30px;
-            cursor: pointer; box-shadow: 0 4px 0 #b0050f;
+            background: var(--tdv-red);
+            color: white;
+            border: none;
+            padding: 16px 32px; /* Daha büyük buton */
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(227, 6, 19, 0.3);
+            font-weight: 600;
+            width: 100%; /* Mobilde tam genişlik */
+            max-width: 300px;
         }
-        .btn-main:active { transform: translateY(4px); box-shadow: none; }
+        .btn-main:active { transform: scale(0.98); box-shadow: none; }
 
         /* Timer */
         .timer-display {
-            font-family: monospace;
-            font-size: 3rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 3.5rem;
+            font-weight: 700;
             background: #222;
             color: #0f0;
             display: inline-block;
-            padding: 10px 20px;
-            border-radius: 8px;
-            margin: 10px 0;
+            padding: 15px 30px;
+            border-radius: 12px;
+            margin: 15px 0;
+            letter-spacing: 2px;
+        }
+        .timer-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
         .timer-btn {
-            padding: 8px 16px; border: none; border-radius: 4px; color: white;
-            font-weight: bold; cursor: pointer; margin: 0 5px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            flex: 1;
+            min-width: 80px;
+            max-width: 120px;
         }
         .bg-green { background-color: var(--accent-green); }
         .bg-red { background-color: var(--tdv-red); }
@@ -192,28 +256,94 @@
 
         /* Game */
         .scramble-text {
-            font-size: 2rem; letter-spacing: 5px; font-weight: bold;
-            color: var(--accent-orange); margin: 15px 0;
+            font-size: 2.2rem;
+            letter-spacing: 6px;
+            font-weight: 800;
+            color: var(--accent-orange);
+            margin: 20px 0;
+            word-break: break-all;
         }
-        .game-input {
-            padding: 10px; font-size: 1rem; border: 2px solid #ddd;
-            border-radius: 5px; width: 60%;
+        .input-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .game-input, #vocab-input {
+            padding: 12px 15px;
+            font-size: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 200px; /* Mobilde çok küçülmesin */
+            -webkit-appearance: none; /* iOS input stilini temizle */
+        }
+        .game-input:focus, #vocab-input:focus {
+            border-color: var(--tdv-blue);
+            outline: none;
         }
 
-        /* Vocab */
+        /* Vocab List */
         #vocab-list {
-            list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px;
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
         }
         #vocab-list li {
-            background: #e9ecef; color: var(--tdv-blue);
-            padding: 5px 15px; border-radius: 15px;
+            background: #e3f2fd;
+            color: var(--tdv-blue);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.95rem;
         }
 
-        footer { text-align: center; color: #777; font-size: 0.9rem; margin-top: 30px; }
+        footer {
+            text-align: center;
+            color: #888;
+            font-size: 0.85rem;
+            margin-top: 30px;
+            padding-bottom: 20px;
+        }
 
+        /* --- MOBILE OPTIMIZATIONS (Responsive) --- */
         @media (max-width: 600px) {
-            header { flex-direction: column; text-align: center; gap: 10px; }
-            .header-logo { height: 50px; }
+            header {
+                padding: 10px 15px;
+                /* Mobilde header'ı sıkıştır */
+            }
+            .header-logo {
+                display: none; /* Mobilde logoları gizle, alan kazandır */
+            }
+            header h1 { font-size: 1.3rem; }
+            
+            .card {
+                padding: 15px;
+                margin-bottom: 15px;
+                border-radius: 12px;
+            }
+            
+            .timer-display {
+                font-size: 2.8rem;
+                padding: 10px 20px;
+            }
+            
+            .timer-controls {
+                gap: 8px;
+            }
+            .timer-btn {
+                padding: 12px;
+                font-size: 0.95rem;
+            }
+
+            .lang-toggle {
+                padding: 12px 16px;
+                font-size: 0.9rem;
+                right: 15px;
+            }
         }
     </style>
 </head>
@@ -228,7 +358,7 @@
     <div class="header-content">
         <h1 id="txt-header">About Yourself & Family</h1>
         <h2 id="txt-teacher">Teacher: Musab İkbal SUBAŞI</h2>
-        <div style="font-size:0.8rem; margin-top:5px; opacity:0.8;">TDV English Speaking Class</div>
+        <div class="sub-text">TDV English Speaking Class</div>
     </div>
     <img src="diyanet-logo.png" alt="Logo" class="header-logo" onerror="this.style.display='none'">
 </header>
@@ -243,10 +373,10 @@
     <div class="card" style="text-align:center;">
         <h3 id="txt-warmup-title">🌤️ Warm-Up</h3>
         <p id="txt-warmup-q" style="font-size:1.2rem;">How are you feeling today?</p>
-        <div style="margin-top:15px;">
-            <button onclick="showMood('happy')" style="font-size:2rem; background:none; border:none; cursor:pointer;">😊</button>
-            <button onclick="showMood('sad')" style="font-size:2rem; background:none; border:none; cursor:pointer;">☹️</button>
-            <button onclick="showMood('sleepy')" style="font-size:2rem; background:none; border:none; cursor:pointer;">😴</button>
+        <div class="mood-container">
+            <button class="mood-btn" onclick="showMood('happy')">😊</button>
+            <button class="mood-btn" onclick="showMood('sad')">☹️</button>
+            <button class="mood-btn" onclick="showMood('sleepy')">😴</button>
         </div>
         <div id="mood-msg" style="margin-top:10px; font-weight:bold; min-height:24px;"></div>
     </div>
@@ -258,7 +388,7 @@
 
     <div class="card roulette-box">
         <h3 id="txt-roulette-title">🎙️ Speaking Roulette</h3>
-        <p id="txt-roulette-desc">Click button for a question</p>
+        <p id="txt-roulette-desc" style="margin-bottom:15px; opacity:0.7;">Click button for a question</p>
         
         <div id="q-display">Ready?</div>
         
@@ -268,7 +398,7 @@
     <div class="card" style="text-align:center;">
         <h3 id="txt-timer-title">⏱️ Speaking Timer</h3>
         <div class="timer-display" id="timer-val">00:00</div>
-        <div style="margin-top:10px;">
+        <div class="timer-controls">
             <button class="timer-btn bg-green" onclick="startTimer()">Start</button>
             <button class="timer-btn bg-red" onclick="stopTimer()">Stop</button>
             <button class="timer-btn bg-blue" onclick="resetTimer()">Reset</button>
@@ -277,24 +407,26 @@
 
     <div class="card" style="text-align:center;">
         <h3 id="txt-game-title">🧩 Word Scramble</h3>
-        <p id="txt-game-desc">Unscramble the family word!</p>
+        <p id="txt-game-desc" style="opacity:0.7;">Unscramble the family word!</p>
         
         <div class="scramble-text" id="game-word">FAMILY</div>
         
-        <input type="text" id="game-input" class="game-input" placeholder="...">
-        <button class="timer-btn bg-blue" onclick="checkGame()">Check</button>
+        <div class="input-group">
+            <input type="text" id="game-input" class="game-input" placeholder="...">
+            <button class="timer-btn bg-blue" onclick="checkGame()" style="flex:0; min-width:80px;">Check</button>
+        </div>
         
-        <div id="game-msg" style="margin-top:10px; height:20px; font-weight:bold;"></div>
-        <button onclick="nextGameWord()" style="margin-top:10px; background:none; border:none; text-decoration:underline; cursor:pointer; color:#777;">Next Word &rarr;</button>
+        <div id="game-msg" style="margin-top:15px; height:20px; font-weight:bold;"></div>
+        <button onclick="nextGameWord()" style="margin-top:15px; background:none; border:none; text-decoration:underline; cursor:pointer; color:#777; font-size:1rem; padding:10px;">Next Word &rarr;</button>
     </div>
 
     <div class="card">
         <h3 id="txt-vocab-title">📝 Vocabulary</h3>
-        <div style="display:flex; gap:10px;">
-            <input type="text" id="vocab-input" style="flex:1; padding:10px;" placeholder="New word...">
-            <button class="timer-btn bg-blue" onclick="addVocab()">Add</button>
+        <div class="input-group">
+            <input type="text" id="vocab-input" placeholder="New word...">
+            <button class="timer-btn bg-blue" onclick="addVocab()" style="flex:0; min-width:80px;">Add</button>
         </div>
-        <ul id="vocab-list" style="margin-top:15px;"></ul>
+        <ul id="vocab-list"></ul>
     </div>
 
 </div>
@@ -304,7 +436,7 @@
 </footer>
 
 <script>
-    // --- 1. SÖZLÜK (GENİŞLETİLMİŞ) ---
+    // --- 1. SÖZLÜK ---
     const dictionary = {
         "about": "hakkında", "yourself": "kendin", "family": "aile", "rules": "kurallar",
         "class": "sınıf", "teacher": "öğretmen", "name": "isim", "how": "nasıl",
@@ -413,8 +545,7 @@
         }
     };
 
-    // --- 3. GÜNCELLENMİŞ METİN İŞLEME MANTIĞI ---
-    
+    // --- 3. METİN İŞLEME (Boşluk Koruma) ---
     function renderPage() {
         const t = content[currentLang];
 
@@ -433,7 +564,6 @@
         setText("txt-game-desc", t.gameDesc);
         setText("txt-vocab-title", t.vocabTitle);
 
-        // Listeleri güncelle
         const rulesBox = document.getElementById("txt-rules-list");
         rulesBox.innerHTML = "";
         t.rulesList.forEach(item => {
@@ -442,7 +572,6 @@
             rulesBox.appendChild(p);
         });
 
-        // Profili güncelle
         const profileBox = document.getElementById("profile-content");
         profileBox.innerHTML = "";
         t.profileData.forEach(item => {
@@ -455,36 +584,18 @@
 
     function setText(id, text) {
         const el = document.getElementById(id);
-        if (el) {
-            el.innerHTML = processClickableText(text);
-        }
+        if (el) el.innerHTML = processClickableText(text);
     }
 
-    // *** DÜZELTME: Kelimeleri ayır ve BOŞLUKLA birleştir ***
     function processClickableText(text) {
         if (currentLang === 'tr') return text; 
-
-        // 1. Metni boşluklardan ayır
         const words = text.split(' ');
-
-        // 2. Her kelimeyi işle
         const processedWords = words.map(word => {
-            // Eğer boşluksa geç
             if(word.trim() === '') return '';
-
-            // İçinde HTML tag varsa (<b> gibi) dokunma
-            if (word.includes('<') || word.includes('>')) {
-                return word;
-            }
-            
-            // Sözlük araması için noktalama işaretlerini temizle
+            if (word.includes('<') || word.includes('>')) return word;
             const raw = word.replace(/[.,?!:;()"]/g, "").toLowerCase();
-            
-            // Tıklanabilir span oluştur
             return `<span class="click-word" onclick="showTip(event, '${raw}')">${word}</span>`;
         });
-
-        // 3. Kelimeleri TEKRAR BOŞLUKLA BİRLEŞTİR (Sorunun çözümü burası)
         return processedWords.join(' '); 
     }
 
@@ -498,37 +609,35 @@
     
     function showTip(e, word) {
         e.stopPropagation();
-        
         let meaning = dictionary[word];
-        
-        // Eğer sözlükte yoksa
-        if (!meaning) {
-             meaning = "Çeviri bulunamadı"; 
-        }
+        if (!meaning) meaning = "Çeviri bulunamadı"; 
         
         tooltip.innerText = meaning;
         tooltip.style.opacity = "1";
         
-        // Konumlandırma
+        // Konumlandırma - Mobilde taşmaması için kontrol
         const rect = e.target.getBoundingClientRect();
-        const top = rect.top + window.scrollY - 10;
-        const left = rect.left + (rect.width/2);
+        const tooltipWidth = tooltip.offsetWidth;
+        const screenWidth = window.innerWidth;
         
-        tooltip.style.top = top + "px";
+        let left = rect.left + (rect.width/2);
+        
+        // Ekrandan taşarsa düzelt
+        if (left < (tooltipWidth/2)) left = tooltipWidth/2 + 10;
+        if (left > (screenWidth - tooltipWidth/2)) left = screenWidth - tooltipWidth/2 - 10;
+
+        tooltip.style.top = (rect.top + window.scrollY - 10) + "px";
         tooltip.style.left = left + "px";
 
-        // 2 saniye sonra gizle
         setTimeout(() => { tooltip.style.opacity = "0"; }, 2000);
     }
 
-    // --- 5. DİĞER FONKSİYONLAR ---
-    
+    // --- 5. İŞLEVLER ---
     function showMood(mood) {
         const msg = document.getElementById("mood-msg");
         if(mood === 'happy') msg.innerHTML = "<span style='color:green'>Great! Keep smiling! 🌟</span>";
         else if(mood === 'sad') msg.innerHTML = "<span style='color:red'>Don't worry, be happy! 🍫</span>";
         else msg.innerHTML = "<span style='color:blue'>Wake up! Time to speak! ☕</span>";
-        
         if(currentLang === 'en') msg.innerHTML = processClickableText(msg.innerHTML);
     }
 
@@ -539,20 +648,15 @@
 
         btn.disabled = true;
         btn.style.opacity = 0.5;
-
         let count = 0;
         const interval = setInterval(() => {
-            // Animasyon sırasında rastgele metin
             display.innerText = list[Math.floor(Math.random() * list.length)];
             count++;
             if(count > 15) {
                 clearInterval(interval);
                 btn.disabled = false;
                 btn.style.opacity = 1;
-                // Final metni işle (Tıklanabilir yap)
-                if(currentLang === 'en') {
-                    display.innerHTML = processClickableText(display.innerText);
-                }
+                if(currentLang === 'en') display.innerHTML = processClickableText(display.innerText);
             }
         }, 100);
     }
@@ -565,10 +669,7 @@
         const s = (seconds % 60).toString().padStart(2, '0');
         document.getElementById("timer-val").innerText = `${m}:${s}`;
     }
-    function startTimer() {
-        if(timerInt) return;
-        timerInt = setInterval(() => { seconds++; updateTimer(); }, 1000);
-    }
+    function startTimer() { if(!timerInt) timerInt = setInterval(() => { seconds++; updateTimer(); }, 1000); }
     function stopTimer() { clearInterval(timerInt); timerInt = null; }
     function resetTimer() { stopTimer(); seconds = 0; updateTimer(); }
 
@@ -581,7 +682,7 @@
         document.getElementById("game-word").innerText = shuffle(currentWord);
         document.getElementById("game-input").value = "";
         document.getElementById("game-msg").innerText = "";
-        document.getElementById("game-input").style.borderColor = "#ddd";
+        document.getElementById("game-input").style.borderColor = "#e0e0e0";
     }
     function checkGame() {
         const userVal = document.getElementById("game-input").value.toUpperCase().trim();
@@ -607,14 +708,11 @@
         }
     }
 
-    // Başlat
+    // Init
     renderPage();
     nextGameWord();
 
-    // Body click to hide tooltip
-    document.body.addEventListener('click', () => {
-        tooltip.style.opacity = "0";
-    });
+    document.body.addEventListener('click', () => { tooltip.style.opacity = "0"; });
 
 </script>
 </body>
