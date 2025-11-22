@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Linguamis - Free English learning platform for students and teachers.">
     <title data-i18n="pageTitle">Linguamis - Languages; Easier than Ever!</title>
+    
     <link rel="icon" type="image/jpeg" href="linguamis-logo.jpg">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
@@ -63,40 +65,40 @@
         </div>
         
         <div class="mobile-menu-dropdown" id="mobileMenu">
-                    <select id="mobileLangSelect" onchange="changeLanguage(this.value)" style="width: 100%; padding: 8px;" aria-label="Select Language Mobile">
-                        <option value="en">🇬🇧 English</option>
-                        <option value="fr">🇫🇷 Français</option>
-                        <option value="es">🇪🇸 Español</option>
-                        <option value="de">🇩🇪 Deutsch</option>
-                        <option value="tr">🇹🇷 Türkçe</option>
-                        <option value="ru">🇷🇺 Русский</option>
-                        <option value="ar">🇸🇦 العربية</option>
-                    
-                        <option value="it">🇮🇹 Italiano</option>
-                        <option value="zh">🇨🇳 中文</option>
-                        <option value="ja">🇯🇵 日本語</option>
-                        <option value="ko">🇰🇷 한국어</option>
-                        <option value="hi">🇮🇳 हिन्दी</option>
-                    
-                        <option value="pt">🇵🇹 Português</option>
-                        <option value="pl">🇵🇱 Polski</option>
-                        <option value="nl">🇳🇱 Nederlands</option>
-                        <option value="id">🇮🇩 Indonesia</option>
-                        <option value="vi">🇻🇳 Tiếng Việt</option>
-                        <option value="th">🇹🇭 ไทย</option>
-                        <option value="el">🇬🇷 Ελληνικά</option>
-                        <option value="cs">🇨🇿 Čeština</option>
-                    </select>
-                    
-                    <a href="/grammar/" data-i18n="navGrammar">Grammar</a>
-                    <a href="/speak/" data-i18n="navSpeaking">Speaking</a>
-                    <a href="/read/" data-i18n="navReading">Reading</a>
-                    <a href="/quiz/" data-i18n="navQuiz">Quiz</a>
-                    <a href="/write/" data-i18n="navWriting">Writing</a>
-                    <a href="/Personas/" data-i18n="navPersonas">Personas</a>
-                    <a href="/login/" data-i18n="navLogin">Log in</a>
-                </div>
-            </nav>
+            <select id="mobileLangSelect" onchange="changeLanguage(this.value)" style="width: 100%; padding: 8px;" aria-label="Select Language Mobile">
+                <option value="en">🇬🇧 English</option>
+                <option value="fr">🇫🇷 Français</option>
+                <option value="es">🇪🇸 Español</option>
+                <option value="de">🇩🇪 Deutsch</option>
+                <option value="tr">🇹🇷 Türkçe</option>
+                <option value="ru">🇷🇺 Русский</option>
+                <option value="ar">🇸🇦 العربية</option>
+            
+                <option value="it">🇮🇹 Italiano</option>
+                <option value="zh">🇨🇳 中文</option>
+                <option value="ja">🇯🇵 日本語</option>
+                <option value="ko">🇰🇷 한국어</option>
+                <option value="hi">🇮🇳 हिन्दी</option>
+            
+                <option value="pt">🇵🇹 Português</option>
+                <option value="pl">🇵🇱 Polski</option>
+                <option value="nl">🇳🇱 Nederlands</option>
+                <option value="id">🇮🇩 Indonesia</option>
+                <option value="vi">🇻🇳 Tiếng Việt</option>
+                <option value="th">🇹🇭 ไทย</option>
+                <option value="el">🇬🇷 Ελληνικά</option>
+                <option value="cs">🇨🇿 Čeština</option>
+            </select>
+            
+            <a href="/grammar/" data-i18n="navGrammar">Grammar</a>
+            <a href="/speak/" data-i18n="navSpeaking">Speaking</a>
+            <a href="/read/" data-i18n="navReading">Reading</a>
+            <a href="/quiz/" data-i18n="navQuiz">Quiz</a>
+            <a href="/write/" data-i18n="navWriting">Writing</a>
+            <a href="/Personas/" data-i18n="navPersonas">Personas</a>
+            <a href="/login/" data-i18n="navLogin">Log in</a>
+        </div>
+    </nav>
 
     <header>
         <div class="hero-content">
@@ -164,8 +166,16 @@
             <a href="/Personas/" class="text-link" data-i18n="btnPersonas">Meet Personas</a>
         </div>
 
+        <div class="card purple">
+            <div class="icon-box" aria-hidden="true">🎮</div>
+            <h3 data-i18n="cardGamesTitle">Interactive Games</h3>
+            <p data-i18n="cardGamesDesc">Boost your skills with fun puzzles, word matching, and challenges.</p>
+            <a href="/games/" class="text-link" data-i18n="btnGames">Play Games</a>
+        </div>
+
     </div>
-        <div id="chat-widget">
+
+    <div id="chat-widget">
         <div id="chat-window" class="chat-window hidden">
             
             <div class="chat-header">
@@ -220,9 +230,8 @@
         </div>
     </footer>
 
-<script src="lang.js"></script>
+    <script src="lang.js"></script>
     <script src="chatbot.js"></script>
-    
     <script>
         function toggleMenu() {
             var menu = document.getElementById("mobileMenu");
@@ -230,13 +239,13 @@
         }
     </script>
 
+    <script>
+        // Automatically remove trailing slashes from the URL bar
+        if (window.location.pathname.length > 1 && window.location.pathname.endsWith('/')) {
+            var newPath = window.location.pathname.slice(0, -1);
+            window.history.replaceState(null, '', newPath + window.location.search + window.location.hash);
+        }
+    </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
