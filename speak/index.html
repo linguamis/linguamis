@@ -6,7 +6,7 @@
     <title>Linguamis - Speaking Coach</title>
     
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="shortcut icon" href="favicon.ico"> 
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -22,7 +22,6 @@
         </a>
 
         <div class="flex items-center gap-6">
-            
             <div class="hidden md:flex items-center bg-gray-50 border border-gray-200 rounded-full px-3 py-1.5 gap-2 cursor-pointer hover:border-gray-300 transition-colors">
                 <span class="text-sm font-bold text-brand-dark flex items-center gap-2">
                     <span class="font-bold text-xs bg-gray-200 px-1 rounded">GB</span> English
@@ -31,21 +30,21 @@
             </div>
 
             <nav class="hidden md:flex items-center gap-6 font-bold text-brand-dark">
-                <a href="/grammar/" class="hover:text-brand-orange transition-colors">Grammar</a>
-                <a href="" class="text-brand-orange relative after:content-[''] after:absolute after:-bottom-4 after:left-0 after:w-full after:h-1 after:bg-brand-orange after:rounded-t-md">Speaking</a>
-                <a href="/reading/" class="hover:text-brand-orange transition-colors">Reading</a>
-                <a href="/quiz/" class="hover:text-brand-orange transition-colors">Quiz</a>
+                <a href="grammar.html" class="hover:text-brand-orange transition-colors">Grammar</a>
+                <a href="index.html" class="text-brand-orange relative after:content-[''] after:absolute after:-bottom-4 after:left-0 after:w-full after:h-1 after:bg-brand-orange after:rounded-t-md">Speaking</a>
+                <a href="reading.html" class="hover:text-brand-orange transition-colors">Reading</a>
+                <a href="quiz.html" class="hover:text-brand-orange transition-colors">Quiz</a>
             </nav>
 
-            <a href="/login/" class="bg-brand-dark text-white font-bold px-6 py-2 rounded-full hover:bg-gray-800 transition-all active:scale-95 shadow-md hover:shadow-lg">
+            <a href="login.html" class="bg-brand-dark text-white font-bold px-6 py-2 rounded-full hover:bg-gray-800 transition-all active:scale-95 shadow-md hover:shadow-lg">
                 Log in
             </a>
         </div>
     </header>
 
-    <div class="flex-1 flex overflow-hidden relative max-w-7xl mx-auto w-full md:p-6 gap-6">
+    <div class="flex-1 flex overflow-hidden relative max-w-7xl mx-auto w-full md:px-6 md:pt-6 gap-6">
         
-        <aside class="hidden md:flex w-64 flex-col bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden h-full">
+        <aside class="hidden md:flex w-64 flex-col bg-white rounded-t-2xl shadow-xl border-x border-t border-gray-200 overflow-hidden h-full">
             <div class="p-5 bg-brand-dark text-white">
                 <h2 class="text-lg font-bold"><i class="fas fa-microphone-alt mr-2 text-brand-orange"></i>Coach</h2>
                 <p class="text-gray-400 text-xs">Select a mode</p>
@@ -67,14 +66,13 @@
             </div>
         </aside>
 
-        <main class="flex-1 flex flex-col bg-white md:rounded-2xl md:shadow-xl md:border md:border-gray-200 relative overflow-hidden h-full">
+        <main class="flex-1 flex flex-col bg-white md:rounded-t-2xl md:shadow-xl md:border-x md:border-t md:border-gray-200 relative overflow-hidden h-full">
             
             <div id="browser-warning" class="hidden bg-red-500 text-white px-4 py-2 text-center text-sm font-bold z-30">
                 Browser not supported. Please use Google Chrome.
             </div>
 
             <div id="view-challenge" class="flex-1 flex flex-col p-4 md:p-8 overflow-y-auto pb-24 md:pb-8">
-                
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
                     <div>
                         <h2 class="text-2xl font-extrabold text-brand-dark">Topic Selection</h2>
@@ -84,8 +82,7 @@
                     </select>
                 </div>
 
-                <div id="cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                </div>
+                <div id="cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
 
                 <div id="practice-area" class="hidden flex-1 flex flex-col items-center pt-4">
                     <button onclick="backToGrid()" class="self-start flex items-center text-gray-500 mb-6 hover:bg-gray-100 px-3 py-1.5 rounded-full transition-all text-sm font-bold">
@@ -93,9 +90,7 @@
                     </button>
                     
                     <div class="bg-white w-full max-w-xl p-6 md:p-8 rounded-3xl shadow-2xl text-center relative flex flex-col items-center border border-gray-100">
-                        
                         <span class="inline-block text-brand-cyan bg-cyan-50 px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wide mb-6 border border-cyan-100" id="practice-tag">Tag</span>
-                        
                         <p id="target-text" class="text-3xl md:text-4xl font-extrabold text-brand-dark mb-8 leading-tight">Select a card...</p>
 
                         <div class="w-full max-w-xs mb-8 flex items-center gap-3 bg-gray-50 p-2 rounded-full border border-gray-200">
@@ -109,7 +104,6 @@
                             <button onclick="speakTarget()" class="w-14 h-14 rounded-full bg-white border border-gray-200 text-gray-600 hover:text-brand-cyan hover:border-brand-cyan hover:shadow-lg transition-all flex items-center justify-center active:scale-95">
                                 <i class="fas fa-volume-up text-xl"></i>
                             </button>
-                            
                             <button onclick="toggleRecording()" id="record-btn" class="w-20 h-20 rounded-full bg-brand-orange text-white shadow-xl shadow-orange-500/30 transition-all hover:scale-105 active:scale-95 flex items-center justify-center relative z-10 ring-4 ring-white">
                                 <i class="fas fa-microphone text-3xl" id="mic-icon"></i>
                             </button>
@@ -127,17 +121,14 @@
             <div id="view-freeplay" class="hidden flex-1 flex flex-col p-4 md:p-8 h-full pb-24 md:pb-8">
                 <h2 class="text-2xl font-extrabold text-brand-dark mb-2">Text-to-Speech</h2>
                 <p class="text-gray-500 text-sm mb-6">Type any sentence to hear the native pronunciation.</p>
-                
                 <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200 flex-1 flex flex-col relative focus-within:ring-2 focus-within:ring-brand-orange/20 transition-all">
                     <textarea id="free-text" class="w-full flex-1 bg-transparent border-none focus:ring-0 text-xl md:text-2xl text-brand-dark resize-none placeholder-gray-300" placeholder="Type anything here..."></textarea>
-                    
                     <div class="flex flex-col gap-4 mt-4 border-t border-gray-200 pt-4">
                         <div class="flex items-center gap-3">
                             <span class="text-xs font-bold text-gray-400 uppercase">Speed</span>
                             <input type="range" id="rate" min="0.5" max="2" value="1" step="0.1" oninput="updateRateLabel(this.value)" class="flex-1 h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-brand-orange">
                             <span id="rate-value" class="text-xs font-bold text-brand-dark bg-white px-2 py-1 rounded border border-gray-200">1.0x</span>
                         </div>
-                        
                         <button onclick="speakFreeText()" class="w-full py-3 bg-brand-dark hover:bg-gray-900 text-white font-bold rounded-xl shadow-lg active:scale-[0.99] transition-all flex items-center justify-center text-lg">
                             <i class="fas fa-play mr-2 text-brand-orange"></i> Speak It
                         </button>
@@ -146,8 +137,7 @@
             </div>
 
         </main>
-
-
+    </div>
     <footer class="w-full bg-brand-dark border-t border-gray-800 py-6 shrink-0 z-50">
         <div class="container mx-auto px-4 text-center">
             <p class="text-gray-400 text-sm font-medium">
@@ -170,6 +160,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-
-
