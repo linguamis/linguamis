@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Speaking Class: About Yourself & Family</title>
-    <link rel="icon" type="image/jpeg" href="../linguamis-logo.jpg">
     <style>
         :root {
             --tdv-red: #E30613;
@@ -22,10 +21,10 @@
             margin: 0;
             padding: 0;
             color: var(--text-color);
-            padding-bottom: 50px;
+            padding-bottom: 80px; /* Buton için alt boşluk */
         }
 
-        /* --- HEADER & LOGOS --- */
+        /* --- HEADER --- */
         header {
             background: linear-gradient(135deg, var(--tdv-red), var(--tdv-blue));
             color: white;
@@ -34,7 +33,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            position: relative;
         }
 
         .header-logo {
@@ -43,15 +41,7 @@
             background: white;
             padding: 5px;
             border-radius: 8px;
-            /* Resim yoksa yer tutucu stil */
             min-width: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #333;
-            font-size: 10px;
-            font-weight: bold;
-            text-align: center;
         }
 
         .header-content {
@@ -64,20 +54,27 @@
         header h1 { font-size: 1.6rem; margin-bottom: 5px; }
         header h2 { font-size: 1rem; font-weight: 300; opacity: 0.9; }
 
+        /* --- FLOATING LANGUAGE BUTTON (SAĞ ALT KÖŞE) --- */
         .lang-toggle {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(255,255,255,0.2);
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--tdv-blue);
             color: white;
-            border: 1px solid white;
-            padding: 5px 10px;
-            border-radius: 5px;
+            border: 2px solid white;
+            padding: 12px 20px;
+            border-radius: 50px;
             cursor: pointer;
-            font-size: 0.8rem;
-            z-index: 10;
+            font-size: 1rem;
+            font-weight: bold;
+            z-index: 9999;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
         }
-        .lang-toggle:hover { background: white; color: var(--tdv-blue); }
+        .lang-toggle:hover {
+            transform: scale(1.05);
+            background: var(--tdv-red);
+        }
 
         /* --- LAYOUT --- */
         .container {
@@ -106,12 +103,14 @@
         /* --- INTERACTIVE TEXT STYLES --- */
         .click-word {
             cursor: pointer;
-            border-bottom: 1px dotted #ccc;
+            border-bottom: 1px dotted #ccc; 
             transition: all 0.2s;
+            margin: 0 1px; /* Kelimeler arasına ekstra mikro boşluk */
         }
         .click-word:hover {
             background-color: #ffeeba;
             color: #000;
+            border-radius: 3px;
         }
         
         /* Tooltip (Anlam Baloncuğu) */
@@ -119,15 +118,17 @@
             position: absolute;
             background: #222;
             color: #fff;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 14px;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 15px;
             pointer-events: none;
             opacity: 0;
             transition: opacity 0.2s;
-            z-index: 1000;
+            z-index: 10000;
             white-space: nowrap;
-            transform: translate(-50%, -120%);
+            transform: translate(-50%, -130%); 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            font-weight: normal;
         }
         #tooltip::after {
             content: '';
@@ -141,8 +142,6 @@
         }
 
         /* --- COMPONENTS --- */
-        
-        /* Profile */
         .profile-row { margin-bottom: 8px; font-size: 1.1rem; }
 
         /* Roulette */
@@ -154,7 +153,7 @@
             border-radius: 10px;
         }
         #q-display {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: bold;
             color: var(--tdv-red);
             min-height: 80px;
@@ -162,6 +161,8 @@
             align-items: center;
             justify-content: center;
             margin: 15px 0;
+            line-height: 1.5; /* Satır aralığını açtık */
+            flex-wrap: wrap; 
         }
         .btn-main {
             background: var(--tdv-red); color: white; border: none;
@@ -208,13 +209,11 @@
             padding: 5px 15px; border-radius: 15px;
         }
 
-        /* Footer */
         footer { text-align: center; color: #777; font-size: 0.9rem; margin-top: 30px; }
 
-        /* Responsive */
         @media (max-width: 600px) {
             header { flex-direction: column; text-align: center; gap: 10px; }
-            .header-logo { display: none; } /* Mobilde yer kaplamasın */
+            .header-logo { height: 50px; }
         }
     </style>
 </head>
@@ -222,26 +221,23 @@
 
 <div id="tooltip"></div>
 
+<button class="lang-toggle" onclick="toggleLang()">🇹🇷 TR / 🇬🇧 EN</button>
+
 <header>
-    <button class="lang-toggle" onclick="toggleLang()">🇹🇷 TR / 🇬🇧 EN</button>
-    
-    <img src="linguamis-logo.png" alt="Linguamis" class="header-logo" onerror="this.style.display='none'">
-    
+    <img src="linguamis-logo.png" alt="Logo" class="header-logo" onerror="this.style.display='none'">
     <div class="header-content">
         <h1 id="txt-header">About Yourself & Family</h1>
         <h2 id="txt-teacher">Teacher: Musab İkbal SUBAŞI</h2>
         <div style="font-size:0.8rem; margin-top:5px; opacity:0.8;">TDV English Speaking Class</div>
     </div>
-
-    <img src="diyanet-logo.png" alt="TDV" class="header-logo" onerror="this.style.display='none'">
+    <img src="diyanet-logo.png" alt="Logo" class="header-logo" onerror="this.style.display='none'">
 </header>
 
 <div class="container">
 
     <div class="card">
         <h3 id="txt-rules-title">📢 Class Rules</h3>
-        <div id="txt-rules-list">
-            </div>
+        <div id="txt-rules-list"></div>
     </div>
 
     <div class="card" style="text-align:center;">
@@ -257,14 +253,15 @@
 
     <div class="card">
         <h3 id="txt-profile-title">👨‍🏫 Teacher Profile</h3>
-        <div id="profile-content">
-            </div>
+        <div id="profile-content"></div>
     </div>
 
     <div class="card roulette-box">
         <h3 id="txt-roulette-title">🎙️ Speaking Roulette</h3>
         <p id="txt-roulette-desc">Click button for a question</p>
+        
         <div id="q-display">Ready?</div>
+        
         <button class="btn-main" onclick="spinRoulette()" id="btn-spin">🎰 SPIN WHEEL</button>
     </div>
 
@@ -307,10 +304,7 @@
 </footer>
 
 <script>
-    // --- 1. VERİLER & SÖZLÜK ---
-    let currentLang = 'en';
-
-    // Türkçe Anlam Sözlüğü (Kelimeye tıklayınca çıkacak)
+    // --- 1. SÖZLÜK (GENİŞLETİLMİŞ) ---
     const dictionary = {
         "about": "hakkında", "yourself": "kendin", "family": "aile", "rules": "kurallar",
         "class": "sınıf", "teacher": "öğretmen", "name": "isim", "how": "nasıl",
@@ -325,10 +319,23 @@
         "sister": "kız kardeş", "uncle": "amca/dayı", "aunt": "hala/teyze", "cousin": "kuzen",
         "grandfather": "büyükbaba", "grandmother": "büyükanne", "job": "meslek",
         "where": "nerede", "from": "den/dan", "mornings": "sabahları", "weekends": "hafta sonları",
-        "favorite": "favori", "activity": "aktivite", "ready": "hazır"
+        "favorite": "favori", "activity": "aktivite", "ready": "hazır", "what": "ne",
+        "is": "dir/dır", "do": "yapmak", "tell": "anlat/söyle", "me": "bana",
+        "have": "sahip olmak", "best": "en iyi", "friend": "arkadaş", "person": "kişi",
+        "why": "neden", "parents": "ebeveynler", "like": "sevmek/gibi", "doing": "yapmak",
+        "things": "şeyler", "time": "zaman", "be": "olmak", "punctual": "dakik",
+        "participate": "katılmak", "raise": "kaldırmak", "hand": "el", "tools": "araçlar",
+        "use": "kullanmak", "dictionary": "sözlük", "just": "sadece", "speak": "konuş",
+        "dont": "yapma", "fear": "korkmak", "grammar": "dilbilgisi", "grade": "sınıf/derece",
+        "game": "oyun", "list": "liste", "new": "yeni", "great": "harika", "keep": "devam et",
+        "smiling": "gülümsemek", "worry": "endişelenmek", "wake": "uyan", "up": "yukarı",
+        "english": "ingilizce", "level": "seviye", "beginner": "başlangıç", "study": "okumak/bölüm",
+        "visit": "ziyaret etmek", "often": "sık sık", "old": "yaşlı/eski", "who": "kim"
     };
 
-    // Dil Çevirileri
+    let currentLang = 'en';
+
+    // --- 2. İÇERİK ---
     const content = {
         en: {
             header: "About Yourself & Family",
@@ -359,7 +366,8 @@
                 "Tell me about your father.",
                 "Do you have brothers or sisters?",
                 "What is your favorite hobby?",
-                "Who is your best friend?"
+                "Who is your best friend?",
+                "What do you like doing?"
             ],
             timerTitle: "⏱️ Speaking Timer",
             gameTitle: "🧩 Word Scramble",
@@ -395,7 +403,8 @@
                 "Baban hakkında bilgi ver.",
                 "Kardeşin var mı?",
                 "En sevdiğin hobi nedir?",
-                "En yakın arkadaşın kim?"
+                "En yakın arkadaşın kim?",
+                "Ne yapmayı seversin?"
             ],
             timerTitle: "⏱️ Konuşma Sayacı",
             gameTitle: "🧩 Kelime Avı",
@@ -404,11 +413,11 @@
         }
     };
 
-    // --- 2. SAYFAYI ÇİZME FONKSİYONU ---
+    // --- 3. GÜNCELLENMİŞ METİN İŞLEME MANTIĞI ---
+    
     function renderPage() {
         const t = content[currentLang];
 
-        // Basit metinleri güncelle
         setText("txt-header", t.header);
         setText("txt-teacher", t.teacher);
         setText("txt-rules-title", t.rulesTitle);
@@ -424,12 +433,11 @@
         setText("txt-game-desc", t.gameDesc);
         setText("txt-vocab-title", t.vocabTitle);
 
-        // Listeleri güncelle (Kurallar)
+        // Listeleri güncelle
         const rulesBox = document.getElementById("txt-rules-list");
         rulesBox.innerHTML = "";
         t.rulesList.forEach(item => {
             const p = document.createElement("p");
-            // HTML içeriğini (bold tagları koruyarak) kelimelere ayırıp basacağız
             p.innerHTML = processClickableText(item); 
             rulesBox.appendChild(p);
         });
@@ -445,7 +453,6 @@
         });
     }
 
-    // Belirli bir ID'ye metni, tıklanabilir kelimelere bölerek atar
     function setText(id, text) {
         const el = document.getElementById(id);
         if (el) {
@@ -453,62 +460,78 @@
         }
     }
 
-    // Metni kelimelere bölüp span içine alma (HTML taglarını bozmadan)
-    // Basit ve güvenli yöntem: Sadece boşluklarla ayırıp, < > taglarına dokunmamaya çalışacağız.
-    // Ancak bu karmaşık olduğu için, bu örnekte 'strip tags' yapmadan, 
-    // sadece düz metin alanlarını interactive yapacağız.
-    function processClickableText(htmlString) {
-        // Eğer dil Türkçe ise tıklanabilir yapmaya gerek yok (veya istenirse yapılabilir)
-        // Kullanıcı "İngilizce kelimeye tıkla Türkçe görsün" istiyor.
-        if (currentLang === 'tr') return htmlString; 
+    // *** DÜZELTME: Kelimeleri ayır ve BOŞLUKLA birleştir ***
+    function processClickableText(text) {
+        if (currentLang === 'tr') return text; 
 
-        // HTML taglarını (örn <b>) koruyarak kelimeleri sarmak zor.
-        // Basitlik için: Tag olmayan kelimeleri bul ve sarmala.
-        const parts = htmlString.split(' ');
-        return parts.map(part => {
-            // Eğer içinde HTML tagı varsa (<b>, </b>) dokunma
-            if (part.includes('<') || part.includes('>')) return part;
+        // 1. Metni boşluklardan ayır
+        const words = text.split(' ');
+
+        // 2. Her kelimeyi işle
+        const processedWords = words.map(word => {
+            // Eğer boşluksa geç
+            if(word.trim() === '') return '';
+
+            // İçinde HTML tag varsa (<b> gibi) dokunma
+            if (word.includes('<') || word.includes('>')) {
+                return word;
+            }
             
-            // Temiz kelimeyi al (noktalama hariç)
-            const raw = part.replace(/[.,?!]/g, "").toLowerCase();
-            return `<span class="click-word" onclick="showTip(event, '${raw}')">${part}</span>`;
-        }).join(' ');
+            // Sözlük araması için noktalama işaretlerini temizle
+            const raw = word.replace(/[.,?!:;()"]/g, "").toLowerCase();
+            
+            // Tıklanabilir span oluştur
+            return `<span class="click-word" onclick="showTip(event, '${raw}')">${word}</span>`;
+        });
+
+        // 3. Kelimeleri TEKRAR BOŞLUKLA BİRLEŞTİR (Sorunun çözümü burası)
+        return processedWords.join(' '); 
     }
 
-    // --- 3. DİL DEĞİŞTİRME ---
     function toggleLang() {
         currentLang = (currentLang === 'en') ? 'tr' : 'en';
         renderPage();
     }
 
-    // --- 4. TOOLTIP (Sözlük) ---
+    // --- 4. TOOLTIP ---
     const tooltip = document.getElementById("tooltip");
     
     function showTip(e, word) {
         e.stopPropagation();
-        const meaning = dictionary[word] || "Bilinmiyor";
+        
+        let meaning = dictionary[word];
+        
+        // Eğer sözlükte yoksa
+        if (!meaning) {
+             meaning = "Çeviri bulunamadı"; 
+        }
         
         tooltip.innerText = meaning;
         tooltip.style.opacity = "1";
         
         // Konumlandırma
         const rect = e.target.getBoundingClientRect();
-        tooltip.style.top = (rect.top + window.scrollY - 10) + "px";
-        tooltip.style.left = (rect.left + (rect.width/2)) + "px";
+        const top = rect.top + window.scrollY - 10;
+        const left = rect.left + (rect.width/2);
+        
+        tooltip.style.top = top + "px";
+        tooltip.style.left = left + "px";
 
         // 2 saniye sonra gizle
         setTimeout(() => { tooltip.style.opacity = "0"; }, 2000);
     }
 
-    // --- 5. MOOD ---
+    // --- 5. DİĞER FONKSİYONLAR ---
+    
     function showMood(mood) {
         const msg = document.getElementById("mood-msg");
         if(mood === 'happy') msg.innerHTML = "<span style='color:green'>Great! Keep smiling! 🌟</span>";
         else if(mood === 'sad') msg.innerHTML = "<span style='color:red'>Don't worry, be happy! 🍫</span>";
         else msg.innerHTML = "<span style='color:blue'>Wake up! Time to speak! ☕</span>";
+        
+        if(currentLang === 'en') msg.innerHTML = processClickableText(msg.innerHTML);
     }
 
-    // --- 6. ROULETTE ---
     function spinRoulette() {
         const display = document.getElementById("q-display");
         const btn = document.getElementById("btn-spin");
@@ -519,13 +542,14 @@
 
         let count = 0;
         const interval = setInterval(() => {
+            // Animasyon sırasında rastgele metin
             display.innerText = list[Math.floor(Math.random() * list.length)];
             count++;
             if(count > 15) {
                 clearInterval(interval);
                 btn.disabled = false;
                 btn.style.opacity = 1;
-                // Çıkan sonucu da tıklanabilir yap (İngilizceyse)
+                // Final metni işle (Tıklanabilir yap)
                 if(currentLang === 'en') {
                     display.innerHTML = processClickableText(display.innerText);
                 }
@@ -533,43 +557,25 @@
         }, 100);
     }
 
-    // --- 7. TIMER (KRONOMETRE) ---
+    // Timer
     let timerInt = null;
     let seconds = 0;
-
     function updateTimer() {
         const m = Math.floor(seconds / 60).toString().padStart(2, '0');
         const s = (seconds % 60).toString().padStart(2, '0');
         document.getElementById("timer-val").innerText = `${m}:${s}`;
     }
-
     function startTimer() {
-        if(timerInt) return; // Zaten çalışıyorsa
-        timerInt = setInterval(() => {
-            seconds++;
-            updateTimer();
-        }, 1000);
+        if(timerInt) return;
+        timerInt = setInterval(() => { seconds++; updateTimer(); }, 1000);
     }
+    function stopTimer() { clearInterval(timerInt); timerInt = null; }
+    function resetTimer() { stopTimer(); seconds = 0; updateTimer(); }
 
-    function stopTimer() {
-        clearInterval(timerInt);
-        timerInt = null;
-    }
-
-    function resetTimer() {
-        stopTimer();
-        seconds = 0;
-        updateTimer();
-    }
-
-    // --- 8. WORD GAME (KELİME AVI) ---
-    const gameWords = ["FAMILY", "MOTHER", "FATHER", "SISTER", "BROTHER", "UNCLE", "COUSIN"];
+    // Game
+    const gameWords = ["FAMILY", "MOTHER", "FATHER", "SISTER", "BROTHER", "UNCLE", "COUSIN", "AUNT"];
     let currentWord = "";
-
-    function shuffle(s) {
-        return s.split('').sort(() => 0.5 - Math.random()).join('');
-    }
-
+    function shuffle(s) { return s.split('').sort(() => 0.5 - Math.random()).join(''); }
     function nextGameWord() {
         currentWord = gameWords[Math.floor(Math.random() * gameWords.length)];
         document.getElementById("game-word").innerText = shuffle(currentWord);
@@ -577,11 +583,9 @@
         document.getElementById("game-msg").innerText = "";
         document.getElementById("game-input").style.borderColor = "#ddd";
     }
-
     function checkGame() {
         const userVal = document.getElementById("game-input").value.toUpperCase().trim();
         const msg = document.getElementById("game-msg");
-        
         if(userVal === currentWord) {
             msg.innerHTML = "<span style='color:green'>✅ CORRECT!</span>";
             document.getElementById("game-input").style.borderColor = "green";
@@ -591,7 +595,7 @@
         }
     }
 
-    // --- 9. VOCAB ---
+    // Vocab
     function addVocab() {
         const input = document.getElementById("vocab-input");
         const val = input.value.trim();
@@ -603,9 +607,14 @@
         }
     }
 
-    // BAŞLAT
+    // Başlat
     renderPage();
     nextGameWord();
+
+    // Body click to hide tooltip
+    document.body.addEventListener('click', () => {
+        tooltip.style.opacity = "0";
+    });
 
 </script>
 </body>
