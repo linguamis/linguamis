@@ -1,47 +1,48 @@
-// --- chatbot.js (Expanded & "Undefined" Proof) ---
+// --- chatbot.js (Updated: Longer Welcome & Games Support) ---
 
 // 1. THE MULTILINGUAL BRAIN (Expanded Knowledge Base)
 const botKnowledge = {
     en: {
-        welcome: "<strong>Hi there! I'm the Linguamis Assistant. 🤖</strong><br>Ask me about the Site, Grammar, or how to Contact us!",
+        welcome: "<strong>👋 Welcome to Linguamis!</strong><br><br>I am your personal AI learning assistant. I can guide you through our free resources.<br><br><strong>Try asking me about:</strong><br>• <span style='color:#f3703e'>Speaking</span> or <span style='color:#f3703e'>Listening</span><br>• <span style='color:#f3703e'>Grammar</span> or <span style='color:#f3703e'>Writing</span><br>• <span style='color:#f3703e'>Games</span> or <span style='color:#f3703e'>Quizzes</span><br><br>How would you like to start today?",
         responses: {
             // Educational
-            "speak": "Our <strong>Speaking Coach</strong> helps with pronunciation. <a href='/speak/'>Start Speaking</a>.",
-            "listen": "The <strong>Listening Lab</strong> trains your ear. <a href='/listen/'>Start Listening</a>.",
-            "grammar": "The <strong>Grammar Guide</strong> explains rules clearly. <a href='/grammar/'>Learn Grammar</a>.",
-            "write": "The <strong>Writing Studio</strong> improves essays. <a href='/write/'>Start Writing</a>.",
-            "verbs": "Conquer tricky verbs here. <a href='/Irregular/'>Practice Verbs</a>.",
-            "personas": "Chat with <strong>AI Personas</strong>. <a href='/Personas/'>Meet Personas</a>.",
-            "quiz": "Take today's <strong>Daily Quiz</strong>! <a href='/quiz/'>Take Quiz</a>.",
+            "speak": "Our <strong>Speaking Coach</strong> helps with pronunciation using AI feedback. <a href='/speak/'>Start Speaking</a>.",
+            "listen": "The <strong>Listening Lab</strong> trains your ear with diverse accents. <a href='/listen/'>Start Listening</a>.",
+            "grammar": "The <strong>Grammar Guide</strong> explains rules clearly with examples. <a href='/grammar/'>Learn Grammar</a>.",
+            "write": "The <strong>Writing Studio</strong> helps improve your essays and emails. <a href='/write/'>Start Writing</a>.",
+            "verbs": "Conquer tricky verbs like 'go-went-gone' here. <a href='/Irregular/'>Practice Verbs</a>.",
+            "personas": "Chat with <strong>AI Personas</strong> for realistic practice. <a href='/Personas/'>Meet Personas</a>.",
+            "quiz": "Challenge yourself with today's <strong>Daily Quiz</strong>! <a href='/quiz/'>Take Quiz</a>.",
+            "game": "Ready for fun? Try our <strong>Interactive Games</strong>! <a href='/games/'>Play Games</a>.",
+            "play": "Ready for fun? Try our <strong>Interactive Games</strong>! <a href='/games/'>Play Games</a>.",
             
-            // Site Details (NEW)
+            // Site Details
             "about": "<strong>Linguamis</strong> is a 100% free platform designed to make language learning accessible to everyone using adaptive technology.",
             "site": "Linguamis is a free learning hub. We offer tools for reading, writing, speaking, and grammar.",
-            "free": "Yes! We are <strong>100% Free</strong>. No hidden costs.",
-            "price": "There is no price! Education should be free.",
+            "free": "Yes! We are <strong>100% Free</strong>. No hidden costs, ever.",
+            "price": "There is no price! Education should be free for everyone.",
             "contact": "Need help? You can email our support team at <strong>support@linguamis.com</strong>.",
-            "how": "It's simple! Choose a skill (like Speaking or Reading) from the menu and start practicing. No sign-up required to start.",
+            "how": "It's simple! Choose a skill (like Speaking or Reading) from the menu and start practicing instantly.",
             
             // Greetings
-            "hello": "Hello! Ready to learn something new?",
-            "hi": "Hi there! How can I help?",
+            "hello": "Hello! I'm ready to help you learn. What are we practicing today?",
+            "hi": "Hi there! How can I help you improve your English today?",
             
             // Fallback
-            "default": "I'm not sure I understand. Try asking about <strong>Speaking, Grammar, or the Site</strong>."
+            "default": "I'm not sure I understand. Try asking about <strong>Speaking, Grammar, Games, or the Site</strong>."
         }
     },
     tr: {
-        welcome: "<strong>Merhaba! Ben Linguamis Asistanı. 🤖</strong><br>Bana Site, İletişim veya Dilbilgisi hakkında sorabilirsin!",
+        welcome: "<strong>👋 Linguamis'e Hoş Geldiniz!</strong><br><br>Ben kişisel yapay zeka asistanınızım. Size ücretsiz kaynaklarımızda rehberlik edebilirim.<br><br><strong>Bana şunları sorabilirsiniz:</strong><br>• <span style='color:#f3703e'>Konuşma</span> veya <span style='color:#f3703e'>Dinleme</span><br>• <span style='color:#f3703e'>Dilbilgisi</span> veya <span style='color:#f3703e'>Yazma</span><br>• <span style='color:#f3703e'>Oyunlar</span> veya <span style='color:#f3703e'>Testler</span><br><br>Bugün nasıl başlamak istersiniz?",
         responses: {
-            // Educational
             "konuş": "<strong>Konuşma Koçu</strong> telaffuzunuzu geliştirir. <a href='/speak/'>Başla</a>.",
             "dinle": "<strong>Dinleme Laboratuvarı</strong> kulağınızı eğitir. <a href='/listen/'>Başla</a>.",
             "dilbilgisi": "<strong>Dilbilgisi Rehberi</strong> kuralları açıklar. <a href='/grammar/'>Öğren</a>.",
             "yaz": "<strong>Yazma Stüdyosu</strong> yazınızı geliştirir. <a href='/write/'>Başla</a>.",
             "fiil": "Düzensiz fiilleri burada çalışın. <a href='/Irregular/'>Fiil Çalış</a>.",
             "test": "<strong>Günlük Test</strong> ile kendini sına! <a href='/quiz/'>Çöz</a>.",
+            "oyun": "Eğlenmeye hazır mısın? <strong>İnteraktif Oyunlarımızı</strong> dene! <a href='/games/'>Oyna</a>.",
             
-            // Site Details (NEW)
             "hakkında": "<strong>Linguamis</strong>, dil öğrenimini herkes için erişilebilir kılan %100 ücretsiz bir platformdur.",
             "site": "Linguamis ücretsiz bir eğitim merkezidir. Okuma, yazma, konuşma ve gramer araçları sunuyoruz.",
             "ücret": "Linguamis <strong>Tamamen Ücretsizdir</strong>! Gizli ücret yok.",
@@ -49,288 +50,296 @@ const botKnowledge = {
             "iletişim": "Yardıma mı ihtiyacınız var? Bize <strong>support@linguamis.com</strong> adresinden ulaşabilirsiniz.",
             "nasıl": "Çok basit! Menüden bir beceri (Konuşma veya Okuma gibi) seçin ve hemen başlayın.",
             
-            // Greetings
             "merhaba": "Merhaba! Başlamaya hazır mısın?",
             "selam": "Selam! Sana nasıl yardım edebilirim?",
-
-            // Fallback
-            "default": "Anlayamadım. Lütfen <strong>Konuşma, Site veya Dilbilgisi</strong> hakkında sor."
+            "default": "Anlayamadım. Lütfen <strong>Konuşma, Oyunlar veya Dilbilgisi</strong> hakkında sor."
         }
     },
     fr: {
-        welcome: "<strong>Bonjour ! Je suis l'assistant Linguamis. 🤖</strong><br>Posez-moi des questions sur le Site ou la Grammaire.",
+        welcome: "<strong>👋 Bienvenue sur Linguamis !</strong><br><br>Je suis votre assistant IA. Je peux vous guider à travers nos ressources gratuites.<br><br><strong>Essayez de demander sur :</strong><br>• <span style='color:#f3703e'>Parler</span> ou <span style='color:#f3703e'>Écouter</span><br>• <span style='color:#f3703e'>Grammaire</span> ou <span style='color:#f3703e'>Écriture</span><br>• <span style='color:#f3703e'>Jeux</span> ou <span style='color:#f3703e'>Quiz</span>",
         responses: {
             "parl": "Notre <strong>Coach Vocal</strong> vous aide à prononcer. <a href='/speak/'>Commencer</a>.",
             "ecout": "Le <strong>Labo d'écoute</strong> entraîne votre oreille. <a href='/listen/'>Écouter</a>.",
             "grammaire": "Le <strong>Guide de grammaire</strong> explique les règles. <a href='/grammar/'>Apprendre</a>.",
             "ecri": "Le <strong>Studio d'écriture</strong> améliore vos textes. <a href='/write/'>Écrire</a>.",
             "verbe": "Pratiquez les verbes irréguliers ici. <a href='/Irregular/'>Pratiquer</a>.",
+            "jeu": "Prêt à jouer ? Essayez nos <strong>Jeux Interactifs</strong> ! <a href='/games/'>Jouer</a>.",
             
-            // Site Details (NEW)
-            "propos": "<strong>Linguamis</strong> est une plateforme 100% gratuite pour rendre l'apprentissage des langues accessible.",
-            "site": "C'est un centre d'apprentissage gratuit offrant des outils de lecture, d'écriture et d'oral.",
+            "propos": "<strong>Linguamis</strong> est une plateforme 100% gratuite.",
+            "site": "C'est un centre d'apprentissage gratuit.",
             "gratuit": "Oui ! C'est <strong>100% Gratuit</strong>.",
             "prix": "Aucun prix ! L'éducation doit être gratuite.",
             "contact": "Besoin d'aide ? Écrivez à <strong>support@linguamis.com</strong>.",
-            "comment": "C'est simple ! Choisissez une compétence dans le menu et commencez.",
+            "comment": "C'est simple ! Choisissez une compétence dans le menu.",
 
             "bonjour": "Bonjour ! Prêt à apprendre ?",
-            "default": "Je ne comprends pas. Demandez sur le <strong>Site ou la Grammaire</strong>."
+            "default": "Je ne comprends pas. Demandez sur le <strong>Site, les Jeux ou la Grammaire</strong>."
         }
     },
     es: {
-        welcome: "<strong>¡Hola! Soy el asistente. 🤖</strong><br>Pregúntame sobre el Sitio, Gramática o Hablar.",
+        welcome: "<strong>👋 ¡Bienvenido a Linguamis!</strong><br><br>Soy tu asistente de IA. Puedo guiarte a través de nuestros recursos gratuitos.<br><br><strong>Pregúntame sobre:</strong><br>• <span style='color:#f3703e'>Hablar</span> o <span style='color:#f3703e'>Escuchar</span><br>• <span style='color:#f3703e'>Gramática</span> o <span style='color:#f3703e'>Juegos</span>",
         responses: {
             "habl": "El <strong>Entrenador de Habla</strong> mejora tu acento. <a href='/speak/'>Empezar</a>.",
             "escuch": "Entrena tu oído en el <strong>Lab</strong>. <a href='/listen/'>Escuchar</a>.",
             "gramatica": "La <strong>Guía Gramatical</strong> explica las reglas. <a href='/grammar/'>Aprender</a>.",
             "escrib": "Mejora tu escritura aquí. <a href='/write/'>Escribir</a>.",
             "verbo": "Practica verbos irregulares. <a href='/Irregular/'>Practicar</a>.",
+            "juego": "¿Listo para divertirte? ¡Prueba nuestros <strong>Juegos</strong>! <a href='/games/'>Jugar</a>.",
             
-            // Site Details (NEW)
-            "acerca": "<strong>Linguamis</strong> es una plataforma 100% gratuita para aprender idiomas.",
-            "sitio": "Ofrecemos herramientas gratuitas de lectura, escritura y habla.",
+            "acerca": "<strong>Linguamis</strong> es una plataforma 100% gratuita.",
+            "sitio": "Ofrecemos herramientas gratuitas de aprendizaje.",
             "gratis": "¡Sí! Es <strong>100% Gratis</strong>.",
             "precio": "¡No cuesta nada!",
             "contact": "¿Necesitas ayuda? Escribe a <strong>support@linguamis.com</strong>.",
-            "como": "¡Es fácil! Elige una habilidad del menú y empieza a practicar.",
+            "como": "¡Es fácil! Elige una habilidad del menú.",
 
             "hola": "¡Hola! ¿Listo?",
-            "default": "No entiendo. Pregunta sobre <strong>el Sitio o Gramática</strong>."
+            "default": "No entiendo. Pregunta sobre <strong>el Sitio, Juegos o Gramática</strong>."
         }
     },
     de: {
-        welcome: "<strong>Hallo! Ich bin der Assistent. 🤖</strong><br>Fragen Sie mich nach der Website oder Grammatik.",
+        welcome: "<strong>👋 Willkommen bei Linguamis!</strong><br><br>Ich bin dein KI-Assistent. Ich zeige dir unsere kostenlosen Ressourcen.<br><br><strong>Frag mich nach:</strong><br>• <span style='color:#f3703e'>Sprechen</span> oder <span style='color:#f3703e'>Hören</span><br>• <span style='color:#f3703e'>Grammatik</span> oder <span style='color:#f3703e'>Spielen</span>",
         responses: {
             "sprech": "Der <strong>Sprechtrainer</strong> hilft bei der Aussprache. <a href='/speak/'>Starten</a>.",
             "horen": "Das <strong>Hörlabor</strong> trainiert das Gehör. <a href='/listen/'>Hören</a>.",
             "grammatik": "Der <strong>Grammatikführer</strong> erklärt Regeln. <a href='/grammar/'>Lernen</a>.",
             "schreib": "Verbessern Sie Ihr Schreiben. <a href='/write/'>Starten</a>.",
             "verb": "Üben Sie unregelmäßige Verben. <a href='/Irregular/'>Üben</a>.",
+            "spiel": "Bereit für Spaß? Testen Sie unsere <strong>Spiele</strong>! <a href='/games/'>Spielen</a>.",
             
-            // Site Details (NEW)
-            "uber": "<strong>Linguamis</strong> ist eine 100% kostenlose Plattform zum Sprachenlernen.",
-            "website": "Wir bieten Tools zum Lesen, Schreiben und Sprechen.",
+            "uber": "<strong>Linguamis</strong> ist 100% kostenlos.",
+            "website": "Wir bieten Tools zum Sprachenlernen.",
             "kosten": "Ja! Es ist <strong>100% Kostenlos</strong>.",
             "preis": "Kein Preis! Bildung sollte kostenlos sein.",
             "kontakt": "Hilfe benötigt? Schreiben Sie an <strong>support@linguamis.com</strong>.",
             "wie": "Ganz einfach! Wählen Sie eine Fähigkeit aus dem Menü.",
 
             "hallo": "Hallo! Bereit?",
-            "default": "Ich verstehe nicht. Fragen Sie nach der <strong>Website oder Grammatik</strong>."
+            "default": "Ich verstehe nicht. Fragen Sie nach <strong>Spielen oder Grammatik</strong>."
         }
     },
     ru: {
-        welcome: "<strong>Привет! Я помощник. 🤖</strong><br>Спроси меня о сайте или грамматике.",
+        welcome: "<strong>👋 Добро пожаловать в Linguamis!</strong><br><br>Я ваш ИИ-помощник. Спросите меня о наших бесплатных ресурсах.<br><br><strong>Темы:</strong><br>• <span style='color:#f3703e'>Речь</span> или <span style='color:#f3703e'>Слух</span><br>• <span style='color:#f3703e'>Грамматика</span> или <span style='color:#f3703e'>Игры</span>",
         responses: {
             "говор": "<strong>Тренер по речи</strong> улучшит произношение. <a href='/speak/'>Начать</a>.",
             "слуш": "Тренируй слух в <strong>Лаборатории</strong>. <a href='/listen/'>Слушать</a>.",
             "грамм": "<strong>Гид по грамматике</strong> объяснит правила. <a href='/grammar/'>Учить</a>.",
             "пис": "Улучшай навыки письма. <a href='/write/'>Писать</a>.",
             "глагол": "Тренируй неправильные глаголы. <a href='/Irregular/'>Тренировать</a>.",
+            "игр": "Готовы повеселиться? Попробуйте наши <strong>Игры</strong>! <a href='/games/'>Играть</a>.",
             
-            // Site Details (NEW)
-            "о нас": "<strong>Linguamis</strong> — это на 100% бесплатная платформа для изучения языков.",
-            "сайт": "Мы предлагаем инструменты для чтения, письма и речи.",
+            "о нас": "<strong>Linguamis</strong> — это на 100% бесплатная платформа.",
+            "сайт": "Мы предлагаем инструменты для обучения.",
             "бесплатно": "Да! Это <strong>100% Бесплатно</strong>.",
             "цена": "Бесплатно! Образование должно быть доступным.",
             "контакт": "Нужна помощь? Пишите на <strong>support@linguamis.com</strong>.",
-            "как": "Просто выберите навык в меню и начните.",
+            "как": "Просто выберите навык в меню.",
 
             "привет": "Привет! Готов?",
-            "default": "Я не понимаю. Спроси про <strong>сайт или грамматику</strong>."
+            "default": "Я не понимаю. Спроси про <strong>Игры или Грамматику</strong>."
         }
     },
     ar: {
-        welcome: "<strong>مرحباً! أنا المساعد الذكي. 🤖</strong><br>اسألني عن الموقع أو القواعد.",
+        welcome: "<strong>👋 أهلاً بك في Linguamis!</strong><br><br>أنا مساعدك الذكي. يمكنني إرشادك عبر مواردنا المجانية.<br><br><strong>اسألني عن:</strong><br>• <span style='color:#f3703e'>المحادثة</span> أو <span style='color:#f3703e'>الاستماع</span><br>• <span style='color:#f3703e'>القواعد</span> أو <span style='color:#f3703e'>الألعاب</span>",
         responses: {
             "تحدث": "<strong>مدرب المحادثة</strong> يحسن نطقك. <a href='/speak/'>ابدأ</a>.",
             "استماع": "درب أذنك في <strong>مختبر الاستماع</strong>. <a href='/listen/'>استمع</a>.",
             "قواعد": "<strong>دليل القواعد</strong> يشرح القواعد. <a href='/grammar/'>تعلم</a>.",
             "كتابة": "حسن كتابتك هنا. <a href='/write/'>اكتب</a>.",
             "أفعال": "تدرب على الأفعال الشاذة. <a href='/Irregular/'>تدرب</a>.",
+            "ألعاب": "هل أنت مستعد للمرح؟ جرب <strong>الألعاب التفاعلية</strong>! <a href='/games/'>العب</a>.",
             
-            // Site Details (NEW)
-            "حول": "<strong>Linguamis</strong> هي منصة مجانية 100% لتعلم اللغات.",
-            "موقع": "نقدم أدوات للقراءة والكتابة والمحادثة.",
+            "حول": "<strong>Linguamis</strong> هي منصة مجانية 100%.",
+            "موقع": "نقدم أدوات لتعلم اللغة.",
             "مجاني": "نعم! إنه <strong>مجاني 100%</strong>.",
-            "سعر": "لا يوجد سعر! التعليم يجب أن يكون مجانياً.",
-            "اتصل": "هل تحتاج مساعدة؟ راسلنا على <strong>support@linguamis.com</strong>.",
-            "كيف": "ببساطة اختر مهارة من القائمة وابدأ.",
+            "سعر": "لا يوجد سعر! التعليم للجميع.",
+            "اتصل": "راسلنا على <strong>support@linguamis.com</strong>.",
+            "كيف": "ببساطة اختر مهارة من القائمة.",
 
             "مرحبا": "مرحباً! هل أنت مستعد؟",
-            "default": "لم أفهم. اسأل عن <strong>الموقع أو القواعد</strong>."
+            "default": "لم أفهم. اسأل عن <strong>الألعاب أو القواعد</strong>."
         }
     },
-    /* --- Add these to botKnowledge in chatbot.js --- */
-
-    it: { // Italian
-        welcome: "<strong>Ciao! Sono l'assistente Linguamis. 🤖</strong><br>Chiedimi del Sito, della Grammatica o Contatti!",
+    it: {
+        welcome: "<strong>👋 Benvenuto su Linguamis!</strong><br><br>Sono il tuo assistente IA. Chiedimi pure delle nostre risorse.<br><br><strong>Argomenti:</strong><br>• <span style='color:#f3703e'>Parlare</span> o <span style='color:#f3703e'>Giochi</span><br>• <span style='color:#f3703e'>Grammatica</span>",
         responses: {
             "parl": "Il <strong>Coach Vocale</strong> aiuta con la pronuncia. <a href='/speak/'>Inizia</a>.",
             "ascolt": "Il <strong>Lab Ascolto</strong> allena il tuo orecchio. <a href='/listen/'>Ascolta</a>.",
             "gramm": "La <strong>Guida Grammaticale</strong> spiega le regole. <a href='/grammar/'>Impara</a>.",
             "scri": "Migliora la tua scrittura qui. <a href='/write/'>Scrivi</a>.",
             "verbi": "Pratica i verbi irregolari. <a href='/Irregular/'>Pratica</a>.",
+            "gioc": "Pronto a divertirti? Prova i nostri <strong>Giochi</strong>! <a href='/games/'>Gioca</a>.",
             "sito": "Linguamis è una piattaforma gratuita al 100%.",
             "ciao": "Ciao! Pronto a imparare?",
-            "default": "Non capisco. Chiedimi del <strong>Sito o Grammatica</strong>."
+            "default": "Non capisco. Chiedimi del <strong>Sito, Giochi o Grammatica</strong>."
         }
     },
-    zh: { // Chinese
-        welcome: "<strong>你好！我是 Linguamis 助手。 🤖</strong><br>问我关于网站、语法或联系方式！",
+    zh: {
+        welcome: "<strong>👋 欢迎来到 Linguamis！</strong><br><br>我是你的 AI 助手。我可以为你介绍我们的免费资源。<br><br><strong>试着问我：</strong><br>• <span style='color:#f3703e'>口语</span> 或 <span style='color:#f3703e'>游戏</span><br>• <span style='color:#f3703e'>语法</span>",
         responses: {
             "说": "<strong>口语教练</strong> 帮助发音。<a href='/speak/'>开始</a>。",
             "听": "<strong>听力实验室</strong> 训练你的耳朵。<a href='/listen/'>开始</a>。",
             "语法": "<strong>语法指南</strong> 解释规则。<a href='/grammar/'>学习</a>。",
             "写": "在这里提高写作。<a href='/write/'>写作</a>。",
             "动词": "练习不规则动词。<a href='/Irregular/'>练习</a>。",
+            "游戏": "准备好玩了吗？试试我们的<strong>互动游戏</strong>！<a href='/games/'>玩游戏</a>。",
             "网站": "Linguamis 是一个 100% 免费的平台。",
             "你好": "你好！准备好学习了吗？",
-            "default": "我不明白。请问关于<strong>网站或语法</strong>。"
+            "default": "我不明白。请问关于<strong>游戏或语法</strong>。"
         }
     },
-    ja: { // Japanese
-        welcome: "<strong>こんにちは！Linguamis アシスタントです。 🤖</strong><br>サイトや文法について聞いてください！",
+    ja: {
+        welcome: "<strong>👋 Linguamisへようこそ！</strong><br><br>私はAIアシスタントです。無料のリソースについて案内します。<br><br><strong>質問の例：</strong><br>• <span style='color:#f3703e'>スピーキング</span> または <span style='color:#f3703e'>ゲーム</span><br>• <span style='color:#f3703e'>文法</span>",
         responses: {
             "話": "<strong>スピーキングコーチ</strong>が発音を助けます。<a href='/speak/'>開始</a>。",
             "聞": "<strong>リスニングラボ</strong>で耳を鍛えます。<a href='/listen/'>開始</a>。",
             "文法": "<strong>文法ガイド</strong>がルールを説明します。<a href='/grammar/'>学ぶ</a>。",
             "書": "ライティングを改善します。<a href='/write/'>書く</a>。",
             "動詞": "不規則動詞を練習。<a href='/Irregular/'>練習</a>。",
+            "ゲーム": "楽しむ準備はいいですか？<strong>インタラクティブゲーム</strong>を試そう！<a href='/games/'>プレイ</a>。",
             "サイト": "Linguamisは100%無料のプラットフォームです。",
             "こんにちは": "こんにちは！準備はいいですか？",
-            "default": "わかりません。<strong>サイトか文法</strong>について聞いてください。"
+            "default": "わかりません。<strong>ゲームか文法</strong>について聞いてください。"
         }
     },
-    ko: { // Korean
-        welcome: "<strong>안녕하세요! Linguamis 도우미입니다. 🤖</strong><br>사이트나 문법에 대해 물어보세요!",
+    ko: {
+        welcome: "<strong>👋 Linguamis에 오신 것을 환영합니다!</strong><br><br>저는 AI 도우미입니다. 무료 학습 자료를 안내해 드릴게요.<br><br><strong>질문 예시:</strong><br>• <span style='color:#f3703e'>말하기</span> 또는 <span style='color:#f3703e'>게임</span><br>• <span style='color:#f3703e'>문법</span>",
         responses: {
             "말하": "<strong>말하기 코치</strong>가 발음을 도와줍니다. <a href='/speak/'>시작</a>.",
             "듣": "<strong>듣기 연구소</strong>에서 귀를 훈련하세요. <a href='/listen/'>시작</a>.",
             "문법": "<strong>문법 가이드</strong>가 규칙을 설명합니다. <a href='/grammar/'>배우기</a>.",
             "쓰": "여기서 작문을 향상하세요. <a href='/write/'>쓰기</a>.",
             "동사": "불규칙 동사를 연습하세요. <a href='/Irregular/'>연습</a>.",
+            "게임": "재미있게 배울 준비 되셨나요? <strong>대화형 게임</strong>을 해보세요! <a href='/games/'>게임 하기</a>.",
             "사이트": "Linguamis는 100% 무료 플랫폼입니다.",
             "안녕": "안녕하세요! 학습할 준비 되셨나요?",
-            "default": "이해하지 못했습니다. <strong>사이트나 문법</strong>에 대해 물어보세요."
+            "default": "이해하지 못했습니다. <strong>게임이나 문법</strong>에 대해 물어보세요."
         }
     },
-    hi: { // Hindi
-        welcome: "<strong>नमस्ते! मैं Linguamis सहायक हूँ। 🤖</strong><br>मुझसे साइट या व्याकरण के बारे में पूछें!",
+    hi: {
+        welcome: "<strong>👋 Linguamis में आपका स्वागत है!</strong><br><br>मैं आपका AI सहायक हूँ। मुझसे हमारे मुफ़्त संसाधनों के बारे में पूछें।<br><br><strong>विषय:</strong><br>• <span style='color:#f3703e'>बोलना</span> या <span style='color:#f3703e'>खेल</span><br>• <span style='color:#f3703e'>व्याकरण</span>",
         responses: {
             "बोल": "<strong>स्पीकिंग कोच</strong> उच्चारण में मदद करता है। <a href='/speak/'>शुरू करें</a>.",
             "सुन": "<strong>लिस्निंग लैब</strong> आपके कानों को प्रशिक्षित करता है। <a href='/listen/'>शुरू करें</a>.",
             "व्याकरण": "<strong>व्याकरण गाइड</strong> नियमों की व्याख्या करता है। <a href='/grammar/'>सीखें</a>.",
             "लिख": "अपना लेखन सुधारें। <a href='/write/'>लिखें</a>.",
             "क्रिया": "अनियमित क्रियाओं का अभ्यास करें। <a href='/Irregular/'>अभ्यास करें</a>.",
+            "खेल": "मज़े के लिए तैयार हैं? हमारे <strong>इंटरैक्टिव गेम</strong> आज़माएँ! <a href='/games/'>खेलें</a>.",
             "साइट": "Linguamis 100% मुफ़्त है।",
             "नमस्ते": "नमस्ते! क्या आप तैयार हैं?",
-            "default": "मुझे समझ नहीं आया। <strong>साइट या व्याकरण</strong> के बारे में पूछें।"
+            "default": "मुझे समझ नहीं आया। <strong>खेल या व्याकरण</strong> के बारे में पूछें।"
         }
     },
-    pl: { // Polish
-        welcome: "<strong>Cześć! Jestem asystentem Linguamis. 🤖</strong><br>Zapytaj mnie o Stronę lub Gramatykę!",
+    pl: {
+        welcome: "<strong>👋 Witaj w Linguamis!</strong><br><br>Jestem Twoim asystentem AI. Zapytaj mnie o nasze darmowe zasoby.<br><br><strong>Tematy:</strong><br>• <span style='color:#f3703e'>Mówienie</span> lub <span style='color:#f3703e'>Gry</span><br>• <span style='color:#f3703e'>Gramatyka</span>",
         responses: {
             "mów": "<strong>Trener Mowy</strong> pomaga w wymowie. <a href='/speak/'>Start</a>.",
             "słuch": "<strong>Lab Słuchania</strong> trenuje słuch. <a href='/listen/'>Start</a>.",
             "gramatyka": "<strong>Przewodnik</strong> wyjaśnia zasady. <a href='/grammar/'>Ucz się</a>.",
             "pisa": "Popraw pisanie tutaj. <a href='/write/'>Pisz</a>.",
             "czasownik": "Ćwicz czasowniki nieregularne. <a href='/Irregular/'>Ćwicz</a>.",
+            "gry": "Gotowy na zabawę? Wypróbuj nasze <strong>Gry Interaktywne</strong>! <a href='/games/'>Graj</a>.",
             "strona": "Linguamis to w 100% darmowa platforma.",
             "cześć": "Cześć! Gotowy do nauki?",
-            "default": "Nie rozumiem. Zapytaj o <strong>Stronę lub Gramatykę</strong>."
+            "default": "Nie rozumiem. Zapytaj o <strong>Gry lub Gramatykę</strong>."
         }
     },
-    pt: { // Portuguese
-        welcome: "<strong>Olá! Sou o assistente. 🤖</strong><br>Pergunte sobre o Site ou Gramática.",
+    pt: {
+        welcome: "<strong>👋 Bem-vindo ao Linguamis!</strong><br><br>Sou seu assistente de IA. Posso guiá-lo pelos nossos recursos.<br><br><strong>Tópicos:</strong><br>• <span style='color:#f3703e'>Falar</span> ou <span style='color:#f3703e'>Jogos</span><br>• <span style='color:#f3703e'>Gramática</span>",
         responses: {
             "fala": "O <strong>Treinador de Fala</strong> ajuda na pronúncia. <a href='/speak/'>Começar</a>.",
             "ouvir": "O <strong>Lab de Escuta</strong> treina seu ouvido. <a href='/listen/'>Ouvir</a>.",
             "gramatica": "O <strong>Guia</strong> explica as regras. <a href='/grammar/'>Aprender</a>.",
             "escrev": "Melhore sua escrita. <a href='/write/'>Escrever</a>.",
             "verbo": "Pratique verbos irregulares. <a href='/Irregular/'>Praticar</a>.",
+            "jogo": "Pronto para diversão? Teste nossos <strong>Jogos</strong>! <a href='/games/'>Jogar</a>.",
             "site": "Linguamis é 100% Grátis.",
             "ola": "Olá! Pronto para aprender?",
-            "default": "Não entendi. Pergunte sobre <strong>o Site ou Gramática</strong>."
+            "default": "Não entendi. Pergunte sobre <strong>Jogos ou Gramática</strong>."
         }
     },
-    nl: { // Dutch
-        welcome: "<strong>Hallo! Ik ben de assistent. 🤖</strong><br>Vraag me over de Site of Grammatica.",
+    nl: {
+        welcome: "<strong>👋 Welkom bij Linguamis!</strong><br><br>Ik ben je AI-assistent. Vraag me naar onze gratis bronnen.<br><br><strong>Onderwerpen:</strong><br>• <span style='color:#f3703e'>Spreken</span> of <span style='color:#f3703e'>Spellen</span><br>• <span style='color:#f3703e'>Grammatica</span>",
         responses: {
             "sprek": "De <strong>Spreekcoach</strong> helpt met uitspraak. <a href='/speak/'>Start</a>.",
             "luist": "Het <strong>Luisterlab</strong> traint je gehoor. <a href='/listen/'>Start</a>.",
             "grammatica": "De <strong>Gids</strong> legt regels uit. <a href='/grammar/'>Leren</a>.",
             "schrijf": "Verbeter je schrijven. <a href='/write/'>Schrijven</a>.",
             "werkwoord": "Oefen onregelmatige werkwoorden. <a href='/Irregular/'>Oefenen</a>.",
+            "spel": "Klaar voor plezier? Probeer onze <strong>Spellen</strong>! <a href='/games/'>Spelen</a>.",
             "site": "Linguamis is 100% Gratis.",
             "hallo": "Hallo! Klaar om te leren?",
-            "default": "Ik begrijp het niet. Vraag over <strong>de Site of Grammatica</strong>."
+            "default": "Ik begrijp het niet. Vraag over <strong>Spellen of Grammatica</strong>."
         }
     },
-    id: { // Indonesian
-        welcome: "<strong>Halo! Saya asisten Linguamis. 🤖</strong><br>Tanya saya tentang Situs atau Tata Bahasa!",
+    id: {
+        welcome: "<strong>👋 Selamat datang di Linguamis!</strong><br><br>Saya asisten AI Anda. Tanyakan tentang sumber belajar kami.<br><br><strong>Topik:</strong><br>• <span style='color:#f3703e'>Berbicara</span> atau <span style='color:#f3703e'>Game</span><br>• <span style='color:#f3703e'>Tata Bahasa</span>",
         responses: {
             "bicara": "<strong>Pelatih Bicara</strong> membantu pengucapan. <a href='/speak/'>Mulai</a>.",
             "dengar": "<strong>Lab Mendengar</strong> melatih telinga Anda. <a href='/listen/'>Mulai</a>.",
             "tata": "<strong>Panduan Tata Bahasa</strong> menjelaskan aturan. <a href='/grammar/'>Belajar</a>.",
             "tulis": "Tingkatkan tulisan Anda. <a href='/write/'>Menulis</a>.",
             "kerja": "Latihan kata kerja tak beraturan. <a href='/Irregular/'>Latihan</a>.",
+            "game": "Siap bersenang-senang? Coba <strong>Game Interaktif</strong> kami! <a href='/games/'>Main</a>.",
             "situs": "Linguamis adalah platform 100% Gratis.",
             "halo": "Halo! Siap belajar?",
-            "default": "Saya tidak mengerti. Tanya tentang <strong>Situs atau Tata Bahasa</strong>."
+            "default": "Saya tidak mengerti. Tanya tentang <strong>Game atau Tata Bahasa</strong>."
         }
     },
-    th: { // Thai
-        welcome: "<strong>สวัสดี! ฉันคือผู้ช่วย Linguamis 🤖</strong><br>ถามฉันเกี่ยวกับเว็บไซต์หรือไวยากรณ์!",
+    th: {
+        welcome: "<strong>👋 ยินดีต้อนรับสู่ Linguamis!</strong><br><br>ฉันคือผู้ช่วย AI ของคุณ ถามเกี่ยวกับแหล่งข้อมูลฟรีของเราได้เลย<br><br><strong>หัวข้อ:</strong><br>• <span style='color:#f3703e'>การพูด</span> หรือ <span style='color:#f3703e'>เกม</span><br>• <span style='color:#f3703e'>ไวยากรณ์</span>",
         responses: {
             "พูด": "<strong>โค้ชการพูด</strong> ช่วยเรื่องการออกเสียง <a href='/speak/'>เริ่ม</a>",
             "ฟัง": "<strong>ห้องแล็บการฟัง</strong> ฝึกหูของคุณ <a href='/listen/'>เริ่ม</a>",
             "ไวยากรณ์": "<strong>คู่มือไวยากรณ์</strong> อธิบายกฎต่างๆ <a href='/grammar/'>เรียนรู้</a>",
             "เขียน": "ปรับปรุงการเขียนของคุณ <a href='/write/'>เขียน</a>",
             "กริยา": "ฝึกคำกริยาผิดปกติ <a href='/Irregular/'>ฝึกฝน</a>",
+            "เกม": "พร้อมสนุกหรือยัง? ลอง <strong>เกมแบบโต้ตอบ</strong> ของเรา! <a href='/games/'>เล่น</a>",
             "เว็บ": "Linguamis ฟรี 100%",
             "สวัสดี": "สวัสดี! พร้อมเรียนรู้หรือยัง?",
-            "default": "ฉันไม่เข้าใจ ถามเกี่ยวกับ <strong>เว็บไซต์หรือไวยากรณ์</strong>"
+            "default": "ฉันไม่เข้าใจ ถามเกี่ยวกับ <strong>เกมหรือไวยากรณ์</strong>"
         }
     },
-    vi: { // Vietnamese
-        welcome: "<strong>Xin chào! Tôi là trợ lý. 🤖</strong><br>Hỏi tôi về Trang web hoặc Ngữ pháp!",
+    vi: {
+        welcome: "<strong>👋 Chào mừng đến với Linguamis!</strong><br><br>Tôi là trợ lý AI. Hãy hỏi tôi về các tài nguyên miễn phí.<br><br><strong>Chủ đề:</strong><br>• <span style='color:#f3703e'>Nói</span> hoặc <span style='color:#f3703e'>Trò chơi</span><br>• <span style='color:#f3703e'>Ngữ pháp</span>",
         responses: {
             "nói": "<strong>Huấn luyện viên Nói</strong> giúp phát âm. <a href='/speak/'>Bắt đầu</a>.",
             "nghe": "<strong>Phòng nghe</strong> rèn luyện tai. <a href='/listen/'>Nghe</a>.",
             "ngữ": "<strong>Hướng dẫn Ngữ pháp</strong> giải thích quy tắc. <a href='/grammar/'>Học</a>.",
             "viết": "Cải thiện kỹ năng viết. <a href='/write/'>Viết</a>.",
             "động": "Luyện động từ bất quy tắc. <a href='/Irregular/'>Luyện</a>.",
+            "chơi": "Sẵn sàng vui chơi? Thử <strong>Trò chơi Tương tác</strong>! <a href='/games/'>Chơi</a>.",
             "trang": "Linguamis miễn phí 100%.",
             "chào": "Xin chào! Sẵn sàng học chưa?",
-            "default": "Tôi không hiểu. Hãy hỏi về <strong>Trang web hoặc Ngữ pháp</strong>."
+            "default": "Tôi không hiểu. Hãy hỏi về <strong>Trò chơi hoặc Ngữ pháp</strong>."
         }
     },
-    el: { // Greek
-        welcome: "<strong>Γεια σας! Είμαι ο βοηθός. 🤖</strong><br>Ρωτήστε με για τον Ιστότοπο ή τη Γραμματική!",
+    el: {
+        welcome: "<strong>👋 Καλώς ήρθατε στο Linguamis!</strong><br><br>Είμαι ο βοηθός AI σας. Ρωτήστε με για τους πόρους μας.<br><br><strong>Θέματα:</strong><br>• <span style='color:#f3703e'>Ομιλία</span> ή <span style='color:#f3703e'>Παιχνίδια</span><br>• <span style='color:#f3703e'>Γραμματική</span>",
         responses: {
             "ομιλ": "Ο <strong>Προπονητής</strong> βοηθά στην προφορά. <a href='/speak/'>Έναρξη</a>.",
             "ακου": "Το <strong>Εργαστήριο</strong> εκπαιδεύει το αυτί. <a href='/listen/'>Έναρξη</a>.",
             "γραμμ": "Ο <strong>Οδηγός</strong> εξηγεί τους κανόνες. <a href='/grammar/'>Μάθηση</a>.",
             "γραφ": "Βελτιώστε τη γραφή σας. <a href='/write/'>Γραφή</a>.",
             "ρημα": "Εξασκηθείτε στα ρήματα. <a href='/Irregular/'>Άσκηση</a>.",
+            "παιχν": "Έτοιμοι για διασκέδαση; Δοκιμάστε τα <strong>Παιχνίδια</strong>! <a href='/games/'>Παίξτε</a>.",
             "ιστο": "Το Linguamis είναι 100% Δωρεάν.",
             "γεια": "Γεια σας! Έτοιμοι;",
-            "default": "Δεν καταλαβαίνω. Ρωτήστε για <strong>Ιστότοπο ή Γραμματική</strong>."
+            "default": "Δεν καταλαβαίνω. Ρωτήστε για <strong>Παιχνίδια ή Γραμματική</strong>."
         }
     },
-    cs: { // Czech
-        welcome: "<strong>Ahoj! Jsem asistent Linguamis. 🤖</strong><br>Zeptej se mě na Web nebo Gramatiku!",
+    cs: {
+        welcome: "<strong>👋 Vítejte v Linguamis!</strong><br><br>Jsem váš AI asistent. Zeptejte se mě na naše zdroje.<br><br><strong>Témata:</strong><br>• <span style='color:#f3703e'>Mluvení</span> nebo <span style='color:#f3703e'>Hry</span><br>• <span style='color:#f3703e'>Gramatika</span>",
         responses: {
             "mluv": "<strong>Trenér Mluvení</strong> pomáhá s výslovností. <a href='/speak/'>Start</a>.",
             "posl": "<strong>Laboratoř</strong> trénuje uši. <a href='/listen/'>Start</a>.",
             "gramat": "<strong>Průvodce</strong> vysvětluje pravidla. <a href='/grammar/'>Učit se</a>.",
             "psát": "Zlepši své psaní. <a href='/write/'>Psát</a>.",
             "sloves": "Procvič nepravidelná slovesa. <a href='/Irregular/'>Cvičit</a>.",
+            "hry": "Připraveni na zábavu? Zkuste naše <strong>Hry</strong>! <a href='/games/'>Hrát</a>.",
             "web": "Linguamis je 100% zdarma.",
             "ahoj": "Ahoj! Jsi připraven?",
-            "default": "Nerozumím. Zeptej se na <strong>Web nebo Gramatiku</strong>."
+            "default": "Nerozumím. Zeptej se na <strong>Hry nebo Gramatiku</strong>."
         }
     }
 };
@@ -347,10 +356,9 @@ function toggleChat() {
     
     chatWindow.classList.toggle('hidden');
     
-    // Because the page reloads on language change, we just check if empty
+    // Check if empty to send welcome message
     if (!chatWindow.classList.contains('hidden') && messages.children.length === 0) {
         const lang = getCurrentLang();
-        // Safe check: if lang doesn't exist in DB, use 'en'
         const welcomeMsg = (botKnowledge[lang] || botKnowledge['en']).welcome;
         addMessage("bot", welcomeMsg);
     }
@@ -376,23 +384,17 @@ function sendMessage() {
     }, 600);
 }
 
-// 5. GET RESPONSE (FIXED: "Undefined" Proof)
+// 5. GET RESPONSE
 function getBotResponse(input, lang) {
-    // Fallback to English if the language code is weird
     const langDB = botKnowledge[lang] || botKnowledge['en'];
-    
-    // Ensure responses object exists
     const responses = langDB.responses || {};
 
-    // Check for keyword matches
     for (let key in responses) {
         if (input.includes(key)) {
             return responses[key];
         }
     }
     
-    // Safety Net: If 'default' is missing for some reason, return a hardcoded string.
-    // This prevents the "undefined" chat bubble.
     return langDB.default || "I am here to help, but I didn't understand that.";
 }
 
@@ -410,4 +412,3 @@ function addMessage(sender, text) {
 function handleKeyPress(event) {
     if (event.key === 'Enter') sendMessage();
 }
-
