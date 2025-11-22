@@ -139,7 +139,7 @@ let voices = [];
 const viewChallenge = document.getElementById('view-challenge');
 const viewFree = document.getElementById('view-freeplay');
 
-// Desktop Nav
+// Desktop Nav (Sidebar buttons)
 const btnChallenge = document.getElementById('btn-challenge-desktop');
 const btnFree = document.getElementById('btn-freeplay-desktop');
 
@@ -176,14 +176,16 @@ function switchTab(tab) {
         viewChallenge.classList.remove('hidden');
         viewFree.classList.add('hidden');
         
-        btnChallenge.classList.replace('text-gray-400', 'text-white');
-        btnChallenge.classList.replace('hover:bg-white/10', 'bg-brand-orange');
-        btnChallenge.classList.add('shadow-lg', 'shadow-orange-500/30');
+        // Update Desktop Sidebar
+        btnChallenge.classList.replace('text-gray-500', 'text-white');
+        btnChallenge.classList.remove('hover:bg-gray-50', 'hover:text-gray-900');
+        btnChallenge.classList.add('bg-brand-orange', 'shadow-md', 'shadow-orange-500/20');
         
-        btnFree.classList.replace('text-white', 'text-gray-400');
-        btnFree.classList.remove('bg-brand-orange', 'shadow-lg', 'shadow-orange-500/30');
-        btnFree.classList.add('hover:bg-white/10');
+        btnFree.classList.replace('text-white', 'text-gray-500');
+        btnFree.classList.remove('bg-brand-orange', 'shadow-md', 'shadow-orange-500/20');
+        btnFree.classList.add('hover:bg-gray-50', 'hover:text-gray-900');
         
+        // Update Mobile Nav
         navMobileChallenge.classList.add('active');
         navMobileFree.classList.remove('active');
 
@@ -191,14 +193,16 @@ function switchTab(tab) {
         viewChallenge.classList.add('hidden');
         viewFree.classList.remove('hidden');
         
-        btnFree.classList.replace('text-gray-400', 'text-white');
-        btnFree.classList.remove('hover:bg-white/10');
-        btnFree.classList.add('bg-brand-orange', 'shadow-lg', 'shadow-orange-500/30');
+        // Update Desktop Sidebar
+        btnFree.classList.replace('text-gray-500', 'text-white');
+        btnFree.classList.remove('hover:bg-gray-50', 'hover:text-gray-900');
+        btnFree.classList.add('bg-brand-orange', 'shadow-md', 'shadow-orange-500/20');
         
-        btnChallenge.classList.replace('text-white', 'text-gray-400');
-        btnChallenge.classList.remove('bg-brand-orange', 'shadow-lg', 'shadow-orange-500/30');
-        btnChallenge.classList.add('hover:bg-white/10');
+        btnChallenge.classList.replace('text-white', 'text-gray-500');
+        btnChallenge.classList.remove('bg-brand-orange', 'shadow-md', 'shadow-orange-500/20');
+        btnChallenge.classList.add('hover:bg-gray-50', 'hover:text-gray-900');
         
+        // Update Mobile Nav
         navMobileFree.classList.add('active');
         navMobileChallenge.classList.remove('active');
     }
@@ -210,7 +214,7 @@ function initCategories() {
         const option = document.createElement('option');
         option.value = cat;
         option.textContent = cat;
-        option.className = "bg-white text-gray-800";
+        option.className = "text-gray-800";
         categorySelect.appendChild(option);
     });
     
@@ -225,19 +229,19 @@ function renderCards() {
     cardsContainer.innerHTML = '';
     practiceData[currentCategory].forEach(item => {
         const card = document.createElement('div');
-        // Applying Linguamis "Speaking" Card Style (White with Cyan top border)
-        card.className = "linguamis-card p-5 cursor-pointer border-t-4 border-brand-cyan flex flex-col justify-between min-h-[120px]";
+        // Using the custom linguamis-card class
+        card.className = "linguamis-card p-5 cursor-pointer flex flex-col justify-between min-h-[120px] border-l-4 border-brand-orange group";
         card.onclick = () => openPractice(item);
         card.innerHTML = `
             <div class="flex justify-between items-start mb-2">
-                 <div class="h-8 w-8 rounded-full bg-cyan-50 flex items-center justify-center text-brand-cyan">
-                    <i class="fas fa-volume-up text-xs"></i>
+                 <div class="h-8 w-8 rounded-full bg-orange-50 flex items-center justify-center text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-colors">
+                    <i class="fas fa-comment-dots text-xs"></i>
                  </div>
-                <i class="fas fa-chevron-right text-gray-300"></i>
+                <i class="fas fa-chevron-right text-gray-300 group-hover:text-brand-orange transition-colors"></i>
             </div>
             <div>
-                <h3 class="text-lg font-bold text-gray-800 leading-tight group-hover:text-brand-cyan transition-colors">${item.text}</h3>
-                <p class="text-gray-500 text-sm line-clamp-1 mt-1">"${item.phrase}"</p>
+                <h3 class="text-lg font-bold text-gray-800 leading-tight">${item.text}</h3>
+                <p class="text-gray-500 text-sm line-clamp-1 mt-1 group-hover:text-gray-700">"${item.phrase}"</p>
             </div>
         `;
         cardsContainer.appendChild(card);
@@ -315,7 +319,6 @@ function initSpeechRecognition() {
     
     if (!SpeechRecognition) {
         document.getElementById('browser-warning').classList.remove('hidden');
-        document.getElementById('browser-warning-mobile').classList.remove('hidden');
         recordBtn.disabled = true;
         recordBtn.classList.add('opacity-50', 'cursor-not-allowed');
         return;
@@ -378,12 +381,12 @@ function stopRecording() {
 function updateMicUI(recording) {
     const icon = document.getElementById('mic-icon');
     if (recording) {
-        recordBtn.classList.add('recording-pulse', 'bg-red-500', 'border-red-200');
-        recordBtn.classList.remove('bg-brand-orange', 'border-white');
+        recordBtn.classList.add('recording-pulse', 'bg-red-500', 'shadow-red-500/50');
+        recordBtn.classList.remove('bg-brand-orange', 'shadow-orange-500/30');
         icon.className = "fas fa-stop text-3xl";
     } else {
-        recordBtn.classList.remove('recording-pulse', 'bg-red-500', 'border-red-200');
-        recordBtn.classList.add('bg-brand-orange', 'border-white');
+        recordBtn.classList.remove('recording-pulse', 'bg-red-500', 'shadow-red-500/50');
+        recordBtn.classList.add('bg-brand-orange', 'shadow-orange-500/30');
         icon.className = "fas fa-microphone text-3xl";
     }
 }
@@ -395,7 +398,7 @@ function checkMatch(spoken) {
 
     if (cleanSpoken === cleanTarget) {
         feedbackMsg.textContent = "Perfect Match! 🎉";
-        feedbackMsg.className = "mt-3 font-bold text-lg text-green-600"; // Green for success
+        feedbackMsg.className = "mt-2 font-bold text-lg text-green-600";
         triggerConfetti();
         
         // Success Sound
@@ -414,7 +417,7 @@ function checkMatch(spoken) {
 
     } else {
         feedbackMsg.textContent = "Close! Try again.";
-        feedbackMsg.className = "mt-3 font-bold text-lg text-orange-500";
+        feedbackMsg.className = "mt-2 font-bold text-lg text-brand-orange";
     }
 }
 
