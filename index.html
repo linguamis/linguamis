@@ -69,57 +69,45 @@
         ...
         </div> ```
         
-        **🟢 Corrected HTML Structure:**
-        ```html
-        <div class="mobile-menu-dropdown" id="mobileMenu">
-            <select id="mobileLangSelect"> ... </select>
-            
-            <a href="/grammar/">Grammar</a>
-            <a href="/speak/">Speaking</a>
-            ...
-        </div> ```
-        
-        ---
-        
         ### How to Fix It
         
         Open your `index.html` file and find the `<div class="mobile-menu-dropdown">` section (around line 60). Replace that entire block with this corrected code:
         
         ```html
-                <div class="mobile-menu-dropdown" id="mobileMenu">
-                    <select id="mobileLangSelect" onchange="changeLanguage(this.value)" style="width: 100%; padding: 8px;" aria-label="Select Language Mobile">
-                        <option value="en">🇬🇧 English</option>
-                        <option value="fr">🇫🇷 Français</option>
-                        <option value="es">🇪🇸 Español</option>
-                        <option value="de">🇩🇪 Deutsch</option>
-                        <option value="tr">🇹🇷 Türkçe</option>
-                        <option value="ru">🇷🇺 Русский</option>
-                        <option value="ar">🇸🇦 العربية</option>
-                    
-                        <option value="it">🇮🇹 Italiano</option>
-                        <option value="zh">🇨🇳 中文</option>
-                        <option value="ja">🇯🇵 日本語</option>
-                        <option value="ko">🇰🇷 한국어</option>
-                        <option value="hi">🇮🇳 हिन्दी</option>
-                    
-                        <option value="pt">🇵🇹 Português</option>
-                        <option value="pl">🇵🇱 Polski</option>
-                        <option value="nl">🇳🇱 Nederlands</option>
-                        <option value="id">🇮🇩 Indonesia</option>
-                        <option value="vi">🇻🇳 Tiếng Việt</option>
-                        <option value="th">🇹🇭 ไทย</option>
-                        <option value="el">🇬🇷 Ελληνικά</option>
-                        <option value="cs">🇨🇿 Čeština</option>
-                    </select>
-                    
-                    <a href="/grammar/" data-i18n="navGrammar">Grammar</a>
-                    <a href="/speak/" data-i18n="navSpeaking">Speaking</a>
-                    <a href="/read/" data-i18n="navReading">Reading</a>
-                    <a href="/quiz/" data-i18n="navQuiz">Quiz</a>
-                    <a href="/write/" data-i18n="navWriting">Writing</a>
-                    <a href="/Personas/" data-i18n="navPersonas">Personas</a>
-                    <a href="/login/" data-i18n="navLogin">Log in</a>
-                </div>
+<div class="mobile-menu-dropdown" id="mobileMenu">
+            <select id="mobileLangSelect" onchange="changeLanguage(this.value)" style="width: 100%; padding: 8px;" aria-label="Select Language Mobile">
+                <option value="en">🇬🇧 English</option>
+                <option value="fr">🇫🇷 Français</option>
+                <option value="es">🇪🇸 Español</option>
+                <option value="de">🇩🇪 Deutsch</option>
+                <option value="tr">🇹🇷 Türkçe</option>
+                <option value="ru">🇷🇺 Русский</option>
+                <option value="ar">🇸🇦 العربية</option>
+            
+                <option value="it">🇮🇹 Italiano</option>
+                <option value="zh">🇨🇳 中文</option>
+                <option value="ja">🇯🇵 日本語</option>
+                <option value="ko">🇰🇷 한국어</option>
+                <option value="hi">🇮🇳 हिन्दी</option>
+            
+                <option value="pt">🇵🇹 Português</option>
+                <option value="pl">🇵🇱 Polski</option>
+                <option value="nl">🇳🇱 Nederlands</option>
+                <option value="id">🇮🇩 Indonesia</option>
+                <option value="vi">🇻🇳 Tiếng Việt</option>
+                <option value="th">🇹🇭 ไทย</option>
+                <option value="el">🇬🇷 Ελληνικά</option>
+                <option value="cs">🇨🇿 Čeština</option>
+            </select>
+            
+            <a href="/grammar/" data-i18n="navGrammar">Grammar</a>
+            <a href="/speak/" data-i18n="navSpeaking">Speaking</a>
+            <a href="/read/" data-i18n="navReading">Reading</a>
+            <a href="/quiz/" data-i18n="navQuiz">Quiz</a>
+            <a href="/write/" data-i18n="navWriting">Writing</a>
+            <a href="/Personas/" data-i18n="navPersonas">Personas</a>
+            <a href="/login/" data-i18n="navLogin">Log in</a>
+        </div>
             </nav>
 
     <header>
