@@ -230,16 +230,9 @@
         }
     </script>
 
-    <script>
-        // Automatically remove trailing slashes from the URL bar
-        if (window.location.pathname.length > 1 && window.location.pathname.endsWith('/')) {
-            var newPath = window.location.pathname.slice(0, -1);
-            window.history.replaceState(null, '', newPath + window.location.search + window.location.hash);
-        }
-    </script>
-
 </body>
 </html>
+
 
 
 
